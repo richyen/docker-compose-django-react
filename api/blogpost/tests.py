@@ -39,7 +39,7 @@ class GetAllBlogpostsTest(BaseViewTest):
             reverse("blogposts-all", kwargs={"version": "v1"})
         )
         # fetch the data from db
-        expected = Blogposts.objects.all()
-        serialized = BlogpostsSerializer(expected, many=True)
+        expected = Blogpost.objects.all()
+        serialized = BlogpostSerializer(expected, many=True)
         self.assertEqual(response.data, serialized.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
