@@ -1,0 +1,26 @@
+A. Create virtual environment
+python3 -m venv ./venv
+this will create a folder environment called venv that contains all the dependencies.
+1. activate virtual env.
+source .venv/bin/activate
+2. deactivate virtual env.
+deactivate
+
+3. Make sure to be in venv environment. Now install django
+pip install django
+4.
+
+B. Create database
+1. Download Postgres
+For Mac, go to: https://postgresapp.com/
+2. Open Postgres. Make sure the server is running.
+2.1. Click on postgres
+\password postgres to set up the user postgres
+2.2. Create Database
+CREATE DATABASE ismp OWNER postgres;
+\l to see all database
+2.3. Optional
+Install pgadmin here: https://www.pgadmin.org/
+Follow intruction to see database in website
+
+

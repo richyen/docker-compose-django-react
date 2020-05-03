@@ -1,0 +1,83 @@
+
+ This doc is a first-draft of the database schema. You can use this to get an idea of
+// what information you can get by hitting the API so you can plan the UI while the API
+// is getting set up.
+Table Blogpost {
+Int id primary_key;
+Int author_id;//author is a mentor  --> foreign key to Mentor
+String media_url;
+Date posted_on;
+}
+
+// This table will encompass both titles
+Table PostContent {
+int id primary key;
+Int blogpost_id; // will need to get body text or title in specific language
+Language language; // will need to get body text or title in specific language
+String displayText;
+String type;
+}
+
+
+
+// This one will probably change too, because this current table does not
+Users
+{
+	required int id primary key,
+	required string first_name, //max size 50
+	required string last_name, //max size 50
+	required enum PERMISSION permission_level, //user, mentor, admin. Will probably
+	// implement this another way, but you get the idea.
+	int mentor_id,
+}
+
+// Current plan is to not force mentors to be associated with a user profile yet.
+// This would theoretically allow us easier setting up and allows us to take some
+// time before onboarding all of the mentors as users.
+Mentors
+{
+	required int id ;
+	string picture_url;
+	int user_id;
+}
+
+// The qualifications we currently have
+listed (eg MS UCLA CSE)
+// This will probably change depending on what the wireframe for the user profile page
+// looks like
+Mentor-Info
+{
+	required int id;
+	required int mentor_id;
+	required string info;
+}
+
+// If we actually want to implement the heart at the bottom of the blogpost page
+// Very low priority
+User-Likes
+{
+	required int id;
+	required int blogpost_id;
+	required int user_id;
+}
+
+Table PostMedia {
+
+}
+
+BlogPostId
+PostContent - Body
+PostContent - Title
+
+
+React markdown component we could potentially use: https://github.com/rexxars/react-markdown
+
+Blogposts
+{
+	required int id primary key,
+	required string title, //maximum size 150
+	required int user_id,
+	string body,
+	string media_url, //assumption right now is all videos will be hosted on YT
+	date posted_on,
+}

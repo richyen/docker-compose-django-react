@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'User',
+    'django_extensions',
+
 ]
 
 MIDDLEWARE = [
@@ -76,10 +79,10 @@ WSGI_APPLICATION = 'api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'ismp',
         'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'HOST': 'localhost',
+        'PASSWORD': 'postgres',
     }
 }
 
@@ -121,3 +124,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'User.User'
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'core.exceptions.core_exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_AUTHENTICATION_CLASSES': ('User.backends.JWTAuthentication',),
+}
