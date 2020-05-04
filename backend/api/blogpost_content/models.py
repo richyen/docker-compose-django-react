@@ -1,7 +1,7 @@
 from django.db import models
 from django.apps import apps
 from django.contrib import admin
-from blogpost.models import Blogpost
+from api.blogpost.models import Blogpost
 
 
 # Create your models here.
