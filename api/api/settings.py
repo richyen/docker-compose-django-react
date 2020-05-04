@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blogpost',
+    'blogpost_content',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -78,6 +81,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
+        # settings for local setup if you don't feel like using docker
+        # 'PASSWORD': 'postgres',
+        # 'HOST': 'localhost',
         'HOST': 'db',
         'PORT': 5432,
     }
