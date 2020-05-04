@@ -27,7 +27,7 @@ class BlogpostDetailView(generics.ListAPIView):
 		try:
 			a_blogpost = self.queryset.get(pk=kwargs["pk"])
 			return Response(BlogpostSerializer(a_blogpost).data)
-		except Blogposts.DoesNotExist:
+		except Blogpost.DoesNotExist:
 			return Response(
 				data={
 					"message": "Blogpost with id: {} does not exist".format(kwargs["pk"])
