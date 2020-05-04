@@ -10,6 +10,7 @@ services:
     volumes:
       - ./backend/data:/var/lib/postgresql/data
   django:
+    image: richyen/ismp-backend
     build: ./backend
     volumes:
       - ./backend:/app/api
@@ -20,6 +21,7 @@ services:
     entrypoint:
       - "/app/api/api-entrypoint.sh"
   frontend:
+    image: richyen/ismp-frontend
     build: ./frontend
     command: ["npm", "start"]
     volumes:

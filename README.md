@@ -5,6 +5,7 @@ This is a set up so that we can easily create apps that use Django on the backen
 ## Running
 
 1. `docker-compose build` # You should only have to do this once (or when requirements.txt gets updated)
+  * Alternatively, you can do `docker pull richyen/ismp-backend:latest` and `docker pull richyen/ismp-frontend:latest`
 1. `docker-compose up`
 1. There should now be two servers running:
   - [http://127.0.0.1:8000](http://127.0.0.1:8000) is the Django app
@@ -20,14 +21,4 @@ For example, to install a Javascript dependency and save that information to `pa
 If you want to be on a shell for one of the Docker services, you can do something like:
 `docker-compose run --rm frontend bash`
 
-
-
-Things I want to add:
-- config for circle to deploy on `master` (wondering if i can get default branch name) and tagged releases
-- React Router
-- Redux & directory structure
-- A server side rendering
-- Service Workers and easy to config [strategies](https://jakearchibald.com/2014/offline-cookbook/)
-- Instructions on easy deployment to cloud.gov
-- Directory structure?
-- USWDS in some form?
+If you run into any issues with Django being unable to find tables, try `docker exec -it ismp_django_1 python manage.py migrate` before asking for further help
