@@ -81,8 +81,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
+        'PASSWORD': 'postgres',
         # settings for local setup if you don't feel like using docker
-        # 'PASSWORD': 'postgres',
         # 'HOST': 'localhost',
         'HOST': 'db',
         'PORT': 5432,
