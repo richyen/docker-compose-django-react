@@ -8,10 +8,10 @@ services:
     environment:
       POSTGRES_PASSWORD: "postgres"
   django:
-    build: ./api
+    build: ./backend
     command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
     volumes:
-      - ./api:/app/api
+      - ./backend:/app/api
     ports:
       - "8000:8000"
     depends_on:
