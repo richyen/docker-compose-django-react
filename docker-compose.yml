@@ -9,13 +9,14 @@ services:
       POSTGRES_PASSWORD: "postgres"
   django:
     build: ./backend
-    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
     volumes:
       - ./backend:/app/api
     ports:
       - "8000:8000"
     depends_on:
       - db
+    entrypoint:
+      - "/app/api/api-entrypoint.sh"
   frontend:
     build: ./frontend
     command: ["npm", "start"]
