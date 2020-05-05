@@ -21,4 +21,6 @@ For example, to install a Javascript dependency and save that information to `pa
 If you want to be on a shell for one of the Docker services, you can do something like:
 `docker-compose run --rm frontend bash`
 
+## Troubleshooting `db` and `django` container race conditions
+
 If you run into any issues with Django being unable to find tables, try `docker exec -it ismp_django_1 python manage.py migrate` before asking for further help
