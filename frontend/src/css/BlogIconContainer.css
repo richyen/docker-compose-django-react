@@ -1,0 +1,11 @@
+.icon-container {
+    display: flex;
+    align-items: center;
+}
+
+ul {
+    column-count: 3;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}

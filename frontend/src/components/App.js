@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BlogIconContainer from './BlogIconContainer';
 import logo from '../img/logo.svg';
 import '../css/App.css';
 
@@ -13,6 +14,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/components/App.js</code> and save to reload.
         </p>
+        <BlogIconContainer/>
       </div>
     );
   }

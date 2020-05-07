@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 150;
+    margin: 0 0 20px 20px;
+}
+
+.icon {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+.blog-title {
+    font-size: 1.23em;
+    font-weight: bold;
+}
+
+.text-container {
+    display: flex;
+    border-style: solid;
+    border-left-style: none;
+    border-color: gray;
+    border-width: 1px;
+    width: 200px;
+}
+
+.text-content {
+    margin-left: 15px;
+}
+
+.date {
+    color: gray;
+}
