@@ -12,3 +12,13 @@ class Blogpost(models.Model):
 
 	def __str__(self):
 		return "{} - {} - {} - {}".format(self.media_url, self.author_id, self.posted_on, self.last_updated)
+
+	def create(self, validated_data):
+		return Blogpost.objects.create(**validated_data)
+
+	def update(self, instance, validated_data):
+		instance.media_url = validated_data.get("media_url", instance.language)
+		instance.author_id = validated_data.get("author_id", instance.blogpost)
+		instance.posted_on = validated_data.get("posted_on", instance.title_content)
+		instance.save()
+		return instance

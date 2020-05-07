@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from rest_framework import permissions
 from rest_framework.response import Response
 
@@ -34,3 +34,10 @@ class BlogpostContentDetailView(generics.ListAPIView):
 				},
 				status=status.HTTP_404_NOT_FOUND
 			)
+
+class BlogpostContentViewSet(viewsets.ModelViewSet):
+	"""
+	API endpoint that allows BlogpostContents to be viewed or edited.
+	"""
+	queryset = BlogpostContent.objects.all()
+	serializer_class = BlogpostContentSerializer
