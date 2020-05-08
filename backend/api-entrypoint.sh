@@ -9,6 +9,7 @@ done
 
 # Run migrations
 python manage.py migrate
+python manage.py loaddata blogpost.json
 
 # Start server
 python manage.py runserver 0.0.0.0:8000
