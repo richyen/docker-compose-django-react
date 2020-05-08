@@ -1,0 +1,14 @@
+[
+{
+  "model": "blogpost_content.blogpostcontent",
+    "pk": 1,
+    "fields": {
+      "language": "en",
+      "blogpost": 1,
+      "title_content": "my blogpost",
+      "body_content": "hello world",
+      "last_updated": "2020-05-07"
+    }
+}
+]
+
