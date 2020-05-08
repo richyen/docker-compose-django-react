@@ -16,5 +16,17 @@ class BlogpostContent(models.Model):
     def __str__(self):
         return "{} - {} - {} - {} - {}".format(self.language, self.blogpost_id, self.title_content, self.body_content, self.last_updated)
 
+    def create(self, validated_data):
+        return BlogpostContent.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.language = validated_data.get("language", instance.language)
+        instance.blogpost = validated_data.get("blogpost", instance.blogpost)
+        instance.title_content = validated_data.get("title_content", instance.title_content)
+        instance.body_content = validated_data.get("body_content", instance.body_content)
+        instance.save()
+        return instance
+
+
 # admin.site.register(BlogpostContent)
 # Blogpost = apps.get_model('blogpost', 'Blogpost')
