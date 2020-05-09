@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import EntireHeader from './components/layout/Header';
+import Header from './components/layout/Header';
 
 ReactDOM.render(
   <React.StrictMode>
-    <EntireHeader></EntireHeader>
+    <Header></Header>
   </React.StrictMode>,
   document.getElementById('root')
 );
