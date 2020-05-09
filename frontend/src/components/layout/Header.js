@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import {
   Button,
 } from "semantic-ui-react";
@@ -15,23 +15,36 @@ const style = {
     height: 30,
     padding: 0,
     margin: 0,
-    gridTemplateColumns: "1fr .22fr",
+    gridTemplateColumns: "1fr 1fr",
     // border: "red 1px solid"
   },
 
   mainContainer: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr",
+    gridTemplateColumns: "100px 1fr",
     alignItems: "center",
     paddingTop: 15,
     height: 65,
     // border: "red 1px solid",
   },
 
-  linkContainer: {
+  langContainer: {
     display: "flex",
     alignItems: "center",
-    // border: "red 1px solid",
+  },
+
+  socialContainer:{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
+
+  linkContainer: {
+    minWidth: 600,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    // border: "red 1px solid"
   },
 
   button: {
@@ -54,11 +67,11 @@ const socialIcons = ["circle", "circle", "circle", "youtube", "wechat"];
 const SubHeader = () => {
   return (
     <div style={style.subContainer}>
-      <div style={style.linkContainer}>
+      <div style={style.langContainer}>
         { languages.map(lang => <a style={{paddingRight: 10}}>{lang}</a>) }
       </div>
       
-      <div >
+      <div style={style.socialContainer}>
       { socialIcons.map(icon => <Button style={{background: "none"}} icon = {icon} />) }
       </div>
     </div>
