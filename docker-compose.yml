@@ -24,6 +24,7 @@ services:
     image: richyen/ismp-frontend
     build: ./frontend
     command: ["npm", "start"]
+
     volumes:
       - ./frontend:/app/frontend
       - node-modules:/app/frontend/node_modules
