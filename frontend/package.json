@@ -42,7 +42,6 @@
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.18",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.0.0",
     "eslint-config-react-app": "^5.2.1",
     "eslint-plugin-flowtype": "^4.7.0",
     "eslint-plugin-import": "^2.20.2",
