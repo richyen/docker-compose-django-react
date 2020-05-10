@@ -1,13 +1,21 @@
+import 'semantic-ui-css/semantic.min.css';
+
+import './index.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import 'semantic-ui-css/semantic.min.css';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+
+import Home from './pages/Home';
 import * as serviceWorker from './serviceWorker';
-import Header from './components/layout/Header';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header></Header>
+    <Router>
+      <Route path="/">
+        <Home />
+      </Route>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
