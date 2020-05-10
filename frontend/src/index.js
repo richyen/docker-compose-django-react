@@ -6,15 +6,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
+import Footer from './components/layout/Footer';
+import Header from './components/layout/Header';
 import Home from './pages/Home';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+      <Header />
       <Route path="/">
         <Home />
       </Route>
+      <Footer />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
