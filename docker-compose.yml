@@ -23,7 +23,7 @@ services:
   frontend:
     image: richyen/ismp-frontend
     build: ./frontend
-    command: ["npm", "start"]
+    command: ["yarn", "start"]
     volumes:
       - ./frontend:/app/frontend
       - node-modules:/app/frontend/node_modules

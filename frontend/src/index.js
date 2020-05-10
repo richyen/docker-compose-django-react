@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header></Header>
+    <Header />
+    <Footer />
   </React.StrictMode>,
   document.getElementById('root')
 );
