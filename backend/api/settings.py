@@ -60,8 +60,7 @@ ROOT_URLCONF = 'api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        #'DIRS': [os.path.join(BASE_DIR,'templates')],
-        'DIRS':'[]',
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,7 +130,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 
-
 #Custom Auth for User
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -150,8 +148,3 @@ STATIC_URL = '/static/'
 # #Media Folder Settings
 # MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # MEDIA_URL = '/media/'
-
-
-
-
-
