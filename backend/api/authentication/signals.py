@@ -13,4 +13,3 @@ def create_related_profile(sender, instance, created, *args, **kwargs):
     # has a profile.
     if instance and created:
         instance.profile = Profile.objects.create(user=instance)
-
