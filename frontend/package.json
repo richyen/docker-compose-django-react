@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@tinymce/tinymce-react": "^3.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
@@ -14,7 +15,8 @@
     "semantic-ui-react": "^0.88.2",
     "styled-components": "^5.1.0",
     "superagent": "^5.2.2",
-    "superagent-promise": "^1.1.0"
+    "superagent-promise": "^1.1.0",
+    "url-loader": "^4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
