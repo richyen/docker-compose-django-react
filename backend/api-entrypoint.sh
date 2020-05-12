@@ -10,7 +10,15 @@ for (( i=0; i<60; i++ )); do
 done
 
 # Run migrations
+## Collect static files
+##echo "Collect static files"
+##python manage.py collectstatic --noinput
+
+# Apply database migrations
+echo "Apply database migrations"
 python manage.py migrate
+
+echo "Load mockup data"
 python manage.py loaddata blogpost.json blogpostcontent.json
 
 # Start server

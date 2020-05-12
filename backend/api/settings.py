@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'api.blogpost',
     'api.blogpost_content',
     'rest_framework',
+    'api.authentication',
+    'django_extensions',
+    'api.profiles'
 ]
 
 MIDDLEWARE = [
@@ -126,4 +129,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+
+#Custom Auth for User
+AUTH_USER_MODEL = 'authentication.User'
+
+#Custom Exception Handler
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'api.core.exceptions.core_exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_AUTHENTICATION_CLASSES': ('api.authentication.backends.JWTAuthentication',),
+}
+#Static files
+#STATIC_ROOT = os.path.join(BASE_DIR,'static')
 STATIC_URL = '/static/'
+# STATICFILES_DIR = [
+#     os.path.join(BASE_DIR, 'static')
+# ]
+# #Media Folder Settings
+# MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+# MEDIA_URL = '/media/'

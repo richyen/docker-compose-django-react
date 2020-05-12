@@ -1,5 +1,15 @@
-Django==2.0.1
-djangorestframework==3.7.7
+#updating requirements
 psycopg2==2.8.5
-pytz==2017.3
 jwt
+asgiref==3.2.7
+cffi==1.14.0
+cryptography==2.9.2
+Django==3.0.5
+django-extensions==2.2.9
+djangorestframework==3.11.0
+psycopg2-binary==2.8.5
+pycparser==2.20
+PyJWT==1.7.1
+pytz==2020.1
+six==1.14.0
+sqlparse==0.3.1
