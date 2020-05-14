@@ -1,5 +1,5 @@
 import React from 'react';
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from 'semantic-ui-react';
 
 const style = {
@@ -49,7 +49,7 @@ const style = {
     height: 40,
     marginLeft: 20,
     background: 'none',
-    border: 'gray 1px solid'
+    border: 'gray 1px solid',
   },
 
   icon: {
@@ -66,7 +66,7 @@ const SubHeader = () => {
     <div style={style.subContainer}>
       <div style={style.langContainer}>
         {languages.map(lang => (
-          <a style={{ paddingRight: 10 }}>{lang}</a>
+          <Link to="/" style={{ paddingRight: 10 }}>{lang}</Link>
         ))}
       </div>
 
@@ -82,10 +82,10 @@ const SubHeader = () => {
 const MainHeader = () => {
   return (
     <div style={style.mainContainer}>
-      <h1>Logo</h1>
+      <h3>Logo</h3>
       <div style={style.linkContainer}>
         {links.map(name => (
-          <a style={{ padding: '0 15px' }}>{name}</a>
+          <Link to="/" style={{ padding: '0 15px' }}>{name}</Link>
         ))}
         <Button style={style.button} compact content="APPLY NOW" />
       </div>
