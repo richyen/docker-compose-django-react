@@ -7,7 +7,7 @@ from api.blogpost.models import Blogpost
 # Create your models here.
 class BlogpostContent(models.Model):
     language = models.CharField(max_length=10, null=False) # There will be a language code.
-    blogpost = models.ForeignKey(Blogpost, related_name="blogpost", on_delete=models.CASCADE, null=False)
+    blogpost = models.ForeignKey(Blogpost, related_name="blogpost", on_delete=models.CASCADE, null=True)
     title_content = models.CharField(max_length=200, null=False)
     body_content = models.TextField(null=False) # for now, I want the indicator for whether the translation exists to be
     # whether the entry is in this table as opposed to whether or not the field is null.
@@ -27,6 +27,10 @@ class BlogpostContent(models.Model):
         instance.save()
         return instance
 
+    def save(self, *args, **kwargs):
+        if self.blogpost is None:
+            self.blogpost = Blogpost(author_id=1) # TODO: change this later once we implement authors
+            self.blogpost.save()
+        super(BlogpostContent, self).save(*args, **kwargs)
 
-# admin.site.register(BlogpostContent)
-# Blogpost = apps.get_model('blogpost', 'Blogpost')
+
