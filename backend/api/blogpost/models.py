@@ -1,13 +1,15 @@
 from django.db import models
+from datetime import date
 
 # Create your models here.
 class Blogpost(models.Model):
 	# title = models.CharField(max_length=255, null=False)
 	# body = models.CharField(max_length=1000, null=False)
-	media_url = models.CharField(max_length=200, null=True)
+	media_url = models.CharField(max_length=200, blank=True) #we may not use this and instead use embeddings in the
+	# text of the blogpost
 	# TODO: when users table is created, make this a foreign key
 	author_id = models.IntegerField(null=False) # eventually this will be linked to the users table
-	posted_on = models.DateField(null=False)
+	posted_on = models.DateField(null=True)
 	last_updated = models.DateField(null=False, auto_now=True)
 
 	def __str__(self):
@@ -22,3 +24,8 @@ class Blogpost(models.Model):
 		instance.posted_on = validated_data.get("posted_on", instance.title_content)
 		instance.save()
 		return instance
+
+	def save(self, *args, **kwargs):
+		if self.posted_on is None:
+			self.posted_on = date.today()
+		super(Blogpost, self).save(*args, **kwargs)
