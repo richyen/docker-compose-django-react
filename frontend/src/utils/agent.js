@@ -1,5 +1,5 @@
-import superagentPromise from 'superagent-promise';
 import _superagent from 'superagent';
+import superagentPromise from 'superagent-promise';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
@@ -32,6 +32,16 @@ const requests = {
       .use(tokenPlugin)
       .then(responseBody)
 };
+
+// Example
+// const Comments = {
+//   create: (slug, comment) =>
+//     requests.post(`/articles/${slug}/comments`, { comment }),
+//   delete: (slug, commentId) =>
+//     requests.del(`/articles/${slug}/comments/${commentId}`),
+//   forArticle: slug =>
+//     requests.get(`/articles/${slug}/comments`)
+// };
 
 export default {
   setToken: _token => {
