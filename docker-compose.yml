@@ -24,6 +24,8 @@ services:
     image: richyen/ismp-frontend
     build: ./frontend
     command: ["yarn", "start"]
+    stdin_open: true
+    tty: true
     volumes:
       - ./frontend:/app/frontend
       - node-modules:/app/frontend/node_modules
