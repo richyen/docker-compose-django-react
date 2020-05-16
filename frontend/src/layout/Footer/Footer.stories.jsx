@@ -6,7 +6,7 @@ export default {
   component: Footer,
   title: 'Footer',
   // Our exports that end in "Data" are not stories.
-  excludeStories: /.*Data$/,
+  excludeStories: /.*Data$/
 };
 
 export const Default = () => <Footer />;
