@@ -8,12 +8,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import GlobalStyle from 'styles/globalStyle';
 import theme from 'styles/theme';
 import * as serviceWorker from 'utils/serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <Router>
         <Header />
         <Route path="/">
