@@ -6,7 +6,7 @@ const mentorsInfo = [
     image: 'https://semantic-ui.com/images/avatar2/large/matthew.png',
     name: 'Matthew',
     location: 'Los Angeles, CA',
-    education: 'U.C. Berkley',
+    education: 'U.C. Berkeley',
     career: 'Software Engineer',
     skills: 'English Training, Web Development'
   },
@@ -38,7 +38,7 @@ const mentorsInfo = [
     image: 'https://semantic-ui.com/images/avatar2/large/matthew.png',
     name: 'Matthew',
     location: 'Los Angeles, CA',
-    education: 'U.C. Berkley',
+    education: 'U.C. Berkeley',
     career: 'Software Engineer',
     skills: 'English Training, Web Development'
   },
@@ -117,16 +117,6 @@ const Image = styled.img`
   height: 100px;
 `;
 
-const Button = styled.button`
-  border-radius: 30px;
-  border: 1px solid grey;
-  background: grey;
-  color: white;
-  padding: 0.75em;
-  width: 125px;
-  margin: 1em;
-`;
-
 const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -157,8 +147,6 @@ export class MentorCards extends React.Component {
                 <SubHeader>Skills</SubHeader>
                 <Description>{info.skills}</Description>
               </Content>
-
-              <Button>Get in touch</Button>
             </MentorCard>
           );
         })}
