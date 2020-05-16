@@ -1,13 +1,14 @@
 import React from 'react';
 import {
+  Button,
+  Container,
   Grid,
   Header,
   List,
-  Segment,
-  Container,
-  Button
+  Segment
 } from 'semantic-ui-react';
-import SocialMediaIconList from '../../SocialIconsList';
+
+import SocialMediaIconList from '../../components/SocialIconsList';
 
 const style = {
   footerContainer: {
@@ -46,6 +47,7 @@ const footerLinks = linkArr => {
 
 const links = contentArr => {
   return contentArr.map((content, index) => {
+    console.log(content.width);
     return (
       <Grid.Column width={content.width} key={index}>
         <Header inverted as="h4" content={content.section} />

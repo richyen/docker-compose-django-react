@@ -23,7 +23,7 @@ class BaseViewTest(APITestCase):
         # add test data
         self.create_blogpost("youtube.com", 1, date.today())
         self.create_blogpost( "youtube.com", 2, date.today())
-        self.create_blogpost("youtube.com", 3, date.today())
+        self.create_blogpost("youtube.com", 3, None)
         self.create_blogpost("media_url", 4, date.today())
 
 
