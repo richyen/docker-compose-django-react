@@ -42,10 +42,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'api.authentication',
     'django_extensions',
-    'api.profiles'
+    'corsheaders',
+    'api.profiles',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -131,7 +133,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 
-
 #Custom Auth for User
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -150,8 +151,4 @@ STATIC_URL = '/static/'
 # #Media Folder Settings
 # MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # MEDIA_URL = '/media/'
-
-
-
-
-
+CORS_ORIGIN_ALLOW_ALL = True

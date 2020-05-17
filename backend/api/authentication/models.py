@@ -11,7 +11,7 @@ from django.contrib.auth.models import (
 
 class UserManager(BaseUserManager):
     """
-    Django requires that custom users define their own Manager class. Byexit
+    Django requires that custom users define their own Manager class. By
     inheriting from `BaseUserManager`, we get a lot of the same code used by
     Django to create a `User`.
 
@@ -107,14 +107,3 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         }, settings.SECRET_KEY, algorithm='HS256')
 
         return token.decode('utf-8')
-
-
-
-
-
-
-
-
-
-
-

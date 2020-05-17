@@ -3,3 +3,6 @@ __pycache__
 node_modules
 venv
 data
+.idea
+frontend/yarn-error.log
+frontend/.eslintcache

@@ -8,5 +8,3 @@ urlpatterns = [
     url(r'^users/login/?$', LoginAPIView.as_view()),
     url(r'^user$', UserRetrieveUpdateAPIView.as_view()),
 ]
-
-

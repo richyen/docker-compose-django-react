@@ -1,8 +1,6 @@
 from django.db import models
 from api.core.models import TimestampedModel
 
-# Create your models here.
-
 class Profile(TimestampedModel):
     user = models.OneToOneField(
         'authentication.User', on_delete= models.CASCADE
@@ -12,4 +10,3 @@ class Profile(TimestampedModel):
 
     def __str__(self):
         return self.user.username
-

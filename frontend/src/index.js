@@ -1,12 +1,29 @@
+import 'semantic-ui-css/semantic.min.css';
+import 'styles/index.css';
+
+import Footer from 'layout/Footer';
+import Header from 'layout/Header';
+import Home from 'pages/Home';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import * as serviceWorker from './serviceWorker';
-import Header from './components/layout/Header';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyle from 'styles/globalStyle';
+import theme from 'styles/theme';
+import * as serviceWorker from 'utils/serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header></Header>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Router>
+        <Header />
+        <Route path="/">
+          <Home />
+        </Route>
+        <Footer />
+      </Router>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

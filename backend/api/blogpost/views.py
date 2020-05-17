@@ -41,3 +41,11 @@ class BlogpostViewSet(viewsets.ModelViewSet):
 	"""
 	queryset = Blogpost.objects.all()
 	serializer_class = BlogpostSerializer
+
+	def get_queryset(self):
+		result = Blogpost.objects.all()
+		print(self.request.query_params)
+		queried_author = self.request.query_params.get('author_id', None)
+		if queried_author is not None:
+			result = result.filter(author_id=queried_author)
+		return result
