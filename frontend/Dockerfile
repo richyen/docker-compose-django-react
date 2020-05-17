@@ -2,6 +2,7 @@ FROM node
 
 WORKDIR /app/frontend
 COPY package.json /app/frontend
+COPY yarn.lock /app/frontend
 
 RUN yarn
 
