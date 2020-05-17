@@ -41,3 +41,10 @@ class SchoolViewSet(viewsets.ModelViewSet):
 	"""
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
+
+    def get_queryset(self):
+        result = School.objects.all()
+        queried_name = self.request.query_params.get('name', None)
+        if queried_name is not None:
+            result = result.filter(name=queried_name)
+        return result
