@@ -1,9 +1,9 @@
-import welcome from 'images/welcome.jpg';
-import Section from 'layout/Section';
+import welcome from '../../images/welcome.jpg';
+import Section from '../../layout/Section';
 import React from 'react';
 import { Container, Header } from 'semantic-ui-react';
 import Styled from 'styled-components';
-import mixins from 'styles/mixins';
+import mixins from '../../styles/mixins';
 
 // TODO: Just testing things out
 const StyledImage = Styled.img`
