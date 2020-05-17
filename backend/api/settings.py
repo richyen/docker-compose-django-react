@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'corsheaders',
     'api.profiles',
+    'api.school'
 ]
 
 MIDDLEWARE = [
@@ -88,8 +89,8 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         # settings for local setup if you don't feel like using docker
-        # 'HOST': 'localhost',
-        'HOST': 'db',
+        'HOST': 'localhost',
+        # 'HOST': 'db',
         'PORT': 5432,
     }
 }
