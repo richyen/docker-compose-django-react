@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'corsheaders',
     'api.profiles',
+    'api.school'
 ]
 
 MIDDLEWARE = [
