@@ -5,3 +5,4 @@ urlpatterns = [
    path('blogpost/', ListBlogpostView.as_view(), name="blogposts-all"),
    path('blogpost/<int:pk>', BlogpostDetailView.as_view(), name="blogposts-detail")
 ]
+ç

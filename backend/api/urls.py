@@ -23,12 +23,15 @@ from rest_framework import routers
 from api.blogpost_content.views import BlogpostContentViewSet
 from api.blogpost.views import BlogpostViewSet
 from api.school.views import SchoolViewSet
+from api.application_form.views import ApplicationFormViewSet
+
 
 router = routers.SimpleRouter()
 
 router.register(r'blogpostcontent', BlogpostContentViewSet)
 router.register(r'blogpost', BlogpostViewSet)
 router.register(r'school', SchoolViewSet)
+router.register(r'applicationForms', ApplicationFormViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
