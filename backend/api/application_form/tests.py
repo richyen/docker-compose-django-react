@@ -17,7 +17,7 @@ class ApplicationFormViewSetTest(APITestCase):
       phone="18002254452"
     )
 
-  def test_post_blogpost(self):
+  def test_post_application_form(self):
     self.client.post("/api/v1/applicationForms/", {
       "first_name": "Krikor",
       "last_name": "Ailanjian",
@@ -30,7 +30,7 @@ class ApplicationFormViewSetTest(APITestCase):
 
     self.assertEqual(2, len(ApplicationForm.objects.all()))
 
-  def test_get_blogpost(self):
+  def test_get_application_form(self):
     response = self.client.get("/api/v1/applicationForms/")
 
     expected = ApplicationForm.objects.all()
