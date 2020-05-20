@@ -19,7 +19,7 @@ echo "Apply database migrations"
 python manage.py migrate
 
 echo "Load mockup data"
-python manage.py loaddata blogpost.json blogpostcontent.json school.json
+python manage.py loaddata blogpost.json blogpost_content.json school.json
 
 # Start server
 python manage.py runserver 0.0.0.0:8000
