@@ -50,7 +50,6 @@ class EditBlogModal extends Component {
     };
 
     render() {
-        console.log('props: ', this.props.modalContent);
         return (
             <Modal 
                 dimmer='blurring' 

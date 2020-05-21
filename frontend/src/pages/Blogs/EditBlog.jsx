@@ -148,7 +148,6 @@ class EditBlog extends Component {
         return modalContent;
         break;
     }
-    console.log('modal content: ', modalContent);
     return modalContent;
   }
 
