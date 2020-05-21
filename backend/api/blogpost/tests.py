@@ -30,10 +30,6 @@ class BaseViewTest(APITestCase):
 class GetAllBlogpostsTest(BaseViewTest):
 
     def test_get_all_blogposts(self):
-        """
-        This test ensures that all songs added in the setUp method
-        exist when we make a GET request to the songs/ endpoint
-        """
         # hit the API endpoint
         response = self.client.get(
             reverse("blogpost-list", kwargs={"version": "v1"})
