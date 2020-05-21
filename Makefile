@@ -20,3 +20,8 @@ test: docker
 docker:
 	@echo "Ensuring docker containers are up-to-date"
 	$(DOCKER_COMPOSE_PULL)
+
+.PHONY: clean
+clean:
+	@echo "Cleaning up workdir"
+	$(DOCKER_COMPOSE_ALL) down --remove-orphans
