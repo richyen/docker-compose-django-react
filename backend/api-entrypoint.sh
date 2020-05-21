@@ -22,4 +22,5 @@ echo "Load mockup data"
 python manage.py loaddata blogpost.json blogpost_content.json school.json
 
 # Start server
-python manage.py runserver 0.0.0.0:8000
+#python manage.py runserver 0.0.0.0:8000
+python manage.py test api.application_form api.school api.blogpost api.blogpost_content
