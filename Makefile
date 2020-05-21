@@ -11,7 +11,7 @@ dev: docker
 	$(DOCKER_COMPOSE) up
 
 .PHONY: test
-test: docker
+test:
 	@echo "Running test containers"
 	$(DOCKER_COMPOSE_RUN) test-backend
 #	$(DOCKER_COMPOSE_RUN) test-frontend
