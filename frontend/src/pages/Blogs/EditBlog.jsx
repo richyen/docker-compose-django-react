@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input } from 'semantic-ui-react';
+import { Input, Button } from 'semantic-ui-react';
 import Styled from 'styled-components';
 import { Editor } from '@tinymce/tinymce-react';
 
@@ -23,6 +23,11 @@ const Heading = Styled.p`
   font-size: ${props => props.theme.fontSizes.h1};
   font-weight: bold;
   margin: 0;
+`;
+
+const ActionButtonContainer = Styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 const InputContainer = Styled.div`
@@ -78,22 +83,26 @@ class EditBlog extends Component {
       blogTitle: '',
       coverPhoto: '',
       editorContent: '',
-      modalOpen: false
+      modalOpen: false,
+      isEditingTitle: false,
+      isEditingTags: false,
+      isEditingCoverPhoto: false,
+      isEditingBlog: false
     };
   }
 
   /* MODAL CALLBACKS */
 
   onPressSave = () => {
-    this.setState({modalOpen: false});
+    this.setState({ modalOpen: false });
   };
 
   onPressCancel = () => {
-    this.setState({modalOpen: false});
+    this.setState({ modalOpen: false });
   };
 
   /* CLASS FUNCTIONS */
-  onEditorChange = (content) => {
+  onEditorChange = content => {
     this.setState({ editorContent: content });
   };
 
@@ -104,8 +113,8 @@ class EditBlog extends Component {
     });
   };
 
-  onTitleChange = (title) => {
-    this.setState({blogTitle: title.target.value});
+  onTitleChange = title => {
+    this.setState({ blogTitle: title.target.value });
   };
 
   onPressPreview = () => {
@@ -117,10 +126,10 @@ class EditBlog extends Component {
 
   onPublishBlog = () => {
     // TODO: logic for publishing a blog
-  }
+  };
 
   getActionFunction() {
-    switch(this.state.action) {
+    switch (this.state.action) {
       case 'save':
         return this.onPressSave;
         break;
@@ -135,7 +144,7 @@ class EditBlog extends Component {
 
   getModalContent() {
     let modalContent = {};
-    switch(this.state.action) {
+    switch (this.state.action) {
       case 'save':
         modalContent.title = 'Upload Cover Image';
         modalContent.description = this.renderUploadImageModal();
@@ -148,7 +157,6 @@ class EditBlog extends Component {
         return modalContent;
         break;
     }
-    console.log('modal content: ', modalContent);
     return modalContent;
   }
 
@@ -156,18 +164,16 @@ class EditBlog extends Component {
     return '<div>\
               This will be used as the cover photo for your blog.\
             </div>';
-  };
+  }
 
   renderPreview() {
-    return(
-      `<div><h2>${this.state.blogTitle}</h2><div>${this.state.editorContent}</div></div>`
-    );
+    return `<div><h2>${this.state.blogTitle}</h2><div>${this.state.editorContent}</div></div>`;
   }
 
   render() {
     return (
       <Container>
-        <EditBlogModal 
+        <EditBlogModal
           modalOpen={this.state.modalOpen}
           action={this.state.action}
           onPressAction={this.getActionFunction()}
@@ -176,23 +182,31 @@ class EditBlog extends Component {
         />
         <HeaderContainer>
           <Heading>Edit Blog Post</Heading>
-          <ActionButton onClick={this.onPressPreview}>Preview</ActionButton>
+          <ActionButtonContainer>
+            <ActionButton>Save Draft</ActionButton>
+            <ActionButton
+              style={{ marginRight: '8px' }}
+              onClick={this.onPressPreview}
+            >
+              Preview
+            </ActionButton>
+          </ActionButtonContainer>
         </HeaderContainer>
         <InputContainer>
-          <TitleInput 
-            size="mini" 
-            placeholder="Enter Title..." 
+          <TitleInput
+            size="mini"
+            placeholder="Enter Title..."
             value={this.state.blogTitle}
             onChange={this.onTitleChange}
           />
         </InputContainer>
         <InputContainer>
           <ActionButton onClick={this.onPressUploadImage}>
-              <UploadButtonText>Upload a Header Image</UploadButtonText>
+            <UploadButtonText>Upload a Header Image</UploadButtonText>
           </ActionButton>
-        <InputContainer>
-          <TagsInput size="mini" placeholder="Tags"/>
-        </InputContainer>
+          <InputContainer>
+            <TagsInput size="mini" placeholder="Tags" />
+          </InputContainer>
         </InputContainer>
         <Editor
           apiKey={EDITOR_API_KEY}
