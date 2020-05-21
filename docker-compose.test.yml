@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:12-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+  test-backend:
+    image: richyen/ismp-backend
+    volumes:
+      - ./backend:/app/api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    entrypoint: /bin/sh -c "python manage.py migrate && python manage.py loaddata blogpost.json blogpost_content.json school.json && python manage.py test api.application_form api.school api.blogpost api.blogpost_content"
+  test-frontend:
+    image: richyen/ismp-frontend
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./frontend:/app/frontend
+      - node-modules:/app/frontend/node_modules
+    ports:
+      - "3000:3000"
+    entrypoint: /bin/sh -c "yarn run lint && yarn test"
+
+volumes:
+  node-modules:
