@@ -1,18 +1,20 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@0.2.1
+  docker: circleci/docker@1.0.1
 
 jobs:
   build-and-test:
-    executor: python/default
+    executor: docker/docker
     steps:
+      - setup_remote_docker
       - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
+      - docker/install-docker-tooles
       - run:
-          command: ./manage.py test api.application_form api.school api.blogpost api.blogpost_content
+          command: docker-compose -f docker-compose.test.yml pull
+          name: Pull
+      - run:
+          command: docker-compose -f docker-compose.test.yml test-backend
           name: Test
 
 workflows:
