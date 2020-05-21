@@ -36,7 +36,7 @@ class GetAllBlogpostsTest(BaseViewTest):
         """
         # hit the API endpoint
         response = self.client.get(
-            reverse("blogposts-all", kwargs={"version": "v1"})
+            reverse("blogpost-list", kwargs={"version": "v1"})
         )
         # fetch the data from db
         expected = Blogpost.objects.all()
