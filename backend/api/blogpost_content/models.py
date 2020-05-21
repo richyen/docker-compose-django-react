@@ -32,3 +32,5 @@ class BlogpostContent(models.Model):
             self.blogpost = Blogpost(author_id=1) # TODO: change this later once we implement authors
             self.blogpost.save()
         super(BlogpostContent, self).save(*args, **kwargs)
+
+
