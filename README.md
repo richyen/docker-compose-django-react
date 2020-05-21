@@ -1,5 +1,7 @@
 # Django & React application
 
+[![CircleCI](https://circleci.com/gh/richyen/ismp.svg?style=svg)](https://circleci.com/gh/richyen/ismp)
+
 This is a set up so that we can easily create apps that use Django on the backend (and take advantage of the amazing admin UI) and React (set up with [`create-react-app`](https://npm.im/create-react-app)) for the front end application.
 
 ## Running
