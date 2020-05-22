@@ -29,3 +29,10 @@ class Blogpost(models.Model):
 		if self.posted_on is None:
 			self.posted_on = date.today()
 		super(Blogpost, self).save(*args, **kwargs)
+
+class Tag(models.Model):
+	name = models.CharField(max_length=100)
+	blogpost = models.ManyToManyField(Blogpost, blank=True)
+
+	def __str__(self):
+		return "{} - {}".format(self.id, self.name)
