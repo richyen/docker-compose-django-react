@@ -1,2 +1,2 @@
-import CollegeCard from './CollegeCard';
-export default CollegeCard;
+import CollegeCardList from './CollegeCardList';
+export default CollegeCardList;
