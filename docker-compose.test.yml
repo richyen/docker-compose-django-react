@@ -1,8 +1,9 @@
 version: '3'
 
 services:
-  db:
+  test-db:
     image: postgres:12-alpine
+    hostname: ismpdb
     ports:
       - "5432:5432"
     environment:
@@ -13,9 +14,11 @@ services:
       dockerfile: Dockerfile.test
     ports:
       - "8000:8000"
+    links:
+      - "test-db:ismpdb"
     depends_on:
-      - db
-    entrypoint: /bin/sh -c "python manage.py migrate && python manage.py loaddata blogpost.json blogpost_content.json school.json && python manage.py test api.application_form api.school api.blogpost api.blogpost_content"
+      - test-db
+    entrypoint: ["/app/api/api-entrypoint.sh","test"]
   test-frontend:
     image: richyen/ismp-frontend
     stdin_open: true

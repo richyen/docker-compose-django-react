@@ -90,9 +90,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        # settings for local setup if you don't feel like using docker
-        # 'HOST': 'localhost',
-        'HOST': 'db',
+        'HOST': 'ismpdb',
         'PORT': 5432,
     }
 }
