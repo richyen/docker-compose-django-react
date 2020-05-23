@@ -3,33 +3,6 @@ import styled from 'styled-components';
 import media from '../../styles/media';
 import mixins from '../../styles/mixins';
 
-const BlogListPlaceholders = [
-  {
-    imageUrl: 'https://via.placeholder.com/200x150?text=first',
-    title: 'Transition to America',
-    subHeader: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pellentesque efficitur. Aliquam id lectus a libero egestas tristique vitae ac diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    link: '/'
-  },
-  {
-    imageUrl: 'https://via.placeholder.com/200x150?text=second',
-    title: 'Transition to America',
-    subHeader: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pellentesque efficitur. Aliquam id lectus a libero egestas tristique vitae ac diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Something something.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pellentesque efficitur. Aliquam id lectus a libero egestas tristique vitae ac diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Something something.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pellentesque efficitur. Aliquam id lectus a libero egestas tristique vitae ac diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Something something.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pellentesque efficitur. Aliquam id lectus a libero egestas tristique vitae ac diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Something something',
-    link: '/'
-  },
-  {
-    imageUrl: 'https://via.placeholder.com/200x150?text=third',
-    title: 'Transition to America',
-    subHeader: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pellentesque efficitur. Aliquam id lectus a libero egestas tristique vitae ac diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    link: '/'
-  }
-];
-
 const ItemContainer = styled.div`
   display: flex;
   align-items: end;
@@ -85,24 +58,26 @@ export class BlogList extends React.Component {
   }
 
   render() {
+    const { data } = this.props;
     return (
       <div>
-        {BlogListPlaceholders.map((item, index) => {
-          return (
-            <ItemContainer key={index}>
-              <ImageContainer>
-                <Image src={item.imageUrl} alt="image" />
-              </ImageContainer>
+        {data &&
+          data.map((item, index) => {
+            return (
+              <ItemContainer key={index}>
+                <ImageContainer>
+                  <Image src={item.imageUrl} alt="image" />
+                </ImageContainer>
 
-              <Content>
-                <Title>{item.title}</Title>
-                <SubHeader>{item.subHeader}</SubHeader>
-                <div>{this.description(item.description)}</div>
-                <StyledLink href={item.link}>Read more</StyledLink>
-              </Content>
-            </ItemContainer>
-          );
-        })}
+                <Content>
+                  <Title>{item.title}</Title>
+                  <SubHeader>{item.subHeader}</SubHeader>
+                  <div>{this.description(item.description)}</div>
+                  <StyledLink href={item.link}>Read more</StyledLink>
+                </Content>
+              </ItemContainer>
+            );
+          })}
       </div>
     );
   }
