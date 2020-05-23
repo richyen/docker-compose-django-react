@@ -65,8 +65,8 @@ ROOT_URLCONF = 'api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        #'DIRS': [os.path.join(BASE_DIR,'templates')],
-        'DIRS':'[]',
+        # 'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': '[]',
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,16 +134,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 
-#Custom Auth for User
+# Custom Auth for User
 AUTH_USER_MODEL = 'authentication.User'
 
-#Custom Exception Handler
+# Page size for pagination, can adjust later
+DEFAULT_PAGE_SIZE = 5
+
+# Custom Exception Handler
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'api.core.exceptions.core_exception_handler',
     'NON_FIELD_ERRORS_KEY': 'error',
     'DEFAULT_AUTHENTICATION_CLASSES': ('api.authentication.backends.JWTAuthentication',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': DEFAULT_PAGE_SIZE
 }
-#Static files
+# Static files
 #STATIC_ROOT = os.path.join(BASE_DIR,'static')
 STATIC_URL = '/static/'
 # STATICFILES_DIR = [
@@ -156,7 +161,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 # TinyMCE settings
 TINYMCE_DEFAULT_CONFIG = {
-    'height' : 300,
+    'height': 300,
     'plugins': "image,imagetools,media,codesample,link,code",
     'cleanup_on_startup': True,
     'menubar': False,
