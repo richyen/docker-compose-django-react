@@ -37,5 +37,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api/', include('api.authentication.urls', namespace='user')),
     re_path('api/(?P<version>(v1|v2))/', include(router.urls)),
-    path('api/', include('api.profiles.urls', namespace='profiles'))
+    path('api/', include('api.profiles.urls', namespace='profiles')),
+    path('tinymce/', include('tinymce.urls')),
 ]
