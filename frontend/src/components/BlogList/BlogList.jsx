@@ -76,7 +76,7 @@ const StyledLink = styled.a`
   ${mixins.inlineLink}
 `;
 
-export class BlogListItem extends React.Component {
+export class BlogList extends React.Component {
   description(text) {
     // Add ellipsis if text is more than 500 characters
     const ellipsis = '...';
@@ -108,4 +108,4 @@ export class BlogListItem extends React.Component {
   }
 }
 
-export default BlogListItem;
+export default BlogList;
