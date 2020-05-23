@@ -13,7 +13,7 @@ class Blogpost(models.Model):
 	last_updated = models.DateField(null=False, auto_now=True)
 
 	def __str__(self):
-		return "{} - {} - {} - {}".format(self.media_url, self.author_id, self.posted_on, self.last_updated)
+		return "{} - {} - {} - {} - {}".format(self.id, self.media_url, self.author_id, self.posted_on, self.last_updated)
 
 	def create(self, validated_data):
 		return Blogpost.objects.create(**validated_data)
@@ -29,3 +29,10 @@ class Blogpost(models.Model):
 		if self.posted_on is None:
 			self.posted_on = date.today()
 		super(Blogpost, self).save(*args, **kwargs)
+
+class Tag(models.Model):
+	name = models.CharField(max_length=100)
+	blogpost = models.ManyToManyField(Blogpost, blank=True)
+
+	def __str__(self):
+		return "{} - {}".format(self.id, self.name)

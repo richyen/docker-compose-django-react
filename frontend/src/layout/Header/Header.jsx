@@ -65,16 +65,20 @@ const SubHeader = () => {
   return (
     <div style={style.subContainer}>
       <div style={style.langContainer}>
-        {languages.map(lang => (
-          <Link to="/" style={{ paddingRight: 10 }}>
+        {languages.map((lang, index) => (
+          <Link key={index + lang} to="/" style={{ paddingRight: 10 }}>
             {lang}
           </Link>
         ))}
       </div>
 
       <div style={style.socialContainer}>
-        {socialIcons.map(icon => (
-          <Button style={{ background: 'none' }} icon={icon} />
+        {socialIcons.map((icon, index) => (
+          <Button
+            key={icon + index}
+            style={{ background: 'none' }}
+            icon={icon}
+          />
         ))}
       </div>
     </div>
@@ -86,8 +90,8 @@ const MainHeader = () => {
     <div style={style.mainContainer}>
       <h3>Logo</h3>
       <div style={style.linkContainer}>
-        {links.map(name => (
-          <Link to="/" style={{ padding: '0 15px' }}>
+        {links.map((name, index) => (
+          <Link key={name + index} to="/" style={{ padding: '0 15px' }}>
             {name}
           </Link>
         ))}

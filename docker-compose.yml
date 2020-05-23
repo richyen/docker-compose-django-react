@@ -2,16 +2,17 @@ version: '3'
 
 services:
   db:
-    image: postgres
+    image: postgres:12-alpine
+    hostname: ismpdb
     ports:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: "postgres"
-    volumes:
-      - ./backend/data:/var/lib/postgresql/data
-  django:
+  backend:
     image: richyen/ismp-backend
     build: ./backend
+    links:
+      - "db:ismpdb"
     volumes:
       - ./backend:/app/api
     ports:

@@ -19,19 +19,24 @@ from django.conf.urls import include, url
 from django.conf.urls import static
 from django.conf import settings
 from rest_framework import routers
-# from blogpost import blogpost
 from api.blogpost_content.views import BlogpostContentViewSet
-from api.blogpost.views import BlogpostViewSet
+from api.blogpost.views import BlogpostViewSet, TagViewSet
+from api.school.views import SchoolViewSet
+from api.application_form.views import ApplicationFormViewSet
+
 
 router = routers.SimpleRouter()
 
 router.register(r'blogpostcontent', BlogpostContentViewSet)
 router.register(r'blogpost', BlogpostViewSet)
+router.register(r'school', SchoolViewSet)
+router.register(r'applicationForms', ApplicationFormViewSet)
+router.register(r'tag', TagViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api/', include('api.authentication.urls', namespace='user')),
     re_path('api/(?P<version>(v1|v2))/', include(router.urls)),
-    path('api/', include('api.profiles.urls', namespace='profiles'))
+    path('api/', include('api.profiles.urls', namespace='profiles')),
+    path('tinymce/', include('tinymce.urls')),
 ]
-         #     + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

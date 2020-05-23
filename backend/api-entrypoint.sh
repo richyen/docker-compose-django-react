@@ -2,7 +2,7 @@
 
 # Wait for Postgres to start up (avoids race condition)
 for (( i=0; i<60; i++ )); do
-  R=$( PGPASSWORD=postgres psql -h db -Atc "select ${i}" postgres postgres )
+  R=$( PGPASSWORD=postgres psql -h ismpdb -Atc "select ${i}" postgres postgres )
   # Test both exit code and actual value returned from query
   [[ $? -eq 0 ]] && [[ $R -eq $i ]] && break
   echo "Still waiting after ${i} seconds"
@@ -19,7 +19,13 @@ echo "Apply database migrations"
 python manage.py migrate
 
 echo "Load mockup data"
-python manage.py loaddata blogpost.json blogpostcontent.json
+python manage.py loaddata blogpost.json blogpost_content.json school.json
 
-# Start server
-python manage.py runserver 0.0.0.0:8000
+if [[ "$1" == 'test' ]]; then
+  # Run tests
+  python manage.py test api.application_form api.school api.blogpost api.blogpost_content
+else
+  # Start server
+  python manage.py runserver 0.0.0.0:8000
+fi
+

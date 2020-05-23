@@ -6,7 +6,7 @@ from django.urls import reverse
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
 from .models import BlogpostContent
-from blogpost.models import Blogpost
+from api.blogpost.models import Blogpost
 from datetime import date
 from .serializers import BlogpostContentSerializer
 
@@ -44,7 +44,7 @@ class GetAllBlogpostContentsTest(BaseViewTest):
         """
         # hit the API endpoint
         response = self.client.get(
-            reverse("blogpostcontents-all", kwargs={"version": "v1"})
+            reverse("blogpostcontent-list", kwargs={"version": "v1"})
         )
         # fetch the data from db
         expected = BlogpostContent.objects.all()

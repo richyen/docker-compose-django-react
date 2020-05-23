@@ -16,6 +16,14 @@ class ListBlogpostContentView(generics.ListAPIView):
 	queryset = BlogpostContent.objects.all()
 	serializer_class = BlogpostContentSerializer
 
+	def get_queryset(self):
+		queried_language = self.kwargs['language']
+		result = BlogpostContent.objects.all()
+		if queried_language:
+			result = result.filter(language=queried_language)
+		return result
+
+
 class BlogpostContentDetailView(generics.ListAPIView):
 	"""
 	Provides a detailed view for a specific blogpost
@@ -41,3 +49,13 @@ class BlogpostContentViewSet(viewsets.ModelViewSet):
 	"""
 	queryset = BlogpostContent.objects.all()
 	serializer_class = BlogpostContentSerializer
+
+	def get_queryset(self):
+		queried_language = self.request.query_params.get('language', None)
+		queried_blogpost = self.request.query_params.get('blogpost', None)
+		result = BlogpostContent.objects.all()
+		if queried_language is not None:
+			result = result.filter(language=queried_language)
+		if queried_blogpost is not None:
+			result = result.filter(blogpost=queried_blogpost)
+		return result
