@@ -32,9 +32,9 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${colors.white};
     color: ${colors.black};
     line-height: 1.5;
-    font-family: ${fonts.Poppins};
-    font-size: ${fontSizes.sm};
-    ${media.tablet`font-size: ${fontSizes.xs};`}
+    font-family: ${fonts.PTSerif};
+    font-size: ${fontSizes.md};
+    ${media.tablet`font-size: ${fontSizes.sm};`}
 
     &.hidden {
       overflow: hidden;
@@ -48,6 +48,21 @@ const GlobalStyle = createGlobalStyle`
         user-select: none;
       }
     }
+  }
+
+  h1 {
+    font-family: ${fonts.Poppins};
+    font-size: ${fontSizes.xxl};
+  }
+
+  h2 {
+    font-family: ${fonts.Poppins};
+    font-size: ${fontSizes.xl};
+  }
+
+  h3 {
+    font-family: ${fonts.Poppins};
+    font-size: ${fontSizes.lg};
   }
 
   #root {
