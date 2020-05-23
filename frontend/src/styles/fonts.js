@@ -16,6 +16,10 @@ import PoppinsSemiBold from 'fonts/Poppins-SemiBold.ttf';
 import PoppinsSemiBoldItalic from 'fonts/Poppins-SemiBoldItalic.ttf';
 import PoppinsThin from 'fonts/Poppins-Thin.ttf';
 import PoppinsThinItalic from 'fonts/Poppins-ThinItalic.ttf';
+import PTSerifBold from 'fonts/PTSerif-Bold.ttf';
+import PTSerifBoldItalic from 'fonts/PTSerif-BoldItalic.ttf';
+import PTSerifItalic from 'fonts/PTSerif-Italic.ttf';
+import PTSerifRegular from 'fonts/PTSerif-Regular.ttf';
 import { css } from 'styled-components';
 
 const FontFaces = css`
@@ -137,6 +141,30 @@ const FontFaces = css`
     font-family: 'Poppins';
     src: url(${PoppinsBlackItalic}) format('truetype'),
     font-weight: 900;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: 'PT Serif';
+    src: url(${PTSerifRegular}) format('truetype'),
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'PT Serif';
+    src: url(${PTSerifItalic}) format('truetype'),
+    font-weight: normal;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: 'PT Serif';
+    src: url(${PTSerifBold}) format('truetype'),
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'PT Serif';
+    src: url(${PTSerifBoldItalic}) format('truetype'),
+    font-weight: 700;
     font-style: italic;
   }
 `;
