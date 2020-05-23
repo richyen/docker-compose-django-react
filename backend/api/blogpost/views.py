@@ -3,10 +3,8 @@ from rest_framework import generics, viewsets, status
 from rest_framework import permissions
 from rest_framework.response import Response
 
-from .models import Blogpost
-from .serializers import BlogpostSerializer
-
-
+from .models import Blogpost, Tag
+from .serializers import BlogpostSerializer, TagSerializer
 
 # Create your views here.
 class ListBlogpostView(generics.ListAPIView):
@@ -47,4 +45,16 @@ class BlogpostViewSet(viewsets.ModelViewSet):
 		queried_author = self.request.query_params.get('author_id', None)
 		if queried_author is not None:
 			result = result.filter(author_id=queried_author)
+
+		queried_tag = self.request.query_params.get('tag_id', None) # TODO: not sure why this works
+		if queried_tag is not None:
+			result = result.filter(tag__id=queried_tag)
+
 		return result
+
+class TagViewSet(viewsets.ModelViewSet):
+	"""
+	API Endpoint to CRUD tags
+	"""
+	queryset = Tag.objects.all()
+	serializer_class = TagSerializer

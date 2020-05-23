@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'api.authentication',
     'django_extensions',
     'corsheaders',
+    'tinymce',
     'api.profiles',
     'api.school'
 ]
@@ -90,9 +91,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        # settings for local setup if you don't feel like using docker
-        # 'HOST': 'localhost',
-        'HOST': 'db',
+        'HOST': 'ismpdb',
         'PORT': 5432,
     }
 }
@@ -154,3 +153,15 @@ STATIC_URL = '/static/'
 # MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # MEDIA_URL = '/media/'
 CORS_ORIGIN_ALLOW_ALL = True
+
+# TinyMCE settings
+TINYMCE_DEFAULT_CONFIG = {
+    'height' : 300,
+    'plugins': "image,imagetools,media,codesample,link,code",
+    'cleanup_on_startup': True,
+    'menubar': False,
+    'toolbar': "styleselect |undo redo | bold italic | alignleft aligncenter alignright | link image media codesample "
+               "code",
+    'image_caption': True,
+    'image_advtab': True,
+}

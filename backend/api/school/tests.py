@@ -13,8 +13,8 @@ class BaseViewTest(APITestCase):
     def create_school(name="", profile_picture_url="", page_description=""):
         if True: #media_link should be optional
             School.objects.create(name=name,
-                                    profile_picture_url=profile_picture_url,
-                                    page_description=page_description)
+                                  profile_picture_url=profile_picture_url,
+                                  page_description=page_description)
 
     def setUp(self):
         # add test data
@@ -25,9 +25,13 @@ class BaseViewTest(APITestCase):
 class GetAllSchoolsTest(BaseViewTest):
 
     def test_get_all_schools(self):
+        """
+        This test ensures that all songs added in the setUp method
+        exist when we make a GET request to the songs/ endpoint
+        """
         # hit the API endpoint
         response = self.client.get(
-            reverse('school-list', kwargs={"version": "v1"})
+            reverse("school-list", kwargs={"version": "v1"})
         )
         # fetch the data from db
         expected = School.objects.all()

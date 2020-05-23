@@ -1,37 +1,33 @@
 version: '3'
 
 services:
-  db:
+  test-db:
     image: postgres:12-alpine
     hostname: ismpdb
     ports:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: "postgres"
-  backend:
-    image: richyen/ismp-backend
-    build: ./backend
-    links:
-      - "db:ismpdb"
-    volumes:
-      - ./backend:/app/api
+  test-backend:
+    build:
+      context: backend/
+      dockerfile: Dockerfile.test
     ports:
       - "8000:8000"
+    links:
+      - "test-db:ismpdb"
     depends_on:
-      - db
-    entrypoint:
-      - "/app/api/api-entrypoint.sh"
-  frontend:
+      - test-db
+    entrypoint: ["/app/api/api-entrypoint.sh","test"]
+  test-frontend:
     image: richyen/ismp-frontend
-    build: ./frontend
-    command: ["yarn", "start"]
     stdin_open: true
     tty: true
     volumes:
-      - ./frontend:/app/frontend
       - node-modules:/app/frontend/node_modules
     ports:
       - "3000:3000"
+    entrypoint: /bin/sh -c "yarn run lint && yarn test"
 
 volumes:
   node-modules:

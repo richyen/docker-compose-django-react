@@ -1,0 +1,20 @@
+version: 2.1
+
+orbs:
+  docker: circleci/docker@1.0.1
+
+jobs:
+  build-and-test:
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - checkout
+      - docker/install-docker-tools
+      - run:
+          command: make test
+          name: Test
+
+workflows:
+  main:
+    jobs:
+      - build-and-test
