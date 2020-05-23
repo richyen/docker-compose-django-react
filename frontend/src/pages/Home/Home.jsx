@@ -2,7 +2,6 @@ import CollegeCardList from 'components/CollegeCard';
 import welcome from 'images/welcome.jpg';
 import Section from 'layout/Section';
 import React from 'react';
-import { Container, Header } from 'semantic-ui-react';
 import Styled from 'styled-components';
 import mixins from 'styles/mixins';
 
