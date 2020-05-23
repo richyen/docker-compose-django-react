@@ -4,7 +4,7 @@ import superagentPromise from 'superagent-promise';
 const superagent = superagentPromise(_superagent, global.Promise);
 
 // TODO: What's our API root?
-const API_ROOT = 'https://';
+const API_ROOT = 'http://localhost:8001';
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;
@@ -18,7 +18,7 @@ const tokenPlugin = req => {
 
 const requests = {
   del: url =>
-    superagent.del(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody),
+    superagent.del(`{API_ROOT}${url}`).use(tokenPlugin).then(responseBody),
   get: url =>
     superagent.get(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody),
   put: (url, body) =>
@@ -31,6 +31,10 @@ const requests = {
       .post(`${API_ROOT}${url}`, body)
       .use(tokenPlugin)
       .then(responseBody)
+};
+const schools = {
+  get: params => requests.get('/api/v1/school/' + params),
+  get_all: () => requests.get('/api/v1/school')
 };
 
 // Example
@@ -46,5 +50,6 @@ const requests = {
 export default {
   setToken: _token => {
     token = _token;
-  }
+  },
+  schools: schools
 };
