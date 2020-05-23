@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     box-sizing: border-box;
+    font-size: 62.5%; // Set 1em = 10px
     width: 100%;
   }
 
@@ -30,10 +31,10 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     background-color: ${colors.white};
     color: ${colors.black};
-    line-height: 1.3;
+    line-height: 1.5;
     font-family: ${fonts.Poppins};
-    font-size: ${fontSizes.lg};
-    ${media.tablet`font-size: ${fontSizes.md};`}
+    font-size: ${fontSizes.sm};
+    ${media.tablet`font-size: ${fontSizes.xs};`}
 
     &.hidden {
       overflow: hidden;
