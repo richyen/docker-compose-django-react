@@ -8,7 +8,9 @@ class Blogpost(models.Model):
 	media_url = models.CharField(max_length=200, blank=True) #we may not use this and instead use embeddings in the
 	# text of the blogpost
 	# TODO: when users table is created, make this a foreign key
-	author_id = models.IntegerField(null=False) # eventually this will be linked to the users table
+	author =  models.ForeignKey(
+		'profiles.Profile', on_delete=models.CASCADE, related_name='blogpost'
+	)
 	posted_on = models.DateField(null=True)
 	last_updated = models.DateField(null=False, auto_now=True)
 
@@ -20,7 +22,7 @@ class Blogpost(models.Model):
 
 	def update(self, instance, validated_data):
 		instance.media_url = validated_data.get("media_url", instance.language)
-		instance.author_id = validated_data.get("author_id", instance.blogpost)
+		instance.author = validated_data.get("author", instance.blogpost)
 		instance.posted_on = validated_data.get("posted_on", instance.title_content)
 		instance.save()
 		return instance
