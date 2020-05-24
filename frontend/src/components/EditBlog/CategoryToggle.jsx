@@ -19,9 +19,10 @@ const Bubble = Styled.div`
 `;
 
 const BubbleText = Styled.p`
-    font-size: ${props => props.theme.fontSizes.p};
+    font-size: ${props => props.theme.fontSizes.h3};
+    font-family: ${props => props.theme.fonts.Poppins};
     text-align: center;
-    font-weight: 500;
+    font-weight: bold;
     line-height: 36px;
 `;
 
@@ -61,7 +62,7 @@ class CategoryToggle extends Component {
             return (
                 <SelectedBubble onClick={this.onPressCategory}>
                     <SelectedText>{this.props.text}</SelectedText>
-                    <Icon name="checkmark" inverted fitted/>
+                    <Icon name="checkmark" size="large" inverted fitted/>
                 </SelectedBubble>
             );
         }

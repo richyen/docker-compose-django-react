@@ -45,10 +45,6 @@ const SaveButton = Styled(CancelButton)`
 `;
 
 class EditBlogModal extends Component {
-    constructor(props) {
-        super(props);
-    };
-
     render() {
         return (
             <Modal 

@@ -277,7 +277,7 @@ class EditBlog extends Component {
         />
         <HeaderContainer>
           <Heading>Edit Blog Post</Heading>
-          { this.props.location.state.category && <Category>{this.props.location.state.category}</Category>}
+          { this.props.location.state && <Category>{this.props.location.state.category}</Category> }
           { this.state.isEditing ? this.renderEditActionButtons() : this.renderPreviewActionButtons() }
         </HeaderContainer>
         { !this.state.isEditing && <hr/>}

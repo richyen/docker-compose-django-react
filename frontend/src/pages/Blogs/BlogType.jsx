@@ -12,7 +12,8 @@ const Container = Styled.div`
 `;
 
 const Header = Styled.p`
-    font-size: ${props => props.theme.fontSizes.h2};
+    font-size: ${props => props.theme.fontSizes.h1};
+    font-family: ${props => props.theme.fonts.Poppins};
     font-weight: bold;
     text-align: center;
 `;
@@ -35,8 +36,9 @@ const NextButton = Styled(Link)`
     border-radius: 8px;
     text-transform: uppercase;
     text-align: center;
-    font-size: ${props => props.theme.fontSizes.p};
-    width: 200px;
+    font-size: ${props => props.theme.fontSizes.h3};
+    font-family: ${props => props.theme.fonts.Poppins};
+    width: 150px;
     cursor: pointer;
     &:hover {
         opacity: 80%;
@@ -55,8 +57,8 @@ class BlogType extends Component {
         }
     }
 
-    onClickCategory = (index) => {
-        this.toggleRefs.map((_, i) => {
+    onClickCategory(index){
+        this.toggleRefs.foreach((_, i) => {
             if(i !== index) {
                 this.toggleRefs[i].resetCategory();
             }
