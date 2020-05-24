@@ -3,6 +3,7 @@ import 'semantic-ui-css/semantic.min.css';
 import Footer from 'layout/Footer';
 import Header from 'layout/Header';
 import Home from 'pages/Home';
+import ApplicationForm from 'pages/ApplicationForm';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
@@ -17,8 +18,9 @@ ReactDOM.render(
       <GlobalStyle />
       <Router>
         <Header />
-        <Route path="/">
-          <Home />
+        <Route exact path="/" component={Home} />
+        <Route path="/applicationForm">
+          <ApplicationForm />
         </Route>
         <Footer />
       </Router>
