@@ -6,3 +6,4 @@ data
 .idea
 frontend/yarn-error.log
 frontend/.eslintcache
+frontend/.env

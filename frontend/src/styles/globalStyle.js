@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     box-sizing: border-box;
+    font-size: 62.5%; // Set 1em = 10px
     width: 100%;
   }
 
@@ -30,10 +31,10 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     background-color: ${colors.white};
     color: ${colors.black};
-    line-height: 1.3;
-    font-family: ${fonts.Poppins};
-    font-size: ${fontSizes.lg};
-    ${media.tablet`font-size: ${fontSizes.md};`}
+    line-height: 1.5;
+    font-family: ${fonts.PTSerif};
+    font-size: ${fontSizes.md};
+    ${media.tablet`font-size: ${fontSizes.sm};`}
 
     &.hidden {
       overflow: hidden;
@@ -47,6 +48,21 @@ const GlobalStyle = createGlobalStyle`
         user-select: none;
       }
     }
+  }
+
+  h1 {
+    font-family: ${fonts.Poppins};
+    font-size: ${fontSizes.xxl};
+  }
+
+  h2 {
+    font-family: ${fonts.Poppins};
+    font-size: ${fontSizes.xl};
+  }
+
+  h3 {
+    font-family: ${fonts.Poppins};
+    font-size: ${fontSizes.lg};
   }
 
   #root {

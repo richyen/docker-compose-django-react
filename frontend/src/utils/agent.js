@@ -3,8 +3,7 @@ import superagentPromise from 'superagent-promise';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-// TODO: What's our API root?
-const API_ROOT = 'https://';
+const API_ROOT = process.env.REACT_APP_API_HOST;
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;

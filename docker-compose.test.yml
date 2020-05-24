@@ -23,6 +23,8 @@ services:
     image: richyen/ismp-frontend
     stdin_open: true
     tty: true
+    environment:
+      REACT_APP_API_HOST: "http://localhost"
     volumes:
       - node-modules:/app/frontend/node_modules
     ports:
