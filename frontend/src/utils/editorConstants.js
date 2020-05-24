@@ -5,6 +5,7 @@ export const EDITOR_API_KEY =
 // Includes settings such as size of editor and desired controls
 // '|' divides the toolbar into sections
 export const EDITOR_INIT = {
+  selector: '#blogEditor',
   height: 500,
   menubar: true,
   plugins: [

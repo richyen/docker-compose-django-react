@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Input, Button } from 'semantic-ui-react';
+import { Input } from 'semantic-ui-react';
 import Styled from 'styled-components';
 import { Editor } from '@tinymce/tinymce-react';
+import parse from 'html-react-parser';
 
 import EditBlogModal from '../../components/EditBlog/EditBlogModal';
 import { EDITOR_API_KEY, EDITOR_INIT } from '../../utils/editorConstants';
@@ -9,6 +10,10 @@ import { EDITOR_API_KEY, EDITOR_INIT } from '../../utils/editorConstants';
 // Styles
 const Container = Styled.div`
   margin: 0 10%;
+`;
+
+const BlogContainer = Styled.div`
+  margin: 5% 0;
 `;
 
 const HeaderContainer = Styled.div`
@@ -75,6 +80,12 @@ const PublishButtonContainer = Styled.div`
   justify-content: flex-end;
 `;
 
+const PreviewBlogTitle = Styled.p`
+  font-size: ${props => props.theme.fontSizes.h2};
+  font-weight: bold;
+  margin-bottom: 16px;
+`;
+
 class EditBlog extends Component {
   constructor(props) {
     super(props);
@@ -84,11 +95,9 @@ class EditBlog extends Component {
       coverPhoto: '',
       editorContent: '',
       modalOpen: false,
-      isEditingTitle: false,
-      isEditingTags: false,
-      isEditingCoverPhoto: false,
-      isEditingBlog: false
+      isEditing: true
     };
+    this.editor = React.createRef();
   }
 
   /* MODAL CALLBACKS */
@@ -118,15 +127,16 @@ class EditBlog extends Component {
   };
 
   onPressPreview = () => {
-    this.setState({
-      action: 'publish',
-      modalOpen: true
-    });
+    this.setState({isEditing: false});
   };
 
   onPublishBlog = () => {
     // TODO: logic for publishing a blog
   };
+
+  onPressKeepEditing = () => {
+    this.setState({isEditing: true});
+  }
 
   getActionFunction() {
     switch (this.state.action) {
@@ -170,28 +180,37 @@ class EditBlog extends Component {
     return `<div><h2>${this.state.blogTitle}</h2><div>${this.state.editorContent}</div></div>`;
   }
 
-  render() {
+  renderEditActionButtons() {
     return (
-      <Container>
-        <EditBlogModal
-          modalOpen={this.state.modalOpen}
-          action={this.state.action}
-          onPressAction={this.getActionFunction()}
-          onPressCancel={this.onPressCancel}
-          modalContent={this.getModalContent()}
-        />
-        <HeaderContainer>
-          <Heading>Edit Blog Post</Heading>
-          <ActionButtonContainer>
-            <ActionButton>Save Draft</ActionButton>
-            <ActionButton
-              style={{ marginRight: '8px' }}
-              onClick={this.onPressPreview}
-            >
-              Preview
-            </ActionButton>
-          </ActionButtonContainer>
-        </HeaderContainer>
+      <ActionButtonContainer>
+        <ActionButton
+          style={{ marginRight: '8px' }}
+        >
+          Save Draft
+        </ActionButton>
+        <ActionButton
+          onClick={this.onPressPreview}
+        >
+          Preview
+        </ActionButton>
+      </ActionButtonContainer>
+    )
+  }
+
+  renderPreviewActionButtons() {
+    return (
+      <ActionButtonContainer>
+        <ActionButton style={{ marginRight: '8px' }}>Publish Now</ActionButton>
+        <ActionButton style={{ marginRight: '8px' }}>Schedule</ActionButton>
+        <ActionButton>Save as Draft</ActionButton>
+      </ActionButtonContainer>
+    )
+  }
+
+  renderEditFields() {
+    console.log('this.editor: ', this.editor);
+    return (
+      <BlogContainer>
         <InputContainer>
           <TitleInput
             size="mini"
@@ -209,13 +228,48 @@ class EditBlog extends Component {
           </InputContainer>
         </InputContainer>
         <Editor
+          ref={this.editor}
+          id={'blogEditor'}
           apiKey={EDITOR_API_KEY}
           init={EDITOR_INIT}
+          initialValue={this.state.editorContent}
           onEditorChange={this.onEditorChange}
+          value={this.state.editorContent}
+      />
+      </BlogContainer>
+    )
+  }
+
+  renderPreview() {
+    return (
+      <BlogContainer>
+        <PreviewBlogTitle>{this.state.blogTitle}</PreviewBlogTitle>
+       { parse(`${this.state.editorContent}`) }
+      </BlogContainer>
+    )
+  }
+
+  render() {
+    return (
+      <Container>
+        <EditBlogModal
+          modalOpen={this.state.modalOpen}
+          action={this.state.action}
+          onPressAction={this.getActionFunction()}
+          onPressCancel={this.onPressCancel}
+          modalContent={this.getModalContent()}
         />
-        <PublishButtonContainer>
-          <ActionButton>Publish</ActionButton>
-        </PublishButtonContainer>
+        <HeaderContainer>
+          <Heading>Edit Blog Post</Heading>
+          { this.state.isEditing ? this.renderEditActionButtons() : this.renderPreviewActionButtons() }
+        </HeaderContainer>
+        { this.state.isEditing ? this.renderEditFields() : this.renderPreview() }
+        { 
+          !this.state.isEditing && 
+          <PublishButtonContainer>
+            <ActionButton onClick={this.onPressKeepEditing}>Keep Editing</ActionButton>
+          </PublishButtonContainer>
+        }
       </Container>
     );
   }
