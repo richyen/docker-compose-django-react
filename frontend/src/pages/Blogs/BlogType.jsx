@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import CategoryToggle from '../../components/EditBlog/CategoryToggle';
 
@@ -50,6 +50,9 @@ class BlogType extends Component {
         this.toggleRefs = [];
         this.categories = ['Classic', 'Blog', 'Article', 'Webinar', 'Webinar', 'Webinar', 'Webinar', 'Webinar'];
         this.onClickCategory = this.onClickCategory.bind(this);
+        this.state = {
+            category: ''
+        }
     }
 
     onClickCategory = (index) => {
@@ -58,6 +61,7 @@ class BlogType extends Component {
                 this.toggleRefs[i].resetCategory();
             }
         })
+        this.setState({category: this.categories[index]});
     }
 
     render() {
@@ -77,10 +81,10 @@ class BlogType extends Component {
                     })
                 }
                 </CategoryContainer>
-                <NextButton to="/edit-blog">Next</NextButton>
+                <NextButton to={{pathname: '/edit-blog', state: {category: this.state.category}}}>Next</NextButton>
             </Container>
         )
     }
 }
 
-export default BlogType;
+export default withRouter(BlogType);
