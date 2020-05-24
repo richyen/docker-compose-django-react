@@ -1,5 +1,4 @@
 import 'semantic-ui-css/semantic.min.css';
-import 'styles/index.css';
 
 import Footer from 'layout/Footer';
 import Header from 'layout/Header';

@@ -47,7 +47,6 @@ const footerLinks = linkArr => {
 
 const links = contentArr => {
   return contentArr.map((content, index) => {
-    console.log(content.width);
     return (
       <Grid.Column width={content.width} key={index}>
         <Header inverted as="h4" content={content.section} />
