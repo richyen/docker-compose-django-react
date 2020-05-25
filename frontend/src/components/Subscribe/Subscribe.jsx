@@ -1,5 +1,5 @@
-import React from 'react';
-import { Form, Input } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Button, Input, Form } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h3`
-  font-weight: 'bold';
+  font-weight: bold;
   margin-bottom: 24px;
 `;
 
@@ -21,17 +21,50 @@ const SearchContainer = styled.div`
   min-width: 500px;
 `;
 
+const SearchButton = styled(Button)`
+  &&& {
+    color: white;
+    background: black;
+  }
+`;
+
 const Subscribe = () => {
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = event => {
+    if (event.key == 'Enter') {
+      console.log('PRESSED');
+    } else {
+      console.log('CLICKED');
+    }
+    console.log(email);
+  };
+
+  const handleChange = (event, data) => {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(data.value);
+    setEmail(data.value);
+  };
+
   return (
     <Container>
       <Title>Subscribe to our weekly newsletter</Title>
       <SearchContainer>
         <Input
           fluid
-          action={{ color: 'black', content: 'Subscribe' }}
           placeholder="Email Address"
           type="email"
-        />
+          onChange={handleChange}
+          action
+        >
+          <input onKeyPress={handleSubmit} />
+          <SearchButton
+            type="submit"
+            onClick={handleSubmit}
+            content="Subscribe"
+          />
+        </Input>
       </SearchContainer>
     </Container>
   );
