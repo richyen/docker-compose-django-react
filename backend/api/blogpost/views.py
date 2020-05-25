@@ -42,9 +42,9 @@ class BlogpostViewSet(viewsets.ModelViewSet):
 
 	def get_queryset(self):
 		result = Blogpost.objects.all()
-		queried_author = self.request.query_params.get('author', None)
+		queried_author = self.request.query_params.get('author_id', None)
 		if queried_author is not None:
-			result = result.filter(author=queried_author)
+			result = result.filter(author_id=queried_author)
 
 		queried_tag = self.request.query_params.get('tag_id', None) # TODO: not sure why this works
 		if queried_tag is not None:
