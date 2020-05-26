@@ -35,5 +35,5 @@ class ApplicationFormViewSetTest(APITestCase):
 
     expected = ApplicationForm.objects.all()
     serialized = ApplicationFormSerializer(expected, many=True)
-    self.assertEqual(response.data, serialized.data)
+    self.assertEqual(response.data['results'], serialized.data)
     self.assertEqual(response.status_code, status.HTTP_200_OK)
