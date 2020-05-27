@@ -17,6 +17,7 @@ from .serializers import BlogpostContentSerializer
 class BaseViewTest(APITestCase):
     client = APIClient()
     @staticmethod
+
     def create_blogpost(media_url="", author_id=1, posted_on=date.today()):
         if True: #media_link should be optional
             Blogpost.objects.create(media_url=media_url, author=author, posted_on=posted_on)

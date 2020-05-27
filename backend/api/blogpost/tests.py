@@ -7,28 +7,27 @@ from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
 from .models import Blogpost, Tag
 from .serializers import BlogpostSerializer, TagSerializer
-
+from api.authentication.models import User
+from api.profiles.models import Profile
 # tests for views
-
 
 class BaseViewTest(APITestCase):
     client = APIClient()
-
     @staticmethod
-    def create_blogpost(media_url="", author= "test", posted_on=date.today()):
+    def create_blogpost(media_url="", author= None, posted_on=date.today()):
         if True: #media_link should be optional
             Blogpost.objects.create(media_url=media_url, author=author, posted_on=posted_on)
 
     def setUp(self):
         # add test data
-        self.create_blogpost("youtube.com", "test1", date.today())
-        self.create_blogpost( "youtube.com", "test2", date.today())
-        self.create_blogpost("youtube.com", "test3", None)
-        self.create_blogpost("media_url", "testr4", date.today())
-
+        self.user = User.objects.create_user(username ="test",email ="test@gmail.com", password ="password")
+        self.profile = self.user.profile
+        self.create_blogpost("youtube.com", self.profile, date.today())
+        self.create_blogpost( "youtube.com", self.profile, date.today())
+        self.create_blogpost("youtube.com", self.profile, None)
+        self.create_blogpost("media_url", self.profile, date.today())
 
 class GetAllBlogpostsTest(BaseViewTest):
-
     def test_get_all_blogposts(self):
         # hit the API endpoint
         response = self.client.get(
@@ -42,9 +41,12 @@ class GetAllBlogpostsTest(BaseViewTest):
 
 class GetBlogpostsByTagTest(APITestCase):
     def setUp(self):
-        self.blogpost_1 = Blogpost.objects.create(author="test1", posted_on=date.today())
-        self.blogpost_2 = Blogpost.objects.create(author="test2", posted_on=date.today())
-        self.blogpost_3 = Blogpost.objects.create(author="test3", posted_on=date.today())
+        self.user = User.objects.create_user(username="test", email="test@gmail.com", password="password")
+        self.profile = self.user.profile
+
+        self.blogpost_1 = Blogpost.objects.create(author= self.profile, posted_on=date.today())
+        self.blogpost_2 = Blogpost.objects.create(author= self.profile, posted_on=date.today())
+        self.blogpost_3 = Blogpost.objects.create(author= self.profile, posted_on=date.today())
 
         self.tag_1 = Tag.objects.create(name="everything")
         self.tag_2 = Tag.objects.create(name="something")
@@ -69,9 +71,11 @@ class GetBlogpostsByTagTest(APITestCase):
 
 class TagViewSetTest(APITestCase):
     def setUp(self):
-        self.blogpost_1 = Blogpost.objects.create(author="test1", posted_on=date.today())
-        self.blogpost_2 = Blogpost.objects.create(author="test2", posted_on=date.today())
-        self.blogpost_3 = Blogpost.objects.create(author="test3", posted_on=date.today())
+        self.user = User.objects.create_user(username="test", email="test@gmail.com", password="password")
+        self.profile = self.user.profile
+        self.blogpost_1 = Blogpost.objects.create(author=self.profile, posted_on=date.today())
+        self.blogpost_2 = Blogpost.objects.create(author=self.profile, posted_on=date.today())
+        self.blogpost_3 = Blogpost.objects.create(author=self.profile, posted_on=date.today())
 
         self.tag_1 = Tag.objects.create(name="everything")
         self.tag_2 = Tag.objects.create(name="something")
