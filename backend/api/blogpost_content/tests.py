@@ -9,7 +9,8 @@ from .models import BlogpostContent
 from api.blogpost.models import Blogpost
 from datetime import date
 from .serializers import BlogpostContentSerializer
-
+from api.authentication.models import User
+from api.profiles.models import Profile
 
 # tests for views
 
@@ -18,7 +19,7 @@ class BaseViewTest(APITestCase):
     client = APIClient()
     @staticmethod
 
-    def create_blogpost(media_url="", author_id=1, posted_on=date.today()):
+    def create_blogpost(media_url="", author = None, posted_on=date.today()):
         if True: #media_link should be optional
             Blogpost.objects.create(media_url=media_url, author=author, posted_on=posted_on)
     @staticmethod
@@ -28,8 +29,10 @@ class BaseViewTest(APITestCase):
 
     def setUp(self):
         # add test data
-        self.create_blogpost(media_url="youtube.com", author_id=1, posted_on=date.today())
-        valid_blogpost = Blogpost.objects.get(author_id=1)
+        self.user = User.objects.create_user(username="test", email="test@gmail.com", password="password")
+        self.profile = self.user.profile
+        self.create_blogpost(media_url="youtube.com", author= self.profile, posted_on=date.today())
+        valid_blogpost = Blogpost.objects.get(author= self.profile)
         self.created_blog_id = valid_blogpost.id
         self.create_blogpost_content("en", valid_blogpost, "title", "body content")
         self.create_blogpost_content("cn", valid_blogpost, "zhongwentitle", "zhongwenbodycontent")
