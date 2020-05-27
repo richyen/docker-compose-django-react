@@ -36,5 +36,5 @@ class GetAllSchoolsTest(BaseViewTest):
         # fetch the data from db
         expected = School.objects.all()
         serialized = SchoolSerializer(expected, many=True)
-        self.assertEqual(response.data, serialized.data)
+        self.assertEqual(response.data['results'], serialized.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
