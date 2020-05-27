@@ -49,5 +49,5 @@ class GetAllBlogpostContentsTest(BaseViewTest):
         # fetch the data from db
         expected = BlogpostContent.objects.all()
         serialized = BlogpostContentSerializer(expected, many=True)
-        self.assertEqual(response.data, serialized.data)
+        self.assertEqual(response.data['results'], serialized.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
