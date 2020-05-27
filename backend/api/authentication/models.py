@@ -1,13 +1,11 @@
-from django.db import models
-import jwt
-from api.core.models import TimestampedModel
-
 from datetime import datetime, timedelta
-
+import jwt
+from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin
 )
+from api.core.models import TimestampedModel
 
 class UserManager(BaseUserManager):
     """

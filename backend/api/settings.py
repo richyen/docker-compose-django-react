@@ -165,7 +165,8 @@ TINYMCE_DEFAULT_CONFIG = {
     'plugins': "image,imagetools,media,codesample,link,code",
     'cleanup_on_startup': True,
     'menubar': False,
-    'toolbar': "styleselect |undo redo | bold italic | alignleft aligncenter alignright | link image media codesample "
+    'toolbar': """styleselect |undo redo | bold italic |
+ alignleft aligncenter alignright | link image media codesample """
                "code",
     'image_caption': True,
     'image_advtab': True,

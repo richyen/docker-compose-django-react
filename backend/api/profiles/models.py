@@ -3,7 +3,7 @@ from api.core.models import TimestampedModel
 
 class Profile(TimestampedModel):
     user = models.OneToOneField(
-        'authentication.User', on_delete= models.CASCADE
+        'authentication.User', on_delete=models.CASCADE
     )
     bio = models.TextField(blank=True)
     image = models.URLField(blank=True)

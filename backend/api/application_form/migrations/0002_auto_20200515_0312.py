@@ -20,7 +20,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='applicationform',
             name='gender',
-            field=models.CharField(choices=[('M', 'Male'), ('F', 'Female')], default=None, max_length=1),
+            field=models.CharField(choices=[('M', 'Male'), ('F', 'Female')],
+                                   default=None,
+                                   max_length=1),
             preserve_default=False,
         ),
         migrations.AddField(
@@ -38,7 +40,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='applicationform',
             name='phone',
-            field=models.CharField(default=None, max_length=17, validators=[django.core.validators.RegexValidator(message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.", regex='^\\+?1?\\d{9,15}$')]),
+            field=models.CharField(default=None,
+                                   max_length=17,
+                                   validators=[django.core.validators.RegexValidator(message="""
+Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.
+""", regex='^\\+?1?\\d{9,15}$')]),
             preserve_default=False,
         ),
     ]

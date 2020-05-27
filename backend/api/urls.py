@@ -15,9 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path, re_path
-from django.conf.urls import include, url
-from django.conf.urls import static
-from django.conf import settings
+from django.conf.urls import url
 from rest_framework import routers
 from api.blogpost_content.views import BlogpostContentViewSet
 from api.blogpost.views import BlogpostViewSet, TagViewSet

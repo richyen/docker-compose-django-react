@@ -1,10 +1,7 @@
 import jwt
-
 from django.conf import settings
-
 from rest_framework import authentication, exceptions
-
-from .models import User
+from api.authentication.models import User
 
 class JWTAuthentication(authentication.BaseAuthentication):
     authentication_header_prefix = 'Token'
@@ -46,7 +43,7 @@ class JWTAuthentication(authentication.BaseAuthentication):
             # authenticate.
             return None
 
-        elif len(auth_header) > 2:
+        if len(auth_header) > 2:
             # Invalid token header. The Token string should not contain spaces. Do
             # not attempt to authenticate.
             return None

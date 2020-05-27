@@ -1,12 +1,9 @@
-from django.shortcuts import render
 from rest_framework import generics, viewsets, status
-from rest_framework import permissions
 from rest_framework.response import Response
 from .models import School
 from .serializers import SchoolSerializer
 
 
-# Create your views here.
 class ListSchoolView(generics.ListAPIView):
     """
 	Provides a get method handler

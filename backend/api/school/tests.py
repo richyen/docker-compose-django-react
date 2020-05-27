@@ -1,11 +1,10 @@
-from django.test import TestCase
 from rest_framework.reverse import reverse
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
 from .models import School
 from .serializers import SchoolSerializer
 
-# Create your tests here.
+
 class BaseViewTest(APITestCase):
     client = APIClient()
 
