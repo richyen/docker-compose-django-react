@@ -37,7 +37,7 @@ class GetAllBlogpostsTest(BaseViewTest):
         # fetch the data from db
         expected = Blogpost.objects.all()
         serialized = BlogpostSerializer(expected, many=True)
-        self.assertEqual(response.data, serialized.data)
+        self.assertEqual(response.data['results'], serialized.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 class GetBlogpostsByTagTest(APITestCase):
@@ -58,13 +58,13 @@ class GetBlogpostsByTagTest(APITestCase):
         serialized = BlogpostSerializer(expected, many=True)
 
 
-        self.assertEqual(response.data, serialized.data)
+        self.assertEqual(response.data['results'], serialized.data)
 
         response = self.client.get("/api/v1/blogpost/?tag_id={}".format(self.tag_2.id))
         expected = Blogpost.objects.get(pk=self.blogpost_1.id)
         serialized = BlogpostSerializer(expected)
 
-        self.assertEqual(response.data[0], serialized.data)
+        self.assertEqual(response.data['results'][0], serialized.data)
 
 
 class TagViewSetTest(APITestCase):
@@ -86,7 +86,7 @@ class TagViewSetTest(APITestCase):
         expected = Tag.objects.all()
         serialized = TagSerializer(expected, many=True)
 
-        self.assertEqual(response.data, serialized.data)
+        self.assertEqual(response.data['results'], serialized.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_post_tag(self):
