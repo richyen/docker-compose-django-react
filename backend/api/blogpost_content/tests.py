@@ -19,7 +19,7 @@ class BaseViewTest(APITestCase):
     @staticmethod
     def create_blogpost(media_url="", author_id=1, posted_on=date.today()):
         if True: #media_link should be optional
-            Blogpost.objects.create(media_url=media_url, author_id=author_id, posted_on=posted_on)
+            Blogpost.objects.create(media_url=media_url, author=author, posted_on=posted_on)
     @staticmethod
     def create_blogpost_content(language="en", blogpost=None, title_content="", body_content=""):
         if blogpost:

@@ -15,16 +15,16 @@ class BaseViewTest(APITestCase):
     client = APIClient()
 
     @staticmethod
-    def create_blogpost(media_url="", author_id=1, posted_on=date.today()):
+    def create_blogpost(media_url="", author= "test", posted_on=date.today()):
         if True: #media_link should be optional
-            Blogpost.objects.create(media_url=media_url, author_id=author_id, posted_on=posted_on)
+            Blogpost.objects.create(media_url=media_url, author=author, posted_on=posted_on)
 
     def setUp(self):
         # add test data
-        self.create_blogpost("youtube.com", 1, date.today())
-        self.create_blogpost( "youtube.com", 2, date.today())
-        self.create_blogpost("youtube.com", 3, None)
-        self.create_blogpost("media_url", 4, date.today())
+        self.create_blogpost("youtube.com", "test1", date.today())
+        self.create_blogpost( "youtube.com", "test2", date.today())
+        self.create_blogpost("youtube.com", "test3", None)
+        self.create_blogpost("media_url", "testr4", date.today())
 
 
 class GetAllBlogpostsTest(BaseViewTest):
@@ -42,9 +42,9 @@ class GetAllBlogpostsTest(BaseViewTest):
 
 class GetBlogpostsByTagTest(APITestCase):
     def setUp(self):
-        self.blogpost_1 = Blogpost.objects.create(author_id=1, posted_on=date.today())
-        self.blogpost_2 = Blogpost.objects.create(author_id=2, posted_on=date.today())
-        self.blogpost_3 = Blogpost.objects.create(author_id=3, posted_on=date.today())
+        self.blogpost_1 = Blogpost.objects.create(author="test1", posted_on=date.today())
+        self.blogpost_2 = Blogpost.objects.create(author="test2", posted_on=date.today())
+        self.blogpost_3 = Blogpost.objects.create(author="test3", posted_on=date.today())
 
         self.tag_1 = Tag.objects.create(name="everything")
         self.tag_2 = Tag.objects.create(name="something")
@@ -69,9 +69,9 @@ class GetBlogpostsByTagTest(APITestCase):
 
 class TagViewSetTest(APITestCase):
     def setUp(self):
-        self.blogpost_1 = Blogpost.objects.create(author_id=1, posted_on=date.today())
-        self.blogpost_2 = Blogpost.objects.create(author_id=2, posted_on=date.today())
-        self.blogpost_3 = Blogpost.objects.create(author_id=3, posted_on=date.today())
+        self.blogpost_1 = Blogpost.objects.create(author="test1", posted_on=date.today())
+        self.blogpost_2 = Blogpost.objects.create(author="test2", posted_on=date.today())
+        self.blogpost_3 = Blogpost.objects.create(author="test3", posted_on=date.today())
 
         self.tag_1 = Tag.objects.create(name="everything")
         self.tag_2 = Tag.objects.create(name="something")
