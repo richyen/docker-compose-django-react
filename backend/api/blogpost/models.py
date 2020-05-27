@@ -1,11 +1,11 @@
 from datetime import date
 from django.db import models
 
-# Create your models here.
+
 class Blogpost(models.Model):
     # title = models.CharField(max_length=255, null=False)
     # body = models.CharField(max_length=1000, null=False)
-    media_url = models.CharField(max_length=200, blank=True) #we may not use this and instead use embeddings in the
+    media_url = models.CharField(max_length=200, blank=True)  # we may not use this and instead use embeddings in the
     # text of the blogpost
     author = models.ForeignKey(
         'profiles.Profile', on_delete=models.CASCADE, related_name='blogpost'
@@ -34,6 +34,7 @@ class Blogpost(models.Model):
         if self.posted_on is None:
             self.posted_on = date.today()
         super(Blogpost, self).save(*args, **kwargs)
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)

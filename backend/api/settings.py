@@ -149,7 +149,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': DEFAULT_PAGE_SIZE
 }
 # Static files
-#STATIC_ROOT = os.path.join(BASE_DIR,'static')
+# STATIC_ROOT = os.path.join(BASE_DIR,'static')
 STATIC_URL = '/static/'
 # STATICFILES_DIR = [
 #     os.path.join(BASE_DIR, 'static')

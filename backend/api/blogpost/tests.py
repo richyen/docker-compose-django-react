@@ -3,8 +3,9 @@ from django.urls import reverse
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
 from api.authentication.models import User
-from .models import Blogpost, Tag
-from .serializers import BlogpostSerializer, TagSerializer
+from api.blogpost.models import Blogpost, Tag
+from api.blogpost.serializers import BlogpostSerializer, TagSerializer
+
 
 class BaseViewTest(APITestCase):
     client = APIClient()
@@ -24,6 +25,7 @@ class BaseViewTest(APITestCase):
         self.create_blogpost("youtube.com", self.profile, None)
         self.create_blogpost("media_url", self.profile, date.today())
 
+
 class GetAllBlogpostsTest(BaseViewTest):
     def test_get_all_blogposts(self):
         # hit the API endpoint
@@ -35,6 +37,7 @@ class GetAllBlogpostsTest(BaseViewTest):
         serialized = BlogpostSerializer(expected, many=True)
         self.assertEqual(response.data['results'], serialized.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
 
 class GetBlogpostsByTagTest(APITestCase):
     def setUp(self):
@@ -65,7 +68,6 @@ class GetBlogpostsByTagTest(APITestCase):
         self.assertEqual(response.data['results'][0], serialized.data)
 
 
-# Test TagViewSet
 class TagViewSetTest(APITestCase):
     # Set up data
     def setUp(self):

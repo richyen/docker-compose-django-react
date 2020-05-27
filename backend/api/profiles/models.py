@@ -1,6 +1,7 @@
 from django.db import models
 from api.core.models import TimestampedModel
 
+
 class Profile(TimestampedModel):
     user = models.OneToOneField(
         'authentication.User', on_delete=models.CASCADE

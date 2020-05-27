@@ -4,15 +4,19 @@ from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
 from api.blogpost.models import Blogpost
 from api.authentication.models import User
-from .models import BlogpostContent
-from .serializers import BlogpostContentSerializer
+from api.blogpost_content.models import BlogpostContent
+from api.blogpost_content.serializers import BlogpostContentSerializer
+
 
 class BaseViewTest(APITestCase):
+
     client = APIClient()
+
     @staticmethod
     def create_blogpost(media_url="", author=None, posted_on=date.today()):
-        if True: #media_link should be optional
+        if True:  # media_link should be optional
             Blogpost.objects.create(media_url=media_url, author=author, posted_on=posted_on)
+
     @staticmethod
     def create_blogpost_content(language="en", blogpost=None, title_content="", body_content=""):
         if blogpost:
@@ -35,7 +39,6 @@ class BaseViewTest(APITestCase):
 
 
 class GetAllBlogpostContentsTest(BaseViewTest):
-
 
     def test_get_all_blogpost_contents(self):
         """

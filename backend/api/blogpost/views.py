@@ -1,16 +1,16 @@
 from rest_framework import generics, viewsets, status
 from rest_framework.response import Response
-
 from api.blogpost.models import Blogpost, Tag
 from api.blogpost.serializers import BlogpostSerializer, TagSerializer
 
-# Create your views here.
+
 class ListBlogpostView(generics.ListAPIView):
     """
     Provides a get method handler
     """
     queryset = Blogpost.objects.all()
     serializer_class = BlogpostSerializer
+
 
 class BlogpostDetailView(generics.ListAPIView):
     """
@@ -31,7 +31,8 @@ class BlogpostDetailView(generics.ListAPIView):
                 status=status.HTTP_404_NOT_FOUND
             )
 
-class BlogpostViewSet(viewsets.ModelViewSet): # pylint: disable=too-many-ancestors
+
+class BlogpostViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many-ancestors
     """
     API endpoint that allows BlogpostContents to be viewed or edited.
     """
@@ -51,7 +52,8 @@ class BlogpostViewSet(viewsets.ModelViewSet): # pylint: disable=too-many-ancesto
 
         return result
 
-class TagViewSet(viewsets.ModelViewSet): # pylint: disable=too-many-ancestors
+
+class TagViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many-ancestors
     """
     API Endpoint to CRUD tags
     """

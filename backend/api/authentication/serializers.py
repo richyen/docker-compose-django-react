@@ -3,8 +3,8 @@ from django.contrib.auth import authenticate
 from api.profiles.serializers import ProfileSerializer
 from api.authentication.models import User
 
+
 class RegistrationSerializer(serializers.ModelSerializer):
-    """Serializers registration requests and creates a new user."""
 
     # Ensure passwords are at least 8 characters long, no longer than 128
     # characters, and can not be read by the client.
@@ -13,7 +13,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
         min_length=8,
         write_only=True
     )
-
 
     # The client should not be able to send a token along with a registration
     # request. Making `token` read-only handles that for us.
@@ -104,7 +103,6 @@ class UserSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer(write_only=True)
     bio = serializers.CharField(source='profile.bio', read_only=True)
     image = serializers.CharField(source='profile.image', read_only=True)
-
 
     class Meta:
         model = User

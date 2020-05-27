@@ -7,6 +7,7 @@ from django.contrib.auth.models import (
 )
 from api.core.models import TimestampedModel
 
+
 class UserManager(BaseUserManager):
     """
     Django requires that custom users define their own Manager class. By
@@ -43,6 +44,7 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
+
 class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
@@ -57,6 +59,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     # Tells Django that the UserManager class defined above should manage
     # objects of this type.
     objects = UserManager()
+
     def __str__(self):
         """
         Returns a string representation of this `User`.

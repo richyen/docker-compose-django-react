@@ -1,5 +1,6 @@
 from api.core.renderers import backendJSONRenderer
 
+
 class UserJSONRenderer(backendJSONRenderer):
 
     object_label = 'user'

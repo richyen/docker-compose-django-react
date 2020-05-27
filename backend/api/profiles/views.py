@@ -7,6 +7,7 @@ from .renderers import ProfileJSONRenderer
 from .serializers import ProfileSerializer
 from .exceptions import ProfileDoesNotExist
 
+
 class ProfileRetrieveAPIView(RetrieveAPIView):
     permission_classes = (AllowAny,)
     renderer_classes = (ProfileJSONRenderer,)

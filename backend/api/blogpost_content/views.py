@@ -1,4 +1,4 @@
-from rest_framework import generics, viewsets
+from rest_framework import generics, viewsets, status
 from rest_framework.response import Response
 from .models import BlogpostContent
 from .serializers import BlogpostContentSerializer
@@ -18,6 +18,7 @@ class ListBlogpostContentView(generics.ListAPIView):
             result = result.filter(language=queried_language)
         return result
 
+
 class BlogpostContentDetailView(generics.ListAPIView):
     """
     Provides a detailed view for a specific blogpost
@@ -36,6 +37,7 @@ class BlogpostContentDetailView(generics.ListAPIView):
                 },
                 status=status.HTTP_404_NOT_FOUND
             )
+
 
 class BlogpostContentViewSet(viewsets.ModelViewSet):
     """
