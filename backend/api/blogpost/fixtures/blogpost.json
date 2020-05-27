@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "media_url": "http://www.google.com",
-      "author": "user1",
+      "author_id": 1,
       "posted_on": "2020-05-07",
       "last_updated": "2020-05-08"
     }
@@ -14,7 +14,7 @@
   "pk": 2,
   "fields": {
     "media_url": "http://www.example.com",
-    "author": "user2",
+    "author_id": 2,
     "posted_on": "2020-05-06",
     "last_updated": "2020-05-08"
   }
@@ -24,7 +24,7 @@
   "pk": 3,
   "fields": {
     "media_url": "http://www.sample.com",
-    "author": "user3",
+    "author_id": 3,
     "posted_on": "2020-05-05",
     "last_updated": "2020-05-08"
   }
