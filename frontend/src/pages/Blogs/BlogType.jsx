@@ -58,7 +58,7 @@ class BlogType extends Component {
     }
 
     onClickCategory(index){
-        this.toggleRefs.foreach((_, i) => {
+        this.toggleRefs.forEach((_, i) => {
             if(i !== index) {
                 this.toggleRefs[i].resetCategory();
             }
