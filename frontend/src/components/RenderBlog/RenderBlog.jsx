@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import styled from 'styled-components';
+import { requests } from 'utils/agent';
 
 const test1 = '<div>Example HTML string</div>';
 const test2 = `
@@ -17,8 +18,14 @@ const BlogContainer = styled.div`
   color: green;
 `;
 
-const RenderBlog = () => {
-  return <BlogContainer>{ReactHtmlParser(test2)}</BlogContainer>;
+requests.get('blogpostcontent/2/').then(result => console.log(result));
+
+const RenderBlog = ({ blogpostcontent_id, initial_content }) => {
+  const [content, setContent] = useState('<div>hi2</div>');
+  requests
+    .get('blogpostcontent/' + blogpostcontent_id + '/')
+    .then(result => setContent(result.body_content));
+  return <BlogContainer>{ReactHtmlParser(content)}</BlogContainer>;
 };
 
 export default RenderBlog;

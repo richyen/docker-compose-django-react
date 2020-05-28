@@ -2,6 +2,7 @@ from django.db import models
 from django.apps import apps
 from django.contrib import admin
 from api.blogpost.models import Blogpost
+from api.profiles.models import Profile
 from tinymce import models as tinymce_models
 
 
@@ -16,7 +17,9 @@ class BlogpostContent(models.Model):
     last_updated = models.DateField(null=False, auto_now=True)
 
     def __str__(self):
-        return "{} - {} - {} - {} - {} - {}".format(self.id, self.language, self.blogpost_id, self.title_content, self.body_content, self.last_updated)
+        return "{} - {} - {} - {} - {} - {}".format(
+            self.id, self.language, self.blogpost_id,
+            self.title_content, self.body_content, self.last_updated)
 
     def create(self, validated_data):
         return BlogpostContent.objects.create(**validated_data)
@@ -31,8 +34,7 @@ class BlogpostContent(models.Model):
 
     def save(self, *args, **kwargs):
         if self.blogpost is None:
-            self.blogpost = Blogpost() # TODO: change this later once we implement authors
+            self.blogpost = Blogpost(author=Profile.objects.get(pk=1)) # TODO: change this later once we implement authors
             self.blogpost.save()
         super(BlogpostContent, self).save(*args, **kwargs)
-
 
