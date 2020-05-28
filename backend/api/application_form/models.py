@@ -3,7 +3,12 @@ from django.core.validators import RegexValidator
 
 
 # Create your models here.
+
+
 class ApplicationForm(models.Model):
+    class Meta:
+        ordering = ['-id']
+        
     gender_choices = (
         ('M', 'Male'),
         ('F', 'Female'),

@@ -2,7 +2,11 @@ from django.db import models
 
 
 # Create your models here.
+
+
 class School(models.Model):
+    class Meta:
+        ordering = ['-id']
     name = models.CharField(max_length=40, null=False)
     profile_picture_url = models.CharField(max_length=100, null=True)
     page_description = models.TextField(blank=True)  # for showing on the school page

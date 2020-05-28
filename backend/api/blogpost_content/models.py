@@ -5,15 +5,16 @@ from api.blogpost.models import Blogpost
 
 # Create your models here.
 class BlogpostContent(models.Model):
-    language = models.CharField(max_length=10, null=False)  # There will be a language code.
-    blogpost = models.ForeignKey(Blogpost,
-                                 related_name="blogpost",
-                                 on_delete=models.CASCADE,
-                                 null=True)
+    class Meta:
+        ordering = ['-id']
+
+    # There will be a language code.
+    language = models.CharField(max_length=10, null=False)
+    blogpost = models.ForeignKey(
+        Blogpost, related_name="blogpost", on_delete=models.CASCADE, null=True)
     title_content = models.CharField(max_length=200, null=False)
     body_content = tinymce_models.HTMLField()
-    # models.TextField(null=False)
-    # for now, I want the indicator for whether the translation exists to be
+    # models.TextField(null=False) # for now, I want the indicator for whether the translation exists to be
     # whether the entry is in this table as opposed to whether or not the field is null.
     last_updated = models.DateField(null=False, auto_now=True)
 
@@ -31,8 +32,10 @@ class BlogpostContent(models.Model):
     def update(self, instance, validated_data):
         instance.language = validated_data.get("language", instance.language)
         instance.blogpost = validated_data.get("blogpost", instance.blogpost)
-        instance.title_content = validated_data.get("title_content", instance.title_content)
-        instance.body_content = validated_data.get("body_content", instance.body_content)
+        instance.title_content = validated_data.get(
+            "title_content", instance.title_content)
+        instance.body_content = validated_data.get(
+            "body_content", instance.body_content)
         instance.save()
         return instance
 

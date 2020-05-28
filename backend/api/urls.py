@@ -37,4 +37,6 @@ urlpatterns = [
     re_path('api/(?P<version>(v1|v2))/', include(router.urls)),
     path('api/', include('api.profiles.urls', namespace='profiles')),
     path('tinymce/', include('tinymce.urls')),
-]
+    path('upload/', include('api.upload.urls')),
+    # TODO: Make the following only happen if debug is set to true
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
