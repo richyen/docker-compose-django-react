@@ -1,7 +1,5 @@
-from django.db import models
 from datetime import date
-
-# Create your models here.
+from django.db import models
 
 
 class Blogpost(models.Model):
@@ -20,7 +18,12 @@ class Blogpost(models.Model):
     last_updated = models.DateField(null=False, auto_now=True)
 
     def __str__(self):
-        return "{} - {} - {} - {} - {}".format(self.id, self.media_url, self.author, self.posted_on, self.last_updated)
+
+        return "{} - {} - {} - {} - {}".format(self.id,
+                                               self.media_url,
+                                               self.author,
+                                               self.posted_on,
+                                               self.last_updated)
 
     def create(self, validated_data):
         return Blogpost.objects.create(**validated_data)

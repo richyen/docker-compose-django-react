@@ -1,17 +1,16 @@
-from django.test import TestCase
 from rest_framework.reverse import reverse
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
-from .models import School
-from .serializers import SchoolSerializer
+from api.school.models import School
+from api.school.serializers import SchoolSerializer
 
-# Create your tests here.
+
 class BaseViewTest(APITestCase):
     client = APIClient()
 
     @staticmethod
     def create_school(name="", profile_picture_url="", page_description=""):
-        if True: #media_link should be optional
+        if True:  # media_link should be optional
             School.objects.create(name=name,
                                   profile_picture_url=profile_picture_url,
                                   page_description=page_description)

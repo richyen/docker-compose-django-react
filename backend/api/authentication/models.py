@@ -1,13 +1,12 @@
-from django.db import models
-import jwt
-from api.core.models import TimestampedModel
-
 from datetime import datetime, timedelta
-
+import jwt
+from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin
 )
+from api.core.models import TimestampedModel
+
 
 class UserManager(BaseUserManager):
     """
@@ -45,6 +44,7 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
+
 class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
@@ -59,6 +59,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     # Tells Django that the UserManager class defined above should manage
     # objects of this type.
     objects = UserManager()
+
     def __str__(self):
         """
         Returns a string representation of this `User`.

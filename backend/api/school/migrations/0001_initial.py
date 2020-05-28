@@ -14,7 +14,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='School',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('name', models.CharField(max_length=40)),
                 ('profile_picture_url', models.CharField(max_length=100, null=True)),
                 ('page_description', models.TextField(blank=True)),

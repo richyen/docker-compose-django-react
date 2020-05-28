@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blogpost, Tag
+from api.blogpost.models import Blogpost, Tag
 
 # Register your models here.
 admin.site.register(Blogpost)
