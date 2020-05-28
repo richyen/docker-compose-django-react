@@ -1,15 +1,12 @@
-from django.shortcuts import render
-
-# Create your views here.
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-
 from .models import Profile
 from .renderers import ProfileJSONRenderer
 from .serializers import ProfileSerializer
 from .exceptions import ProfileDoesNotExist
+
 
 class ProfileRetrieveAPIView(RetrieveAPIView):
     permission_classes = (AllowAny,)

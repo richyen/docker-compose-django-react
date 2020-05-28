@@ -1,24 +1,21 @@
-from django.shortcuts import render
 from rest_framework import generics, viewsets, status
-from rest_framework import permissions
 from rest_framework.response import Response
 from .models import School
 from .serializers import SchoolSerializer
 
 
-# Create your views here.
 class ListSchoolView(generics.ListAPIView):
     """
-	Provides a get method handler
-	"""
+    Provides a get method handler
+    """
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
 
 
 class SchoolDetailView(generics.ListAPIView):
     """
-	Provides a detailed view for a specific school
-	"""
+    Provides a detailed view for a specific school
+    """
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
 
@@ -37,8 +34,8 @@ class SchoolDetailView(generics.ListAPIView):
 
 class SchoolViewSet(viewsets.ModelViewSet):
     """
-	API endpoint that allows Schools to be viewed or edited.
-	"""
+    API endpoint that allows Schools to be viewed or edited.
+    """
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
 
