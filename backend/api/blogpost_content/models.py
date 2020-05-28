@@ -1,6 +1,4 @@
 from django.db import models
-from django.apps import apps
-from django.contrib import admin
 from api.blogpost.models import Blogpost
 from tinymce import models as tinymce_models
 
@@ -21,7 +19,7 @@ class BlogpostContent(models.Model):
     last_updated = models.DateField(null=False, auto_now=True)
 
     def __str__(self):
-        return "{} - {} - {} - {} - {} - {}".format(self.id, self.language, self.blogpost_id, self.title_content, self.body_content, self.last_updated)
+        return "{} - {} - {} - {} - {} - {}".format(self.id, self.language, self.blogpost, self.title_content, self.body_content, self.last_updated)
 
     def create(self, validated_data):
         return BlogpostContent.objects.create(**validated_data)
