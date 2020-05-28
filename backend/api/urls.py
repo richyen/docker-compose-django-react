@@ -24,7 +24,6 @@ from api.blogpost.views import BlogpostViewSet, TagViewSet
 from api.school.views import SchoolViewSet
 from api.application_form.views import ApplicationFormViewSet
 
-
 router = routers.SimpleRouter()
 
 router.register(r'blogpostcontent', BlogpostContentViewSet)

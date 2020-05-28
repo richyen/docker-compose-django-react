@@ -1,6 +1,5 @@
-from django.urls import path
-from django.conf.urls import include, url
-from .views import (RegistrationAPIView, LoginAPIView,UserRetrieveUpdateAPIView)
+from django.conf.urls import url
+from api.authentication.views import (RegistrationAPIView, LoginAPIView, UserRetrieveUpdateAPIView)
 
 app_name = 'authentication'
 urlpatterns = [

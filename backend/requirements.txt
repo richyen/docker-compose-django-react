@@ -1,5 +1,7 @@
 #updating requirements
 psycopg2==2.8.5
+flake8
+pylint
 jwt
 asgiref==3.2.7
 boto3==1.13.16
