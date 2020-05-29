@@ -8,9 +8,13 @@ const SearchWrapper = styled.div`
   margin: 30px;
 `;
 
+const Results = styled.h3`
+  margin: 8px 30px;
+`;
+
 const initialState = { isLoading: false, results: [], value: '' };
 
-export default class SearchExampleStandard extends Component {
+export default class BlogSearch extends Component {
   state = initialState;
 
   handleResultSelect = (e, { result }) =>
@@ -24,7 +28,6 @@ export default class SearchExampleStandard extends Component {
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
       const isMatch = result => re.test(result.title);
-      console.log(this.props.data);
 
       this.setState({
         isLoading: false,
@@ -35,18 +38,17 @@ export default class SearchExampleStandard extends Component {
 
   render() {
     const { isLoading, value, results } = this.state;
-    console.log(results);
 
     return (
       <div>
         <SearchWrapper>
           <Search
+            size="large"
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
             onSearchChange={_.debounce(this.handleSearchChange, 500, {
               leading: true
             })}
-            // results={results}
             value={value}
             showNoResults={false}
             input={{
@@ -61,7 +63,9 @@ export default class SearchExampleStandard extends Component {
           />
         </SearchWrapper>
 
-        <BlogList data={results} />
+        {value && <Results>Results for ‘{value}’</Results>}
+
+        <BlogList data={value ? results : this.props.data} />
       </div>
     );
   }

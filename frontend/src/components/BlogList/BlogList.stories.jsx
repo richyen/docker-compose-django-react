@@ -12,7 +12,7 @@ export const data = [
   },
   {
     imageUrl: 'https://via.placeholder.com/200x150?text=second',
-    title: 'Transition to America',
+    title: 'Adjusting to the U.S.',
     subHeader: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pellentesque efficitur. Aliquam id lectus a libero egestas tristique vitae ac diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Something something.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pellentesque efficitur. Aliquam id lectus a libero egestas tristique vitae ac diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Something something.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pellentesque efficitur. Aliquam id lectus a libero egestas tristique vitae ac diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Something something.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum pellentesque efficitur. Aliquam id lectus a libero egestas tristique vitae ac diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Something something',
