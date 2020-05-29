@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 import SocialIconsList from '../../components/SocialIconsList/SocialIconsList';
 import LanguageList from '../../components/LanguageList/LanguageList';
-import logo from '../../images/ISMP_logo_white.png';
 
 import {
   StyledLogo,
@@ -33,7 +32,10 @@ const EntireHeader = () => {
       <MainContainer>
         <LogoContainer>
           <a href="/" alt="ISMP Homepage">
-            <StyledLogo src={logo} alt="ISMP" />
+            <StyledLogo
+              src="https://images.squarespace-cdn.com/content/5d4ce82e08242000010863a1/1565369511729-35OZQEJ1HWHM1I4C08CV/ISMP_logo_white.png?format=1500w&content-type=image%2Fpng"
+              alt="ISMP"
+            />
           </a>
         </LogoContainer>
         <div>
