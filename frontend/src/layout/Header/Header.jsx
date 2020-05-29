@@ -49,7 +49,9 @@ const EntireHeader = () => {
                 <NavLink>{nav.text}</NavLink>
               </Link>
             ))}
-            <Button primary size="big" content="Apply Now" />
+            <Link key="application-form" to="/application-form">
+              <Button primary size="big" content="Apply Now" />
+            </Link>
           </NavContainer>
         </div>
       </MainContainer>
