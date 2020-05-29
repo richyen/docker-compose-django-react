@@ -1,0 +1,26 @@
+.quote {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 0 2px #b2b2b2;
+  display: inline-block;
+  padding: 10px 18px;
+  position: relative;
+  vertical-align: top;
+  margin: 20px 10px;
+}
+
+.quote::before {
+  background-color: #f2f2f2;
+  content: '\00a0';
+  display: block;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  bottom: -7.5px;
+  transform: rotate(47deg) skew(5deg);
+  -moz-transform: rotate(47deg) skew(5deg);
+  -ms-transform: rotate(47deg) skew(5deg);
+  -o-transform: rotate(47deg) skew(5deg);
+  -webkit-transform: rotate(47deg) skew(5deg);
+  box-shadow: 1px 1px 1px 0 rgba(178, 178, 178, 0.4);
+}

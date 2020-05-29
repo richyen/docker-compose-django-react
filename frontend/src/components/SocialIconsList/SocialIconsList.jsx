@@ -1,49 +1,46 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
+import styled from 'styled-components';
 
-const SocialIconList = () => {
-  const socialMediaList = [
-    'facebook',
-    'twitter',
-    'instagram',
-    'youtube',
-    'wechat'
-  ];
-  const socialMediaColors = [
-    'facebook',
-    'twitter',
-    'instagram',
-    'youtube',
-    'green'
-  ];
+const socialMediaList = [
+  { icon: 'twitter', url: 'https://twitter.com/explore', color: 'twitter' },
+  {
+    icon: 'facebook',
+    url: 'https://www.facebook.com/internationalstudentmp',
+    color: 'facebook'
+  },
+  {
+    icon: 'instagram',
+    url: 'https://www.instagram.com/internationalstudentmp/',
+    color: 'instagram'
+  },
+  { icon: 'youtube', url: 'https://www.youtube.com/', color: 'youtube' },
+  { icon: 'wechat', url: 'https://www.wechat.com/en', color: 'green' }
+];
 
-  const style = {
-    iconContainer: {
-      margin: '2%'
-    },
-    icons: {
-      margin: '2%'
-    }
-  };
+const HeaderContainer = styled.div`
+  margin: 0 2px;
+`;
 
-  const socialMediaIconList = socialMediaList.map((iconName, index) => {
+const SocialIconList = ({ isHeader }) => {
+  const socialMediaIconList = socialMediaList.map((social, index) => {
     return (
-      <div key={index} style={style.iconContainer}>
-        <Button
-          bordered="true"
-          color={socialMediaColors[index]}
-          icon={iconName}
-        />
-      </div>
+      <HeaderContainer key={social.icon}>
+        <a href={social.url} target="_blank" rel="noopener noreferrer">
+          <Button
+            className={`ui ${social.icon} icon button`}
+            color={isHeader ? 'grey' : social.color}
+            basic={isHeader}
+          >
+            <i className={`${social.icon} icon`}></i>
+          </Button>
+        </a>
+      </HeaderContainer>
     );
   });
 
-  return (
-    <Button.Group horizontal="true" size="mini">
-      {socialMediaIconList}
-    </Button.Group>
-  );
+  return <Button.Group horizontal="true">{socialMediaIconList}</Button.Group>;
 };
 
 export default SocialIconList;
