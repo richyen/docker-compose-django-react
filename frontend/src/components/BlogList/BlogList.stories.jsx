@@ -1,7 +1,7 @@
 import React from 'react';
 import BlogList from './BlogList';
 
-const data = [
+export const data = [
   {
     imageUrl: 'https://via.placeholder.com/200x150?text=first',
     title: 'Transition to America',
