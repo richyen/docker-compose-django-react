@@ -1,5 +1,5 @@
 import React from 'react';
-import EditBlog from './EditBlog';
+import EditBlog from './EditBlogModal';
 
 export default {
   component: EditBlog,
