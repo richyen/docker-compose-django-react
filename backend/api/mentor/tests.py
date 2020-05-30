@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
-from .models import Mentors
+from .models import Mentor
 
 # Create your tests here.
 class BaseViewTest(APITestCase):
@@ -11,7 +11,7 @@ class BaseViewTest(APITestCase):
 
     @staticmethod
     def create_mentor(mentor_id=100, picture_url="", user_id=100):
-        Mentors.objects.create(mentor_id=mentor_id, picture_url=picture_url, user_id=user_id)
+        Mentor.objects.create(mentor_id=mentor_id, picture_url=picture_url, user_id=user_id)
 
     def setUp(self):
         self.create_mentor(1, "", 1)
@@ -23,5 +23,5 @@ class GetAllMentorsTest(BaseViewTest):
         response = self.client.get(
             reverse("mentors-all", kwargs={"version": "v1"})
         )
-        expected = Mentors.objects.all()
+        expected = Mentor.objects.all()
         self.assertEqual(response.data, expected)

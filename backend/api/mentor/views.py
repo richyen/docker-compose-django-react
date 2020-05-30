@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, viewsets, status
 from rest_framework import permissions
 from rest_framework.response import Response
 
@@ -7,7 +7,7 @@ from .models import Mentor
 from .serializers import MentorSerializer
 
 # Create your views here.
-class ListMentorsView(generics.ListAPIView):
+class ListMentorView(generics.ListAPIView):
     queryset = Mentor.objects.all()
     serializer_class = MentorSerializer
 
@@ -25,3 +25,12 @@ class MentorDetailView(generics.ListAPIView):
                 },
                 status=status.HTTP_404_NOT_FOUND
             )
+
+class MentorViewSet(viewsets.ModelViewSet):
+    queryset = Mentor.objects.all()
+    serializer_class = MentorSerializer
+
+    def get_queryset(self):
+        result = Mentor.objects.all()
+
+        return result

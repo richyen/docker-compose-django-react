@@ -23,6 +23,7 @@ from api.blogpost_content.views import BlogpostContentViewSet
 from api.blogpost.views import BlogpostViewSet, TagViewSet
 from api.school.views import SchoolViewSet
 from api.application_form.views import ApplicationFormViewSet
+from api.mentor.views import MentorViewSet
 
 router = routers.SimpleRouter()
 
@@ -31,6 +32,7 @@ router.register(r'blogpost', BlogpostViewSet)
 router.register(r'school', SchoolViewSet)
 router.register(r'applicationForms', ApplicationFormViewSet)
 router.register(r'tag', TagViewSet)
+router.register(r'mentor', MentorViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
