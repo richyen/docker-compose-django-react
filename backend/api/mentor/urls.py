@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ListBlogpostView, BlogpostDetailView
+from .views import ListMentorView, MentorDetailView
 
 urlpatterns = [
    path('mentor/', ListMentorView.as_view(), name="mentors-all"),
