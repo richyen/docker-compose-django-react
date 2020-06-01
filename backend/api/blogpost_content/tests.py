@@ -70,10 +70,10 @@ class GetByQueryParamTest(BaseViewTest):
     def test_incomplete_match(self):
         """
         This test ensures that even if a query is not a complete title or body
-        content a match will occur (as long as the match is a word in itself)
+        content a match will occur (even if the query is not a full word).
         :return:
         """
-        response = self.client.get("/api/v1/blogpostcontent/?query=zhongwenbodycontent")
+        response = self.client.get("/api/v1/blogpostcontent/?query=zhongwe")
         expected = BlogpostContent.objects.get(title_content="zhongwentitle")
         serialized = BlogpostContentSerializer(expected)
         self.assertEqual(response.data['results'][0], serialized.data)
