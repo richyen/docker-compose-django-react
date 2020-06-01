@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .renderers import UserJSONRenderer
 from .serializers import (RegistrationSerializer, LoginSerializer, UserSerializer)
-
+from django.http import HttpResponse
 
 class RegistrationAPIView(APIView):
     # Allow any user (authenticated or not) to hit this endpoint.
@@ -13,13 +13,15 @@ class RegistrationAPIView(APIView):
     renderer_classes = (UserJSONRenderer)
     serializer_class = RegistrationSerializer
 
+    def index(self):
+        return HttpResponse("Hello, world. You're at the polls index.")
+
     def post(self, request):
         user = request.data.get('user', {})
         serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
 
 class LoginAPIView(APIView):
     permission_classes = (AllowAny)

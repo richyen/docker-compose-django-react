@@ -17,6 +17,9 @@ class BlogpostContent(models.Model):
     # models.TextField(null=False) # for now, I want the indicator for whether the translation exists to be
     # whether the entry is in this table as opposed to whether or not the field is null.
     last_updated = models.DateField(null=False, auto_now=True)
+    created_at = models.DateField(null=False, auto_now= True)
+    is_published = models.BooleanField(default=True)
+    is_draft = models.BooleanField(default=True)
 
     def __str__(self):
         return "{} - {} - {} - {} - {} - {}".format(self.id,
@@ -24,7 +27,11 @@ class BlogpostContent(models.Model):
                                                     self.blogpost_id,
                                                     self.title_content,
                                                     self.body_content,
-                                                    self.last_updated)
+                                                    self.is_published,
+                                                    self.is_draft,
+                                                    self.last_updated,
+                                                    self.created_at,
+                                                    )
 
     def create(self, validated_data):
         return BlogpostContent.objects.create(**validated_data)
