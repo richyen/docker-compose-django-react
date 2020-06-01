@@ -1,11 +1,11 @@
 import React from 'react';
-import EditBlog from './EditBlogModal';
+import Quote from './Quote';
 
 export default {
-  component: EditBlog,
-  title: 'EditBlog',
+  component: Quote,
+  title: 'Quote',
   // Our exports that end in "Data" are not stories.
   excludeStories: /.*Data$/
 };
 
-export const Default = () => <EditBlog />;
+export const Default = () => <Quote />;

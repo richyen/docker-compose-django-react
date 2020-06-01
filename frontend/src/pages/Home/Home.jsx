@@ -21,8 +21,8 @@ const Home = () => {
   console.log(useParams);
   return (
     <div>
+      <StyledImage src={welcome} alt="Welcome" />
       <Section>
-        <StyledImage src={welcome} alt="Welcome" />
         <h3>
           Get connected with a <StyledLink>mentor</StyledLink>
         </h3>
@@ -34,6 +34,19 @@ const Home = () => {
         for international students. Get connected with our volunteer mentors and
         gain many opportunities to make life-long friends along the way!
         <CollegeCardList />
+      </Section>
+      <Section>
+        <h3>What Makes Us Different.</h3>
+        We’re not the typical mentorship program. We aim to offer international
+        students a whole-life perspective and guidance.
+      </Section>
+      <Section>
+        <h2>Our Mentors</h2>
+        Our Mentors. We are volunteers who range from college graduate
+        professionals to PhD and Master’s candidates at top-tier universities.
+        We’re a little older, a little wiser, who can give you some practical
+        guidance. From improving your English to developing smart study habits,
+        we’re here to help. Come meet us!
       </Section>
     </div>
   );
