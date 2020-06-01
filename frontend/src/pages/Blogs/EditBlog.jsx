@@ -163,11 +163,10 @@ class EditBlog extends Component {
       title_content: this.state.blogTitle,
       body_content: this.state.editorContent
     };
-    console.log(requestBody);
-    console.log(this.state);
-    requests
-      .post('blogpostcontent/', requestBody)
-      .then(result => console.log(result));
+    requests.post('blogpostcontent/', requestBody).then(result => {
+      //           TODO: handle errors here
+      this.props.history.push(`/blogpost/` + result.id);
+    });
   };
 
   onPressKeepEditing = () => {

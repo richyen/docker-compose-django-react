@@ -35,7 +35,6 @@ const Home = () => {
         gain many opportunities to make life-long friends along the way!
         <CollegeCardList />
       </Section>
-      <RenderBlog blogpostcontent_id={4} initial_content="<div>hi</div>" />
     </div>
   );
 };

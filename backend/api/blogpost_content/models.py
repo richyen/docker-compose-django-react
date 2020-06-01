@@ -1,6 +1,6 @@
 from django.db import models
-from api.profiles.models import Profile
 from tinymce import models as tinymce_models
+from api.profiles.models import Profile
 from api.blogpost.models import Blogpost
 
 
@@ -15,7 +15,8 @@ class BlogpostContent(models.Model):
         Blogpost, related_name="blogpost", on_delete=models.CASCADE, null=True)
     title_content = models.CharField(max_length=200, null=False)
     body_content = tinymce_models.HTMLField()
-    # models.TextField(null=False) # for now, I want the indicator for whether the translation exists to be
+    # models.TextField(null=False) # for now, I want the indicator for whether the
+    # translation exists to be
     # whether the entry is in this table as opposed to whether or not the field is null.
     last_updated = models.DateField(null=False, auto_now=True)
 
@@ -28,9 +29,21 @@ class BlogpostContent(models.Model):
                                                     self.last_updated)
 
     def create(self, validated_data):
+        """
+        This creates a BlogpostContent
+        :param validated_data:
+        :return: the result of calling create on the validated data
+        """
         return BlogpostContent.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
+        """
+        The replaces the default update function. The goal of this is so that
+        if some fields are not included, then they will stay the same.
+        :param instance:  the old object
+        :param validated_data: the new data submitted
+        :return: the newly saved object
+        """
         instance.language = validated_data.get("language", instance.language)
         instance.blogpost = validated_data.get("blogpost", instance.blogpost)
         instance.title_content = validated_data.get(
@@ -42,6 +55,8 @@ class BlogpostContent(models.Model):
 
     def save(self, *args, **kwargs):  # pylint: disable=signature-differs
         if self.blogpost is None:
-            self.blogpost = Blogpost(author=Profile.objects.get(pk=1)) # TODO: change this later once we implement authors
+            # TODO: have this come from the request once we
+            #  work out the auth flow
+            self.blogpost = Blogpost(author=Profile.objects.get(pk=1))
             self.blogpost.save()
         super(BlogpostContent, self).save(*args, **kwargs)
