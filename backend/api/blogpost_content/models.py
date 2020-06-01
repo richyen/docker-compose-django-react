@@ -2,8 +2,6 @@ from django.db import models
 from tinymce import models as tinymce_models
 from api.profiles.models import Profile
 from api.blogpost.models import Blogpost
-from datetime import date
-from django.utils import timezone
 
 
 # Create your models here.
