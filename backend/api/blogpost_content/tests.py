@@ -35,7 +35,7 @@ class BaseViewTest(APITestCase):
         valid_blogpost = Blogpost.objects.get(author=self.profile)
         self.created_blog_id = valid_blogpost.id
         self.create_blogpost_content("en", valid_blogpost, "title", "body content")
-        self.create_blogpost_content("cn", valid_blogpost, "zhongwentitle", "zhongwenbodycontent")
+        self.create_blogpost_content("cn", valid_blogpost, "zhongwentitle", "zhe shi zhongwenbodycontent")
 
 
 class GetAllBlogpostContentsTest(BaseViewTest):
@@ -54,3 +54,28 @@ class GetAllBlogpostContentsTest(BaseViewTest):
         serialized = BlogpostContentSerializer(expected, many=True)
         self.assertEqual(response.data['results'], serialized.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+class GetByQueryParamTest(BaseViewTest):
+    def test_get_by_title_query(self):
+        """
+        This test ensures that the query parameter will search the titles
+        of the blogpostcontents.
+        :return: nothing
+        """
+        response = self.client.get("/api/v1/blogpostcontent/?query=zhongwentitle")
+        expected = BlogpostContent.objects.get(title_content="zhongwentitle")
+        serialized = BlogpostContentSerializer(expected)
+        self.assertEqual(response.data['results'][0], serialized.data)
+
+    def test_incomplete_match(self):
+        """
+        This test ensures that even if a query is not a complete title or body
+        content a match will occur (as long as the match is a word in itself)
+        :return:
+        """
+        response = self.client.get("/api/v1/blogpostcontent/?query=zhongwenbodycontent")
+        expected = BlogpostContent.objects.get(title_content="zhongwentitle")
+        serialized = BlogpostContentSerializer(expected)
+        self.assertEqual(response.data['results'][0], serialized.data)
+
+

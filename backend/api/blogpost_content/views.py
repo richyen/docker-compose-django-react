@@ -64,7 +64,7 @@ class BlogpostContentViewSet(viewsets.ModelViewSet):
         if query_text is not None:
             search_vector = SearchVector('title_content', 'body_content', 'blogpost__tag__name')
             result = BlogpostContent.objects.\
-                annotate(search=search_vector).filter(search=query_text)
+                annotate(search=search_vector).filter(search__icontains=query_text)
         else:
             result = BlogpostContent.objects.all()
         if queried_language is not None:
