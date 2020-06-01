@@ -35,7 +35,11 @@ class BaseViewTest(APITestCase):
         valid_blogpost = Blogpost.objects.get(author=self.profile)
         self.created_blog_id = valid_blogpost.id
         self.create_blogpost_content("en", valid_blogpost, "title", "body content")
-        self.create_blogpost_content("cn", valid_blogpost, "zhongwentitle", "zhongwenbodycontent")
+        self.create_blogpost_content(
+            "cn",
+            valid_blogpost,
+            "zhongwentitle",
+            "zhe shi zhongwenbodycontent")
 
 
 class GetAllBlogpostContentsTest(BaseViewTest):
@@ -54,3 +58,35 @@ class GetAllBlogpostContentsTest(BaseViewTest):
         serialized = BlogpostContentSerializer(expected, many=True)
         self.assertEqual(response.data['results'], serialized.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+class GetByQueryParamTest(BaseViewTest):
+    def setUp(self):
+        # add test data
+        self.user = User.objects.create_user(username="test",
+                                             email="test@gmail.com",
+                                             password="password")
+        self.profile = self.user.profile
+        self.create_blogpost(media_url="youtube.com", author=self.profile, posted_on=date.today())
+        valid_blogpost = Blogpost.objects.get(author=self.profile)
+        self.created_blog_id = valid_blogpost.id
+        self.bpc1 = BlogpostContent.objects.create(
+            language="en",
+            blogpost=valid_blogpost,
+            title_content="title",
+            body_content="body")
+        self.bpc2 = BlogpostContent.objects.create(
+            language="cn",
+            blogpost=valid_blogpost,
+            title_content="zhongwentitle",
+            body_content="zhe shi zhongwenbodycontent")
+
+    def test_incomplete_match(self):
+        """
+        This test ensures that even if a query is not a complete title or body
+        content a match will occur (even if the query is not a full word).
+        :return:
+        """
+        response = self.client.get("/api/v1/blogpostcontent/", {'query': 'zhongwe'}, format='json')
+        expected = BlogpostContent.objects.get(pk=self.bpc2.id)
+        serialized = BlogpostContentSerializer(expected)
+        self.assertEqual(response.data['results'][0], serialized.data)

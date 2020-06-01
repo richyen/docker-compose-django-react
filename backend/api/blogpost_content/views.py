@@ -1,3 +1,7 @@
+"""
+These views pertain to BlogpostContent.
+"""
+from django.contrib.postgres.search import SearchVector
 from rest_framework import generics, viewsets, status
 from rest_framework.response import Response
 from .models import BlogpostContent
@@ -47,9 +51,22 @@ class BlogpostContentViewSet(viewsets.ModelViewSet):
     serializer_class = BlogpostContentSerializer
 
     def get_queryset(self):
+        """
+        Get the set of BlogpostContent objects based on the search query.
+        You can filter by language and blogpost explicitly (?language=en, for example).
+        You can also pass in query string which will search the titles, bodies, and the
+        tags associated with the blogpost.
+        :return: a set of BlogpostContent
+        """
         queried_language = self.request.query_params.get('language', None)
         queried_blogpost = self.request.query_params.get('blogpost', None)
-        result = BlogpostContent.objects.all()
+        query_text = self.request.query_params.get('query', None)
+        if query_text is not None:
+            search_vector = SearchVector('title_content', 'body_content', 'blogpost__tag__name')
+            result = BlogpostContent.objects.\
+                annotate(search=search_vector).filter(search__icontains=query_text)
+        else:
+            result = BlogpostContent.objects.all()
         if queried_language is not None:
             result = result.filter(language=queried_language)
         if queried_blogpost is not None:

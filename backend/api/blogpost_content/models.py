@@ -28,12 +28,12 @@ class BlogpostContent(models.Model):
     def __str__(self):
         return "{} - {} - {} - {} - {} - {}".format(self.id,
                                                     self.language,
-                                                    self.blogpost_id,
+                                                    self.blogpost,
                                                     self.title_content,
                                                     self.body_content,
                                                     self.is_published,
                                                     self.is_draft,
-                                                    self.last_updated,
+                                                    self.updated_at,
                                                     self.created_at,
                                                     )
 

@@ -1,3 +1,6 @@
+"""
+These views pertain to Blogposts.
+"""
 from rest_framework import generics, viewsets, status
 from rest_framework.response import Response
 from api.blogpost.models import Blogpost, Tag
@@ -47,9 +50,11 @@ class BlogpostViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many-ancest
 
         # TODO: not sure why this works
         queried_tag = self.request.query_params.get('tag_id', None)
+        queried_tag_name = self.request.query_params.get('tag', None)
         if queried_tag is not None:
             result = result.filter(tag__id=queried_tag)
-
+        if queried_tag_name is not None:
+            result = result.filter(tag__name=queried_tag_name)
         return result
 
 

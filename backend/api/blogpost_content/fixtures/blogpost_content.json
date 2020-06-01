@@ -7,7 +7,8 @@
       "blogpost": 1,
       "title_content": "my blogpost",
       "body_content": "hello world",
-      "last_updated": "2020-05-07"
+      "updated_at": "2020-05-07",
+      "created_at": "2020-05-07 00:00:00+00"
     }
 },
   {
@@ -18,7 +19,8 @@
       "blogpost": 2,
       "title_content": "test blogpost with html",
       "body_content": "<div>hello world</div>",
-      "last_updated": "2020-05-07"
+      "updated_at": "2020-05-07",
+      "created_at": "2020-05-07 00:00:00+00"
     }
 }
 ]
