@@ -47,7 +47,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='applicationform',
             name='grade_level',
-            field=models.CharField(choices=[('high_school', 'High School'), ('undergraduate', 'Undergraduate'), ('exchange', 'Exchange Student'), ('transfer', 'Transfer Student'), ('graduate', 'Graduate Student')], default='graduate', max_length=20),
+            field=models.CharField(choices=[('high_school', 'High School'),
+                                            ('undergraduate', 'Undergraduate'),
+                                            ('exchange', 'Exchange Student'),
+                                            ('transfer', 'Transfer Student'),
+                                            ('graduate', 'Graduate Student')],
+                                   default='graduate',
+                                   max_length=20),
             preserve_default=False,
         ),
         migrations.AddField(

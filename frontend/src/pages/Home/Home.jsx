@@ -4,6 +4,8 @@ import CollegeCardList from 'components/CollegeCard';
 import React from 'react';
 import Styled from 'styled-components';
 import mixins from 'styles/mixins';
+import RenderBlog from 'components/RenderBlog';
+import { useParams } from 'react-router-dom';
 
 // TODO: Just testing things out
 const StyledImage = Styled.img`
@@ -15,6 +17,8 @@ const StyledLink = Styled.a`
 `;
 
 const Home = () => {
+  let { urlParams } = useParams();
+  console.log(useParams);
   return (
     <div>
       <StyledImage src={welcome} alt="Welcome" />
