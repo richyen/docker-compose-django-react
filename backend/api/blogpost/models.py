@@ -12,10 +12,10 @@ class Blogpost(models.Model):
     media_url = models.CharField(max_length=200, blank=True)
     # text of the blogpost
     author = models.ForeignKey(
-        'profiles.Profile', on_delete=models.CASCADE, related_name='blogpost', default= 1
+        'profiles.Profile', on_delete=models.CASCADE, related_name='blogpost', default=1
     )
-    slug = models.SlugField(db_index=True, max_length= 255, unique= True, default="slug")
-    category = models.CharField(max_length=255, null= True)
+    slug = models.SlugField(max_length= 255)
+    category = models.CharField(max_length=255, null=True)
     posted_on = models.DateField(null=True)
     last_updated = models.DateField(null=False, auto_now=True)
 
