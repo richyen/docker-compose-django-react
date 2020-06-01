@@ -41,9 +41,9 @@ class BlogpostViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many-ancest
 
     def get_queryset(self):
         result = Blogpost.objects.all()
-        queried_author = self.request.query_params.get('author_id', None)
+        queried_author = self.request.query_params.get('author', None)
         if queried_author is not None:
-            result = result.filter(author_id=queried_author)
+            result = result.filter(author=queried_author)
 
         # TODO: not sure why this works
         queried_tag = self.request.query_params.get('tag_id', None)

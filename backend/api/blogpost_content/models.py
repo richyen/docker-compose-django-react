@@ -2,6 +2,8 @@ from django.db import models
 from tinymce import models as tinymce_models
 from api.profiles.models import Profile
 from api.blogpost.models import Blogpost
+from datetime import date
+from django.utils import timezone
 
 
 # Create your models here.
@@ -18,7 +20,12 @@ class BlogpostContent(models.Model):
     # models.TextField(null=False) # for now, I want the indicator for whether the
     # translation exists to be
     # whether the entry is in this table as opposed to whether or not the field is null.
-    last_updated = models.DateField(null=False, auto_now=True)
+    # A timestamp representing when this object was created.
+    created_at = models.DateTimeField(auto_now_add=True)
+    # A timestamp representing when this object was last updated.
+    updated_at = models.DateTimeField(auto_now=True)
+    is_published = models.BooleanField(default=True)
+    is_draft = models.BooleanField(default=True)
 
     def __str__(self):
         return "{} - {} - {} - {} - {} - {}".format(self.id,
@@ -26,7 +33,11 @@ class BlogpostContent(models.Model):
                                                     self.blogpost_id,
                                                     self.title_content,
                                                     self.body_content,
-                                                    self.last_updated)
+                                                    self.is_published,
+                                                    self.is_draft,
+                                                    self.last_updated,
+                                                    self.created_at,
+                                                    )
 
     def create(self, validated_data):
         """
