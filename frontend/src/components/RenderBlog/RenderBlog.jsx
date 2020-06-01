@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import styled from 'styled-components';
-import { requests } from 'utils/agent';
 
 const test1 = '<div>Example HTML string</div>';
 const test2 = `
