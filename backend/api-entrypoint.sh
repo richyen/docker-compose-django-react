@@ -19,7 +19,7 @@ echo "Collecting static files"
 python manage.py collectstatic --no-input
 
 echo "Load mockup data"
-python manage.py loaddata blogpost.json blogpost_content.json school.json
+python manage.py loaddata superuser.json blogpost.json blogpost_content.json school.json
 
 if [[ "$1" == 'test' ]]; then
   # Run tests

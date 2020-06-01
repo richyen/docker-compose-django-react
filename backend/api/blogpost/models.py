@@ -14,7 +14,7 @@ class Blogpost(models.Model):
     author = models.ForeignKey(
         'profiles.Profile', on_delete=models.CASCADE, related_name='blogpost', default=1
     )
-    slug = models.SlugField(max_length= 255)
+    slug = models.SlugField(max_length=255)
     category = models.CharField(max_length=255, null=True)
     posted_on = models.DateField(null=True)
     last_updated = models.DateField(null=False, auto_now=True)

@@ -65,6 +65,7 @@ class GetByQueryParamTest(BaseViewTest):
         response = self.client.get("/api/v1/blogpostcontent/?query=zhongwentitle")
         expected = BlogpostContent.objects.get(title_content="zhongwentitle")
         serialized = BlogpostContentSerializer(expected)
+        print(response.data)
         self.assertEqual(response.data['results'][0], serialized.data)
 
     def test_incomplete_match(self):
