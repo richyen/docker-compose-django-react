@@ -1,4 +1,3 @@
-
 import Section from '../../layout/Section';
 import React from 'react';
 import { Button } from 'semantic-ui-react';
@@ -12,7 +11,8 @@ const Home = () => {
           Your application has been received!
         </h3>
         <p>
-          You will receive a confirmation email shortly with more details and next steps. Look forward to meeting you!
+          You will receive a confirmation email shortly with more details and
+          next steps. Look forward to meeting you!
         </p>
         <Button.Group>
           <Button>See Programs</Button>

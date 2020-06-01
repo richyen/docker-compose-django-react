@@ -3,7 +3,7 @@ from api.authentication.views import (RegistrationAPIView, LoginAPIView, UserRet
 
 app_name = 'authentication'
 urlpatterns = [
-    url(r'^users/?$', RegistrationAPIView.as_view()),
+    url(r'^users/register/?$', RegistrationAPIView.as_view()),
     url(r'^users/login/?$', LoginAPIView.as_view()),
     url(r'^user$', UserRetrieveUpdateAPIView.as_view()),
 ]
