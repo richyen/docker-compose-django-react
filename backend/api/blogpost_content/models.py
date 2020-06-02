@@ -1,3 +1,7 @@
+"""
+This is the BlogpostContent. This is going to be the most common point
+of interface for people using the API.
+"""
 from django.db import models
 from tinymce import models as tinymce_models
 from api.profiles.models import Profile
@@ -6,6 +10,11 @@ from api.blogpost.models import Blogpost
 
 # Create your models here.
 class BlogpostContent(models.Model):
+    """
+    This class is the content of the Blogposts. For the most part, interactions
+    with the backend will be made through this class's API endpoint instead of
+    the blogpost one.
+    """
     class Meta:
         ordering = ['-id']
 
@@ -22,20 +31,21 @@ class BlogpostContent(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # A timestamp representing when this object was last updated.
     updated_at = models.DateTimeField(auto_now=True)
-    is_published = models.BooleanField(default=True)
+    publish_at = models.DateTimeField(null=True)  # to allow future publishing
     is_draft = models.BooleanField(default=True)
 
     def __str__(self):
-        return "{} - {} - {} - {} - {} - {}".format(self.id,
-                                                    self.language,
-                                                    self.blogpost,
-                                                    self.title_content,
-                                                    self.body_content,
-                                                    self.is_published,
-                                                    self.is_draft,
-                                                    self.updated_at,
-                                                    self.created_at,
-                                                    )
+        return "{} - {} - {} - {} - {} - {} - {} - {} - {}".format(
+            self.id,
+            self.language,
+            self.blogpost,
+            self.title_content,
+            self.body_content,
+            self.is_draft,
+            self.updated_at,
+            self.created_at,
+            self.publish_at
+        )
 
     def create(self, validated_data):
         """
@@ -59,6 +69,8 @@ class BlogpostContent(models.Model):
             "title_content", instance.title_content)
         instance.body_content = validated_data.get(
             "body_content", instance.body_content)
+        instance.is_draft = validated_data.get("is_draft", instance.is_draft)
+        instance.publish_at = validated_data.get("publish_at", instance.publish_at)
         instance.save()
         return instance
 
