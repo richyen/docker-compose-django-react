@@ -44,7 +44,7 @@ class BlogpostContentDetailView(generics.ListAPIView):
             )
 
 
-class BlogpostContentViewSet(viewsets.ModelViewSet):
+class BlogpostContentViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many-ancestors
     """
     API endpoint that allows BlogpostContents to be viewed or edited.
     """
@@ -63,7 +63,7 @@ class BlogpostContentViewSet(viewsets.ModelViewSet):
         queried_blogpost = self.request.query_params.get('blogpost', None)
         query_text = self.request.query_params.get('query', None)
         featured = self.request.query_params.get('featured', False)
-        allow_unpublished = self.request.query_params.get('allow_unpublished', False)
+        published_only = self.request.query_params.get('published', False)
         if query_text is not None:
             search_vector = SearchVector('title_content', 'body_content', 'blogpost__tag__name')
             result = BlogpostContent.objects.\
@@ -74,9 +74,9 @@ class BlogpostContentViewSet(viewsets.ModelViewSet):
             result = result.filter(language=queried_language)
         if queried_blogpost is not None:
             result = result.filter(blogpost=queried_blogpost)
-        if featured and featured == 'true':
+        if featured and featured.lower() == 'true':
             result = result.filter(blogpost__is_featured=True)
-        if not allow_unpublished or allow_unpublished.lower() == 'false':
+        if published_only and not published_only.lower() == 'false':
             result = result.filter(is_draft=False)
             result = result.filter(publish_at__lte=datetime.now())
         return result
