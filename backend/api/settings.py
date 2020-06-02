@@ -182,6 +182,8 @@ else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     MEDIA_URL = '/mediafiles/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# do this for now to silence the error. May need to change it later.
+AWS_DEFAULT_ACL = "public-read"
 
 # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 

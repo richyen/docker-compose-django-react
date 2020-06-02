@@ -1,4 +1,3 @@
-from datetime import date
 from django.db import models
 
 
@@ -14,10 +13,11 @@ class Blogpost(models.Model):
 
     def __str__(self):
 
-        return "{} - {} - {} - {}".format(self.id,
-                                               self.media_url,
-                                               self.author,
-                                               self.slug)
+        return "{} - {} - {} - {}".format(
+            self.id,
+            self.media_url,
+            self.author,
+            self.slug)
 
     def create(self, validated_data):
         return Blogpost.objects.create(**validated_data)
