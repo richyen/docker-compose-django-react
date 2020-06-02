@@ -18,8 +18,13 @@ python manage.py migrate
 echo "Collecting static files"
 python manage.py collectstatic --no-input
 
+# Do different calls to loaddata for fixtures without dependencies. Because
+# calls to loaddata are atomic, if we don't do this then one bad fixture will
+# stop anything from being loaded into the db.
 echo "Load mockup data"
-python manage.py loaddata superuser.json blogpost.json blogpost_content.json school.json
+python manage.py loaddata superuser.json blogpost.json blogpost_content.json
+python manage.py loaddata school.json
+python manage.py loaddata topic.json
 
 if [[ "$1" == 'test' ]]; then
   # Run tests

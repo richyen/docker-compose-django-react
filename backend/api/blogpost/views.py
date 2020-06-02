@@ -3,8 +3,8 @@ These views pertain to Blogposts.
 """
 from rest_framework import generics, viewsets, status
 from rest_framework.response import Response
-from api.blogpost.models import Blogpost, Tag
-from api.blogpost.serializers import BlogpostSerializer, TagSerializer
+from api.blogpost.models import Blogpost, Tag, Topic
+from api.blogpost.serializers import BlogpostSerializer, TagSerializer, TopicSerializer
 
 
 class ListBlogpostView(generics.ListAPIView):
@@ -64,3 +64,11 @@ class TagViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many-ancestors
     """
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+
+
+class TopicViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many-ancestors
+    """
+    API Endpoint to CRUD topics
+    """
+    queryset = Topic.objects.all()
+    serializer_class = TopicSerializer

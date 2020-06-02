@@ -5,8 +5,7 @@
     "fields": {
       "media_url": "http://www.google.com",
       "author_id": 1,
-      "posted_on": "2020-05-07",
-      "last_updated": "2020-05-08"
+      "is_featured": true
     }
   },
   {
@@ -15,8 +14,7 @@
     "fields": {
       "media_url": "http://www.example.com",
       "author_id": 2,
-      "posted_on": "2020-05-06",
-      "last_updated": "2020-05-08"
+      "is_featured": false
     }
   },
   {
@@ -24,9 +22,7 @@
     "pk": 3,
     "fields": {
       "media_url": "http://www.sample.com",
-      "author_id": 1,
-      "posted_on": "2020-05-05",
-      "last_updated": "2020-05-08"
+      "author_id": 1
     }
   },
   {
@@ -35,8 +31,7 @@
     "fields": {
       "media_url": "http://www.jordan.com",
       "author_id": 2,
-      "posted_on": "2020-05-05",
-      "last_updated": "2020-05-08"
+      "is_featured": true
     }
   },
   {
@@ -45,8 +40,7 @@
     "fields": {
       "media_url": "http://www.kobe.com",
       "author_id": 1,
-      "posted_on": "2020-05-05",
-      "last_updated": "2020-05-08"
+      "is_featured": true
     }
   },
   {
@@ -55,8 +49,7 @@
     "fields": {
       "media_url": "http://www.curry.com",
       "author_id": 2,
-      "posted_on": "2020-05-05",
-      "last_updated": "2020-05-08"
+      "is_featured": true
     }
   },
   {
@@ -65,8 +58,7 @@
     "fields": {
       "media_url": "http://www.khawi.com",
       "author_id": 1,
-      "posted_on": "2020-05-05",
-      "last_updated": "2020-05-08"
+      "is_featured": false
     }
   }
 ]
