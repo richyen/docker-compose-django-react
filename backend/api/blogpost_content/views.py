@@ -61,6 +61,7 @@ class BlogpostContentViewSet(viewsets.ModelViewSet):
         queried_language = self.request.query_params.get('language', None)
         queried_blogpost = self.request.query_params.get('blogpost', None)
         query_text = self.request.query_params.get('query', None)
+        featured = self.request.query_params.get('featured', False)
         if query_text is not None:
             search_vector = SearchVector('title_content', 'body_content', 'blogpost__tag__name')
             result = BlogpostContent.objects.\
@@ -71,4 +72,6 @@ class BlogpostContentViewSet(viewsets.ModelViewSet):
             result = result.filter(language=queried_language)
         if queried_blogpost is not None:
             result = result.filter(blogpost=queried_blogpost)
+        if featured and featured == 'true':
+            result = result.filter(blogpost__is_featured=True)
         return result

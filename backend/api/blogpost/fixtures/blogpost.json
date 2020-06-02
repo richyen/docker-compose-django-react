@@ -4,7 +4,8 @@
     "pk": 1,
     "fields": {
       "media_url": "http://www.google.com",
-      "author_id": 1
+      "author_id": 1,
+      "is_featured": true
     }
   },
   {
@@ -12,7 +13,8 @@
     "pk": 2,
     "fields": {
       "media_url": "http://www.example.com",
-      "author_id": 2
+      "author_id": 2,
+      "is_featured": false
     }
   },
   {
@@ -28,7 +30,8 @@
     "pk": 4,
     "fields": {
       "media_url": "http://www.jordan.com",
-      "author_id": 2
+      "author_id": 2,
+      "is_featured": true
     }
   },
   {
@@ -36,7 +39,8 @@
     "pk": 5,
     "fields": {
       "media_url": "http://www.kobe.com",
-      "author_id": 1
+      "author_id": 1,
+      "is_featured": true
     }
   },
   {
@@ -44,7 +48,8 @@
     "pk": 6,
     "fields": {
       "media_url": "http://www.curry.com",
-      "author_id": 2
+      "author_id": 2,
+      "is_featured": true
     }
   },
   {
@@ -52,7 +57,8 @@
     "pk": 7,
     "fields": {
       "media_url": "http://www.khawi.com",
-      "author_id": 1
+      "author_id": 1,
+      "is_featured": false
     }
   }
 ]

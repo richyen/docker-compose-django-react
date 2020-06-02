@@ -10,6 +10,7 @@ class Blogpost(models.Model):
         'profiles.Profile', on_delete=models.CASCADE, related_name='blogpost', default=1
     )
     slug = models.SlugField(max_length=255)
+    is_featured = models.BooleanField(default=False)
 
     def __str__(self):
 
