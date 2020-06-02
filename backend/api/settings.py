@@ -39,11 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api.blogpost',
     'api.blogpost_content',
+    'api.application_form',
     'rest_framework',
     'api.authentication',
     'django_extensions',
     'corsheaders',
+    'tinymce',
+    'storages',
     'api.profiles',
+    'api.school',
+    'api.upload'
 ]
 
 MIDDLEWARE = [
@@ -62,7 +67,8 @@ ROOT_URLCONF = 'api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': '[]',
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,9 +93,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        # settings for local setup if you don't feel like using docker
-        # 'HOST': 'localhost',
-        'HOST': 'db',
+        'HOST': 'ismpdb',
         'PORT': 5432,
     }
 }
@@ -132,22 +136,77 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 
-#Custom Auth for User
+# Custom Auth for User
 AUTH_USER_MODEL = 'authentication.User'
 
-#Custom Exception Handler
+# Page size for pagination, can adjust later
+DEFAULT_PAGE_SIZE = 5
+
+# Custom Exception Handler
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'api.core.exceptions.core_exception_handler',
     'NON_FIELD_ERRORS_KEY': 'error',
     'DEFAULT_AUTHENTICATION_CLASSES': ('api.authentication.backends.JWTAuthentication',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': DEFAULT_PAGE_SIZE,
+    'TEST_REQUEST_RENDERER_CLASSES': [
+        'rest_framework.renderers.MultiPartRenderer',
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.TemplateHTMLRenderer'
+    ]
 }
-#Static files
-#STATIC_ROOT = os.path.join(BASE_DIR,'static')
-STATIC_URL = '/static/'
+
+USE_S3 = os.getenv('USE_S3') == 'TRUE'
+
+if USE_S3:
+    # aws settings
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # s3 static settings
+    STATIC_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+    STATICFILES_STORAGE = 'api.upload.storage_backends.StaticStorage'
+    # s3 public media settings
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'api.upload.storage_backends.PublicMediaStorage'
+    # s3 private media settings
+    PRIVATE_MEDIA_LOCATION = 'private'
+    PRIVATE_FILE_STORAGE = 'api.upload.storage_backends.PrivateMediaStorage'
+else:
+    STATIC_URL = '/staticfiles/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    MEDIA_URL = '/mediafiles/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+# Static files
+# STATIC_ROOT = os.path.join(BASE_DIR,'static')
+# STATIC_URL = '/static/'
+
 # STATICFILES_DIR = [
 #     os.path.join(BASE_DIR, 'static')
 # ]
 # #Media Folder Settings
 # MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # MEDIA_URL = '/media/'
+
 CORS_ORIGIN_ALLOW_ALL = True
+
+# TinyMCE settings
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 300,
+    'plugins': "image,imagetools,media,codesample,link,code",
+    'cleanup_on_startup': True,
+    'menubar': False,
+    'toolbar': """styleselect |undo redo | bold italic |
+ alignleft aligncenter alignright | link image media codesample """
+               "code",
+    'image_caption': True,
+    'image_advtab': True,
+}

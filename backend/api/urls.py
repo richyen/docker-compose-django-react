@@ -14,24 +14,30 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path, re_path
+from django.urls import path, re_path
 from django.conf.urls import include, url
-from django.conf.urls import static
 from django.conf import settings
+from django.conf.urls.static import static
 from rest_framework import routers
-# from blogpost import blogpost
 from api.blogpost_content.views import BlogpostContentViewSet
-from api.blogpost.views import BlogpostViewSet
+from api.blogpost.views import BlogpostViewSet, TagViewSet
+from api.school.views import SchoolViewSet
+from api.application_form.views import ApplicationFormViewSet
 
 router = routers.SimpleRouter()
 
 router.register(r'blogpostcontent', BlogpostContentViewSet)
 router.register(r'blogpost', BlogpostViewSet)
+router.register(r'school', SchoolViewSet)
+router.register(r'applicationForms', ApplicationFormViewSet)
+router.register(r'tag', TagViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api/', include('api.authentication.urls', namespace='user')),
     re_path('api/(?P<version>(v1|v2))/', include(router.urls)),
-    path('api/', include('api.profiles.urls', namespace='profiles'))
-]
-         #     + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    path('api/', include('api.profiles.urls', namespace='profiles')),
+    path('tinymce/', include('tinymce.urls')),
+    path('upload/', include('api.upload.urls')),
+    # TODO: Make the following only happen if debug is set to true
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

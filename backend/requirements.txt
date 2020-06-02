@@ -1,13 +1,18 @@
 #updating requirements
 psycopg2==2.8.5
+flake8
+pylint
 jwt
 asgiref==3.2.7
+boto3==1.13.16
 cffi==1.14.0
 cryptography==2.9.2
 Django==3.0.5
-django-extensions==2.2.9
 django-cors-headers==3.2.1
 django-cors-middleware==1.5.0
+django-extensions==2.2.9
+django-storages==1.9.1
+django-tinymce==3.0.2
 djangorestframework==3.11.0
 psycopg2-binary==2.8.5
 pycparser==2.20

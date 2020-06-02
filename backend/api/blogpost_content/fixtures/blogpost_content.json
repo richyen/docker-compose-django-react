@@ -1,0 +1,27 @@
+[
+{
+  "model": "blogpost_content.blogpostcontent",
+    "pk": 1,
+    "fields": {
+      "language": "en",
+      "blogpost": 1,
+      "title_content": "my blogpost",
+      "body_content": "hello world",
+      "updated_at": "2020-05-07",
+      "created_at": "2020-05-07 00:00:00+00"
+    }
+},
+  {
+  "model": "blogpost_content.blogpostcontent",
+    "pk": 2,
+    "fields": {
+      "language": "en",
+      "blogpost": 2,
+      "title_content": "test blogpost with html",
+      "body_content": "<div>hello world</div>",
+      "updated_at": "2020-05-07",
+      "created_at": "2020-05-07 00:00:00+00"
+    }
+}
+]
+

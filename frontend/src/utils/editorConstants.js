@@ -5,7 +5,8 @@ export const EDITOR_API_KEY =
 // Includes settings such as size of editor and desired controls
 // '|' divides the toolbar into sections
 export const EDITOR_INIT = {
-  height: 500,
+  selector: '#blogEditor',
+  height: 750,
   menubar: true,
   plugins: [
     'advlist lists link image charmap print preview anchor',
@@ -13,7 +14,5 @@ export const EDITOR_INIT = {
     'insertdatetime media table paste code help wordcount textpattern'
   ],
   toolbar:
-    'undo redo | fontselect | fontsizeselect | bold italic backcolor | \
-        alignleft aligncenter alignright alignjustify | \
-        bullist numlist outdent indent | removeformat | preview | help'
+    'undo redo | fontselect | fontsizeselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | preview | help'
 };

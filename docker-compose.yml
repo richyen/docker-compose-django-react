@@ -2,20 +2,26 @@ version: '3'
 
 services:
   db:
-    image: postgres
+    image: postgres:12-alpine
+    hostname: ismpdb
     ports:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: "postgres"
-    volumes:
-      - ./backend/data:/var/lib/postgresql/data
-  django:
+  backend:
     image: richyen/ismp-backend
     build: ./backend
+    links:
+      - "db:ismpdb"
     volumes:
       - ./backend:/app/api
     ports:
       - "8000:8000"
+    environment:
+      USE_S3: "FALSE" # change this to true and populate the following fields to upload to s3.
+      AWS_ACCESS_KEY_ID: "INSERT YOUR AWS ACCESS KEY ID HERE"
+      AWS_SECRET_ACCESS_KEY: "INSERT YOUR AWS SECRET ACCESS KEY HERE"
+      AWS_STORAGE_BUCKET_NAME: "INSERT THE NAME OF THE S3 BUCKET YOU CREATED HERE"
     depends_on:
       - db
     entrypoint:
@@ -26,6 +32,8 @@ services:
     command: ["yarn", "start"]
     stdin_open: true
     tty: true
+    environment:
+      REACT_APP_API_HOST: "http://localhost:8000"
     volumes:
       - ./frontend:/app/frontend
       - node-modules:/app/frontend/node_modules

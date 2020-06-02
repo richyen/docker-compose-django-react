@@ -1,0 +1,29 @@
+[
+  {
+    "model": "school.school",
+      "pk": 1,
+      "fields": {
+        "name": "University of California, San Diego",
+        "profile_picture_url": "https://ucsdnews.ucsd.edu/news_uploads/big_29751174808_84979e38b9_z.jpg",
+        "page_description": "This is the page about UCSD. I think it will be up to the content team to actually write a descriptive block of text about UCSD. Also, I didn't check for copyrights on the image."
+      }
+  },
+  {
+    "model": "school.school",
+      "pk": 2,
+      "fields": {
+        "name": "University of California, Los Angeles",
+        "profile_picture_url": "https://capitalallocatorspodcast.com/wp-content/uploads/UCLA_Royce-Hall_2019-01-17-1024x681.jpg",
+        "page_description": "This is the page about UCLA. I think it will be up to the content team to actually write a descriptive block of text about UCLA. Also, I didn't check for copyrights on the image."
+      }
+  },
+  {
+    "model": "school.school",
+      "pk": 3,
+      "fields": {
+        "name": "University of California, Irvine",
+        "profile_picture_url": "https://www.ocregister.com/wp-content/uploads/2020/03/uci-1.jpg",
+        "page_description": "This is the page about UCI. I think it will be up to the content team to actually write a descriptive block of text about UCI. Also, I didn't check for copyrights on the image."
+      }
+  }
+]
