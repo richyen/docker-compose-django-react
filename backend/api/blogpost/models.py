@@ -30,12 +30,20 @@ class Blogpost(models.Model):
         return instance
 
     def save(self, *args, **kwargs):
-        if self.posted_on is None:
-            self.posted_on = date.today()
         super(Blogpost, self).save(*args, **kwargs)
 
 
 class Tag(models.Model):
+    class Meta:
+        ordering = ['-id']
+    name = models.CharField(max_length=100)
+    blogpost = models.ManyToManyField(Blogpost, blank=True)
+
+    def __str__(self):
+        return "{} - {}".format(self.id, self.name)
+
+
+class Topic(models.Model):
     class Meta:
         ordering = ['-id']
     name = models.CharField(max_length=100)

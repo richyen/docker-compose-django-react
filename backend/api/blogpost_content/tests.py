@@ -13,9 +13,9 @@ class BaseViewTest(APITestCase):
     client = APIClient()
 
     @staticmethod
-    def create_blogpost(media_url="", author=None, posted_on=date.today()):
+    def create_blogpost(media_url="", author=None):
         if True:  # media_link should be optional
-            Blogpost.objects.create(media_url=media_url, author=author, posted_on=posted_on)
+            Blogpost.objects.create(media_url=media_url, author=author)
 
     @staticmethod
     def create_blogpost_content(language="en", blogpost=None, title_content="", body_content=""):
@@ -31,7 +31,7 @@ class BaseViewTest(APITestCase):
                                              email="test@gmail.com",
                                              password="password")
         self.profile = self.user.profile
-        self.create_blogpost(media_url="youtube.com", author=self.profile, posted_on=date.today())
+        self.create_blogpost(media_url="youtube.com", author=self.profile)
         valid_blogpost = Blogpost.objects.get(author=self.profile)
         self.created_blog_id = valid_blogpost.id
         self.create_blogpost_content("en", valid_blogpost, "title", "body content")
@@ -66,7 +66,7 @@ class GetByQueryParamTest(BaseViewTest):
                                              email="test@gmail.com",
                                              password="password")
         self.profile = self.user.profile
-        self.create_blogpost(media_url="youtube.com", author=self.profile, posted_on=date.today())
+        self.create_blogpost(media_url="youtube.com", author=self.profile)
         valid_blogpost = Blogpost.objects.get(author=self.profile)
         self.created_blog_id = valid_blogpost.id
         self.bpc1 = BlogpostContent.objects.create(
