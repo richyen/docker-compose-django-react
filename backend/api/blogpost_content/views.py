@@ -76,6 +76,8 @@ class BlogpostContentViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many
             result = result.filter(blogpost=queried_blogpost)
         if featured and featured.lower() == 'true':
             result = result.filter(blogpost__is_featured=True)
+            result = result.filter(is_draft=False)
+            result = result.filter(publish_at__lte=datetime.now())
         if published_only and not published_only.lower() == 'false':
             result = result.filter(is_draft=False)
             result = result.filter(publish_at__lte=datetime.now())
