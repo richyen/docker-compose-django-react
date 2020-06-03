@@ -2,6 +2,8 @@ import 'semantic-ui-css/semantic.min.css';
 
 import Footer from './layout/Footer';
 import Header from './layout/Header';
+import ResponsiveContainer from './layout/Responsive/ResponsiveContainer.component';
+
 import Navigation from './routes/Navigation';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -16,9 +18,11 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Router>
-        <Header />
-        <Navigation />
-        <Footer />
+        {/* <Header /> */}
+        <ResponsiveContainer>
+          <Navigation />
+        </ResponsiveContainer>
+        {/* <Footer /> */}
       </Router>
     </ThemeProvider>
   </React.StrictMode>,

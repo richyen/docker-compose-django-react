@@ -12,7 +12,7 @@ import SocialMediaIconList from '../../components/SocialIconsList';
 
 const style = {
   footerContainer: {
-    margin: '0em 0em',
+    margin: '0',
     padding: '3em 0em'
   }
 };
@@ -66,7 +66,7 @@ const Footer = () => {
           inverted
           stackable
           textAlign="left"
-          style={{ paddingLeft: '10%' }}
+          // style={{ paddingLeft: '10%' }}
         >
           <Grid.Row>
             {links(footerContent)}
