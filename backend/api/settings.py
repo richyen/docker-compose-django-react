@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'storages',
     'api.profiles',
     'api.school',
-    'api.upload'
+    'api.upload',
+    'api.mentor'
 ]
 
 MIDDLEWARE = [
