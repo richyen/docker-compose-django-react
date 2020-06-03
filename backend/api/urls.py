@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import routers
 from api.blogpost_content.views import BlogpostContentViewSet
-from api.blogpost.views import BlogpostViewSet, TagViewSet
+from api.blogpost.views import BlogpostViewSet, TagViewSet, TopicViewSet
 from api.school.views import SchoolViewSet
 from api.application_form.views import ApplicationFormViewSet
 from api.mentor.views import MentorViewSet
@@ -33,6 +33,7 @@ router.register(r'school', SchoolViewSet)
 router.register(r'applicationForms', ApplicationFormViewSet)
 router.register(r'tag', TagViewSet)
 router.register(r'mentor', MentorViewSet)
+router.register(r'topic', TopicViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

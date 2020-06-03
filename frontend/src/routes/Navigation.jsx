@@ -15,10 +15,16 @@ class Navigation extends Component {
             path="/application-form"
             component={Routes.APPLICATION_FORM}
           />
+          <Route
+            exact
+            path="/application-form-success"
+            component={Routes.APPLICATION_FORM_SUCCESS}
+          />
           <Route exact path="/mentors" component={Routes.MENTORS} />
           <Route exact path="/program" component={Routes.PROGRAM} />
           <Route exact path="/about" component={Routes.ABOUT} />
           <Route exact path="/stories" component={Routes.STORIES} />
+          <Route path="/blogpost/:id" component={Routes.BLOGPOST} />
         </Switch>
       </React.Fragment>
     );

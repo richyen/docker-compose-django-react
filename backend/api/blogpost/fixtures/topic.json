@@ -1,0 +1,81 @@
+[{
+    "model": "blogpost.topic",
+    "pk": 1,
+    "fields": {
+        "name": "mastering english",
+        "blogpost": [1]
+    }
+},
+{
+    "model": "blogpost.topic",
+    "pk": 2,
+    "fields": {
+        "name": "housing tips",
+        "blogpost": [2]
+    }
+},
+{
+    "model": "blogpost.topic",
+    "pk": 3,
+    "fields": {
+        "name": "adjusting to the US",
+        "blogpost": []
+    }
+},
+{
+    "model": "blogpost.topic",
+    "pk": 4,
+    "fields": {
+        "name": "productivity tips",
+        "blogpost": []
+    }
+},
+{
+    "model": "blogpost.topic",
+    "pk": 5,
+    "fields": {
+        "name": "American society/societal norms",
+        "blogpost": []
+    }
+},
+{
+    "model": "blogpost.topic",
+    "pk": 6,
+    "fields": {
+        "name": "places to visit",
+        "blogpost": []
+    }
+},
+{
+    "model": "blogpost.topic",
+    "pk": 7,
+    "fields": {
+        "name": "places to visit",
+        "blogpost": []
+    }
+},
+{
+    "model": "blogpost.topic",
+    "pk": 8,
+    "fields": {
+        "name": "career/job advice",
+        "blogpost": []
+    }
+},
+{
+    "model": "blogpost.topic",
+    "pk": 9,
+    "fields": {
+        "name": "American culture",
+        "blogpost": []
+    }
+},
+{
+    "model": "blogpost.topic",
+    "pk": 10,
+    "fields": {
+        "name": "writing tips",
+        "blogpost": []
+    }
+}
+]
