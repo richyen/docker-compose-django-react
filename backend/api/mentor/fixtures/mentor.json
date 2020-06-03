@@ -1,0 +1,16 @@
+[{
+    "model": "mentor.mentor",
+    "pk": 1,
+    "fields": {
+        "picture_url": "https://www.gravatar.com/avatar/e4cc5f9c430e04adaff1e59f8f4d3f9c.jpg",
+        "user_id": 1
+    }
+},
+{
+    "model": "mentor.mentor",
+    "pk": 2,
+    "fields": {
+        "picture_url": "https://www.gravatar.com/avatar/e4cc5f9c430e04adaff1e59f8f4d3f9d.jpg",
+        "user_id": 2
+    }
+}]

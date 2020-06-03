@@ -23,7 +23,7 @@ python manage.py collectstatic --no-input
 # stop anything from being loaded into the db.
 echo "Load mockup data"
 python manage.py loaddata superuser.json blogpost.json blogpost_content.json
-python manage.py loaddata school.json
+python manage.py loaddata school.json mentor.json
 python manage.py loaddata topic.json
 
 if [[ "$1" == 'test' ]]; then
