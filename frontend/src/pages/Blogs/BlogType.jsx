@@ -47,46 +47,62 @@ const NextButton = Styled(Link)`
 `;
 
 class BlogType extends Component {
-    constructor(props) {
-        super(props);
-        this.toggleRefs = [];
-        this.categories = ['Classic', 'Blog', 'Article', 'Webinar', 'Webinar', 'Webinar', 'Webinar', 'Webinar'];
-        this.onClickCategory = this.onClickCategory.bind(this);
-        this.state = {
-            category: ''
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.toggleRefs = [];
+    this.categories = [
+      'Classic',
+      'Blog',
+      'Article',
+      'Webinar',
+      'Webinar',
+      'Webinar',
+      'Webinar',
+      'Webinar'
+    ];
+    this.onClickCategory = this.onClickCategory.bind(this);
+    this.state = {
+      category: ''
+    };
+  }
 
-    onClickCategory(index){
-        this.toggleRefs.forEach((_, i) => {
-            if(i !== index) {
-                this.toggleRefs[i].resetCategory();
-            }
-        })
-        this.setState({category: this.categories[index]});
-    }
+  onClickCategory(index) {
+    this.toggleRefs.forEach((_, i) => {
+      if (i !== index) {
+        this.toggleRefs[i].resetCategory();
+      }
+    });
+    this.setState({ category: this.categories[index] });
+  }
 
-    render() {
-        return (
-            <Container>
-                <Header>What kind of blog post do you want to make?</Header>
-                <CategoryContainer>
-                {
-                    this.categories.map((category, index) => {
-                        return <CategoryToggle
-                                    ref={ref => this.toggleRefs[index] = ref} 
-                                    onClickCategory={this.onClickCategory} 
-                                    key={index} 
-                                    text={category}
-                                    item={index}
-                                />
-                    })
-                }
-                </CategoryContainer>
-                <NextButton to={{pathname: '/edit-blog', state: {category: this.state.category}}}>Next</NextButton>
-            </Container>
-        )
-    }
+  render() {
+    return (
+      <Container>
+        <Header>What kind of blog post do you want to make?</Header>
+        <CategoryContainer>
+          {this.categories.map((category, index) => {
+            return (
+              <CategoryToggle
+                ref={ref => (this.toggleRefs[index] = ref)}
+                onClickCategory={this.onClickCategory}
+                key={index}
+                text={category}
+                item={index}
+              />
+            );
+          })}
+        </CategoryContainer>
+        <NextButton
+          to={{
+            pathname: '/edit-blog',
+            state: { category: this.state.category }
+          }}
+        >
+          Next
+        </NextButton>
+      </Container>
+    );
+  }
 }
 
 export default withRouter(BlogType);
