@@ -1,38 +1,42 @@
 import React from 'react';
 import Styled from 'styled-components';
 import theme from '../../styles/theme';
+import { Image, Grid } from 'semantic-ui-react';
 
-const StyledCard = Styled.div`
-    background-image: url(${props => props.imgUrl});
-    width: 230px;
-    height: 150px;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    position: relative;
-    border-radius: 2%;
-    transition: transform 1.0s;
-    &:hover {
-        transform: translateY(-10px);
-    }
+const StyledImage = Styled(Image)`
+  width: 240px;
+  height: 240px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border-radius: 50%;
+  transition: transform 0.5s;
+  &:hover {
+      transform: translateY(-2px);
+  }
 `;
 
-const StyledTitle = Styled.h6`
-    margin: 0;
-    width: 100%;
-    top: 81%;
-    padding: 2% 8%;
-    color: ${theme.colors.white};
+const StyledTitle = Styled.div`
     position: relative;
-    z-index: 1;
-    display: inline-block;
-    background-color: rgba(0, 0, 0, 0.5); 
+    padding-top: 24px;
+    bottom: 0%;
+    font-family: ${theme.fonts.Poppins};
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
 `;
 
-const CollegeCard = ({ name, imgUrl }) => {
+const CollegeCard = ({ name, imgUrl, description }) => {
   return (
-    <StyledCard imgUrl={imgUrl}>
-      <StyledTitle>{!name ? 'not available' : name}</StyledTitle>
-    </StyledCard>
+    <Grid textAlign="center" doubling stackable>
+      <Grid.Row computer={2} mobile={16} tablet={2}>
+        <StyledImage src={imgUrl} alt={description} />
+      </Grid.Row>
+      <Grid.Row computer={2} mobile={16} tablet={2}>
+        <StyledTitle>{!name ? 'not available' : name}</StyledTitle>
+      </Grid.Row>
+    </Grid>
   );
 };
 

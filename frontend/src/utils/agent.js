@@ -42,6 +42,17 @@ export const requests = {
 //     requests.get(`/articles/${slug}/comments`)
 // };
 
+// Interacts with the /api/v1/school endpoint.
+// params are of the form ?name=UCSD. While some of the names may have spaces, I've found that if you just copy paste
+// the name (?name=University of California, San Diego) it will encode things for you even though it looks weird.
+// Then in your component, you can
+// import { schools } from 'utils/agent' and then
+// schools.get_all().then( ... ) ;
+export const schools = {
+  get: params => requests.get('school/' + params),
+  get_all: () => requests.get('school')
+};
+
 export default {
   setToken: _token => {
     token = _token;
