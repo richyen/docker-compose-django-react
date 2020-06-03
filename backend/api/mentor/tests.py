@@ -3,7 +3,8 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APITestCase, APIClient
 from rest_framework.views import status
-from .models import Mentor
+from api.mentor.models import Mentor
+from api.mentor.serializers import MentorSerializer
 
 # Create your tests here.
 class BaseViewTest(APITestCase):

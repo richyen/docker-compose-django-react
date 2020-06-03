@@ -3,8 +3,8 @@ from rest_framework import generics, viewsets, status
 from rest_framework import permissions
 from rest_framework.response import Response
 
-from .models import Mentor
-from .serializers import MentorSerializer
+from api.mentor.models import Mentor
+from api.mentor.serializers import MentorSerializer
 
 # Create your views here.
 class ListMentorView(generics.ListAPIView):
