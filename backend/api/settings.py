@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'api.profiles',
     'api.school',
     'api.upload',
-    'api.mentor'
+    'api.mentor',
+    'mailchimp3'
 ]
 
 MIDDLEWARE = [
@@ -185,6 +186,13 @@ else:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # do this for now to silence the error. May need to change it later.
 AWS_DEFAULT_ACL = "public-read"
+
+USE_MAILCHIMP = os.getenv('USE_MAILCHIMP') == 'TRUE'
+if USE_MAILCHIMP:
+    MAILCHIMP_USERNAME = os.getenv('MAILCHIMP_USERNAME')
+    MAILCHIMP_API_KEY = os.getenv('MAILCHIMP_API_KEY')
+    MAILCHIMP_NEWSLETTER_LIST_ID = os.getenv('MAILCHIMP_NEWSLETTER_LIST_ID')
+    MAILCHIMP_SIGNUP_LIST_ID = os.getenv('MAILCHIMP_SIGNUP_LIST_ID')
 
 # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
