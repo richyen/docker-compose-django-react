@@ -21,18 +21,38 @@ class SubscribeNewsletterView(views.APIView):
     permission_classes = []
 
     def post(self, request, *args, **kwargs):
+        if not settings.USE_MAILCHIMP:
+            return Response({"data": "Mailchimp is currently disabled."})
         new_user_data = {
             'email_address': request.data['email'],
             'status': 'subscribed',
             'tags': ['newsletter']
         }
-        print(new_user_data)
         mailchimp_client = MailChimp(
             settings.MAILCHIMP_API_KEY,
             settings.MAILCHIMP_USERNAME)
 
         # add the new user to the mailchimp list
-        mailchimp_client.lists.members.create(
-            settings.MAILCHIMP_LIST_ID,
-            new_user_data)
-        return Response({"request": str(new_user_data)})
+        try:
+            mailchimp_client.lists.members.create(
+                settings.MAILCHIMP_LIST_ID,
+                new_user_data)
+            return Response({
+                "status": "success",
+                "request": str(new_user_data)
+            })
+        # TODO: Look into best practices for returning errors.
+        except ValueError as value_error:
+            return Response({
+                "status": "error",
+                "error": str(value_error)
+            })
+        except Exception as e:
+            if e.args[0].get('title') == "Member Exists":
+                error_msg = "Email is already subscribed to newsletter."
+            else:
+                error_msg = "Unknown error. Please try again later."
+            return Response({
+                "status": "error",
+                "error": error_msg
+            })
