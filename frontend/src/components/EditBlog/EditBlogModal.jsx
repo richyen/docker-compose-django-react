@@ -45,29 +45,30 @@ const SaveButton = Styled(CancelButton)`
 `;
 
 class EditBlogModal extends Component {
-    render() {
-        return (
-            <Modal 
-                dimmer='blurring' 
-                open={this.props.modalOpen}
-            >
-                 <Modal.Header>
-                    <ModalHeader>{parse(this.props.modalContent.title)}</ModalHeader>
-                 </Modal.Header>
-                 <Modal.Description>
-                     <DescriptionContainer>
-                        {parse(this.props.modalContent.description)}
-                     </DescriptionContainer>
-                 </Modal.Description>
-                 <Modal.Actions>
-                     <ActionContainer>
-                        <SaveButton onClick={this.props.onPressAction}>{this.props.action}</SaveButton>
-                        <CancelButton onClick={this.props.onPressCancel}>Cancel</CancelButton>
-                     </ActionContainer>
-                 </Modal.Actions>
-            </Modal>
-        )
-    }
+  render() {
+    return (
+      <Modal dimmer="blurring" open={this.props.modalOpen}>
+        <Modal.Header>
+          <ModalHeader>{parse(this.props.modalContent.title)}</ModalHeader>
+        </Modal.Header>
+        <Modal.Description>
+          <DescriptionContainer>
+            {parse(this.props.modalContent.description)}
+          </DescriptionContainer>
+        </Modal.Description>
+        <Modal.Actions>
+          <ActionContainer>
+            <SaveButton onClick={this.props.onPressAction}>
+              {this.props.action}
+            </SaveButton>
+            <CancelButton onClick={this.props.onPressCancel}>
+              Cancel
+            </CancelButton>
+          </ActionContainer>
+        </Modal.Actions>
+      </Modal>
+    );
+  }
 }
 
 export default EditBlogModal;
