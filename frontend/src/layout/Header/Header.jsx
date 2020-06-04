@@ -15,10 +15,7 @@ import {
 } from './Header.styles';
 
 const navLinks = [
-  {
-    text: 'About',
-    link: '/about'
-  },
+  { text: 'About', link: '/about' },
   { text: 'Mentors', link: '/mentors' },
   { text: 'Program', link: '/program' },
   { text: 'Stories', link: '/stories' },

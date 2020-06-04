@@ -24,6 +24,8 @@ class Navigation extends Component {
           <Route exact path="/program" component={Routes.PROGRAM} />
           <Route exact path="/about" component={Routes.ABOUT} />
           <Route exact path="/stories" component={Routes.STORIES} />
+          <Route exact path="/privacy" component={Routes.PRIVACY} />
+          <Route exact path="/terms" component={Routes.TERMS} />
           <Route path="/blogpost/:id" component={Routes.BLOGPOST} />
         </Switch>
       </React.Fragment>
