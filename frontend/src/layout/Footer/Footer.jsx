@@ -38,7 +38,7 @@ const privacyLinks = ['Privacy', 'Terms', 'Sitemap', 'Cookies Policy'];
 const footerLinks = linkArr => {
   return linkArr.map((footerLink, index) => {
     return (
-      <List.Item as="a" key={index}>
+      <List.Item as="a" href={footerLink} key={index}>
         {footerLink}
       </List.Item>
     );
