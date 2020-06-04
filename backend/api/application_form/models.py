@@ -62,7 +62,8 @@ Phone number must be entered in the format: '+999999999'. Up to 15 digits allowe
                 'merge_fields': {
                     'FNAME': self.first_name,
                     'LNAME': self.last_name
-                }
+                },
+                'tags': ['applied']
             }
             mailchimp_client = MailChimp(
                 settings.MAILCHIMP_API_KEY,
