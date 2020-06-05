@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Styled from 'styled-components';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { requests } from 'utils/agent';
 
 import RenderBlog from 'components/RenderBlog';

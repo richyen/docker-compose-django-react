@@ -6,18 +6,15 @@ import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 
 import { requests } from '../../utils/agent';
-import { withRouter } from 'react-router-dom';
 
 import {
   appFormStep,
   genderOptions,
   gradeLevelOptions,
-  referralOptions,
-  topicsOptions
+  referralOptions
 } from './ApplicationOptions';
-import { render } from 'react-dom';
 
-const DEBUG = true;
+//const DEBUG = true;
 
 const useApplicationForm = callback => {
   // Set defaults
@@ -89,8 +86,7 @@ const ApplicationForm = props => {
   // feedback
   const {
     feedbacks,
-    handleFeedbackChange,
-    checkValid
+    handleFeedbackChange
   } = useApplicationFormFeedback(undefined);
 
   const validations = {
@@ -273,7 +269,7 @@ const ApplicationForm = props => {
         <Step.Group size="large">{appStepList}</Step.Group>
 
         <Form size="massive" onSubmit={handleSubmit}>
-          {currentStep == 1 && (
+          {currentStep === 1 && (
             <div id="personalInfo">
               <h2>Section 1: Personal and Contact Information</h2>
               <Form.Group widths="equal">

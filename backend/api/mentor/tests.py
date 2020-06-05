@@ -1,12 +1,8 @@
-from django.test import TestCase
-
 from django.urls import reverse
 from rest_framework.test import APITestCase, APIClient
-from rest_framework.views import status
 from api.mentor.models import Mentor
-from api.mentor.serializers import MentorSerializer
 
-# Create your tests here.
+
 class BaseViewTest(APITestCase):
     client = APIClient()
 
@@ -17,6 +13,7 @@ class BaseViewTest(APITestCase):
     def setUp(self):
         self.create_mentor(1, "", 1)
         self.create_mentor(2, "", 2)
+
 
 class GetAllMentorsTest(BaseViewTest):
 
