@@ -1,10 +1,11 @@
 import Section from '../../layout/Section';
 import React from 'react';
 import Quote from '../../components/Quote/Quote';
+import { Container } from 'semantic-ui-react';
 
 const Stories = () => {
   return (
-    <div>
+    <Container>
       <Section>
         <h2>Stories from Our Mentees</h2>
         {/* TODO - MAP IT */}
@@ -28,7 +29,7 @@ const Stories = () => {
       <Section>
         <h2>Recap of last year...</h2>
       </Section>
-    </div>
+    </Container>
   );
 };
 

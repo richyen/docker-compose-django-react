@@ -55,12 +55,12 @@ export const schools = {
 };
 
 export const SubscribeNewsletter = {
-  post:  body =>
+  post: body =>
     superagent
       .post(`${API_ROOT_WITHOUT_APIV1}/subscribe-newsletter/`, body)
       .use(tokenPlugin)
       .then(responseBody)
-}
+};
 
 export default {
   setToken: _token => {
