@@ -20,26 +20,56 @@ const style = {
 const footerContent = [
   {
     section: 'Contact Us',
-    links: ['(000) 000 - 000', 'Address 1', 'Address 2'],
+    links: [
+      { text: '(858) 123-4567', link: 'tel: (858)123-4567' },
+      { text: '123 Main St. San Diego, CA 92122', link: '/' }
+    ],
+    width: 4
+  },
+  {
+    section: 'About Us',
+    links: [
+      { text: 'Our History', link: '/about' },
+      { text: 'Mission + Values', link: '/about' },
+      { text: 'Our Program', link: '/program' },
+      { text: 'Mentors', link: '/mentors' },
+      { text: 'Testimonials', link: '/stories' },
+      { text: 'Contact Us', link: '/contact' }
+    ],
     width: 3
   },
-
-  { section: 'About', links: ['Our History', 'Mission + Values'], width: 3 },
-
-  { section: 'Mentors', links: [], width: 2 },
-
-  { section: 'Blog', links: ['Webinar', 'Podcast', 'Link'], width: 2 },
-
-  { section: 'Program', links: ['Link', 'Link', 'Link'], width: 2 }
+  {
+    section: 'Blog',
+    links: [
+      { text: 'Webinar', link: '/blog' },
+      { text: 'Podcast', link: '/blog' },
+      { text: 'Videos', link: '/blog' }
+    ],
+    width: 3
+  },
+  {
+    section: 'Program',
+    links: [
+      { text: 'Link', link: '/' },
+      { text: 'Link', link: '/' },
+      { text: 'Link', link: '/' }
+    ],
+    width: 3
+  }
 ];
 
-const privacyLinks = ['Privacy', 'Terms', 'Sitemap', 'Cookies Policy'];
+const privacyLinks = [
+  { text: 'Privacy', link: '/' },
+  { text: 'Terms', link: '/' },
+  { text: 'Sitemap', link: '/' },
+  { text: 'Cookies Policy', link: '/' }
+];
 
 const footerLinks = linkArr => {
-  return linkArr.map((footerLink, index) => {
+  return linkArr.map((linkObj, index) => {
     return (
-      <List.Item as="a" key={index}>
-        {footerLink}
+      <List.Item as="a" key={index} to={linkObj.link}>
+        {linkObj.text}
       </List.Item>
     );
   });
@@ -62,12 +92,7 @@ const Footer = () => {
   return (
     <Segment inverted vertical style={style.footerContainer}>
       <Container>
-        <Grid
-          inverted
-          stackable
-          textAlign="left"
-          // style={{ paddingLeft: '10%' }}
-        >
+        <Grid inverted stackable textAlign="left">
           <Grid.Row>
             {links(footerContent)}
             <Grid.Column width={3}>

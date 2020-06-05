@@ -1,10 +1,11 @@
 import Section from '../../layout/Section';
 import React from 'react';
 import CollegeCardList from '../../components/CollegeCard/CollegeCardList';
+import { Container } from 'semantic-ui-react';
 
 const About = () => {
   return (
-    <div>
+    <Container>
       <Section>
         <h2>About Us</h2>
         International Student Mentorship Program (ISMP) is sponsored by
@@ -18,7 +19,7 @@ const About = () => {
       <Section>
         <CollegeCardList />
       </Section>
-    </div>
+    </Container>
   );
 };
 

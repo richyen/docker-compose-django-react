@@ -24,6 +24,7 @@ const StyledTitle = Styled.h6`
     color: ${theme.colors.white};
     position: relative;
     z-index: 1;
+    font-size: ${theme.fontSizes.p};
     display: inline-block;
     background-color: rgba(0, 0, 0, 0.5); 
 `;

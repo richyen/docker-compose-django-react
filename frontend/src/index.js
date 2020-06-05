@@ -1,13 +1,11 @@
 import 'semantic-ui-css/semantic.min.css';
 
-import Footer from './layout/Footer';
-import Header from './layout/Header';
 import ResponsiveContainer from './layout/Responsive/ResponsiveContainer.component';
 
-import Navigation from './routes/Navigation';
+import Routes from './routes/Routes';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/globalStyle';
 import theme from './styles/theme';
@@ -17,13 +15,13 @@ ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Router>
-        {/* <Header /> */}
+      <BrowserRouter>
+        {/* Responsive Container has navigation and footer */}
+        {/* Routes contain body content that will pass as children into responsive container */}
         <ResponsiveContainer>
-          <Navigation />
+          <Routes />
         </ResponsiveContainer>
-        {/* <Footer /> */}
-      </Router>
+      </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

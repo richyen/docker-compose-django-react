@@ -9,6 +9,10 @@ import {
   Sidebar
 } from 'semantic-ui-react';
 
+import { Link } from 'react-router-dom';
+
+import Nav from '../Nav/Nav.component';
+import Footer from '../Footer/Footer';
 import { getWidth } from './responsiveUtils';
 
 class MobileContainer extends Component {
@@ -35,43 +39,40 @@ class MobileContainer extends Component {
           onHide={this.handleSidebarHide}
           vertical
           visible={sidebarOpened}
+          borderless
         >
-          <Menu.Item as="a" active>
-            Home
-          </Menu.Item>
-          <Menu.Item as="a">Work</Menu.Item>
-          <Menu.Item as="a">Company</Menu.Item>
-          <Menu.Item as="a">Careers</Menu.Item>
-          <Menu.Item as="a">Log in</Menu.Item>
-          <Menu.Item as="a">Sign Up</Menu.Item>
+          <Nav mobile={true} />
         </Sidebar>
 
         <Sidebar.Pusher dimmed={sidebarOpened}>
           <Segment
             inverted
             textAlign="center"
-            style={{ minHeight: 350, padding: '1em 0em' }}
+            style={{ padding: '1em 0em' }}
             vertical
           >
             <Container>
+              {/* Hamburger button */}
               <Menu inverted pointing secondary size="large">
                 <Menu.Item onClick={this.handleToggle}>
                   <Icon name="sidebar" />
                 </Menu.Item>
-                <Menu.Item position="right">
-                  <Button as="a" inverted>
-                    Log in
-                  </Button>
-                  <Button as="a" inverted style={{ marginLeft: '0.5em' }}>
-                    Sign Up
-                  </Button>
+                <Menu.Item
+                  key="application-form"
+                  as={Link}
+                  name="application-form"
+                  to="/application-form"
+                  style={{ alignSelf: 'center' }}
+                  position="right"
+                >
+                  <Button primary size="medium" content="Apply Now" />
                 </Menu.Item>
               </Menu>
             </Container>
-            <div>Hello</div>
           </Segment>
 
           {children}
+          <Footer />
         </Sidebar.Pusher>
       </Responsive>
     );

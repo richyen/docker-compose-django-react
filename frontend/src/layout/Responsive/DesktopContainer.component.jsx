@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
-  Button,
   Container,
   Menu,
   Responsive,
@@ -8,68 +7,50 @@ import {
   Visibility
 } from 'semantic-ui-react';
 
+import Nav from '../Nav/Nav.component';
+import Footer from '../Footer/Footer';
+
 import { getWidth } from './responsiveUtils';
 
-class DesktopContainer extends Component {
-  state = {};
+const DesktopContainer = ({ children }) => {
+  const [fixed, setFixed] = useState(null);
 
-  hideFixedMenu = () => this.setState({ fixed: false });
-  showFixedMenu = () => this.setState({ fixed: true });
+  const hideFixedMenu = () => {
+    setFixed(false);
+  };
 
-  render() {
-    const { children } = this.props;
-    const { fixed } = this.state;
+  const showFixedMenu = () => {
+    setFixed(true);
+  };
 
-    return (
-      <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
-        <Visibility
-          once={false}
-          onBottomPassed={this.showFixedMenu}
-          onBottomPassedReverse={this.hideFixedMenu}
-        >
-          <Segment
-            inverted
-            textAlign="center"
-            style={{ minHeight: 700, padding: '1em 0em' }}
-            vertical
+  return (
+    <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
+      <Visibility
+        once={false}
+        onBottomPassed={showFixedMenu}
+        onBottomPassedReverse={hideFixedMenu}
+      >
+        <Segment inverted textAlign="center" style={{ padding: '0' }} vertical>
+          <Menu
+            borderless
+            fixed={fixed ? 'top' : null}
+            inverted={!fixed}
+            pointing={!fixed}
+            secondary={!fixed}
+            size="large"
           >
-            <Menu
-              fixed={fixed ? 'top' : null}
-              inverted={!fixed}
-              pointing={!fixed}
-              secondary={!fixed}
-              size="large"
-            >
-              <Container>
-                <Menu.Item as="a" active>
-                  Home
-                </Menu.Item>
-                <Menu.Item as="a">Work</Menu.Item>
-                <Menu.Item as="a">Company</Menu.Item>
-                <Menu.Item as="a">Careers</Menu.Item>
-                <Menu.Item position="right">
-                  <Button as="a" inverted={!fixed}>
-                    Log in
-                  </Button>
-                  <Button
-                    as="a"
-                    inverted={!fixed}
-                    primary={fixed}
-                    style={{ marginLeft: '0.5em' }}
-                  >
-                    Sign Up
-                  </Button>
-                </Menu.Item>
-              </Container>
-            </Menu>
-            <div>Hello</div>
-          </Segment>
-        </Visibility>
+            <Container>
+              <Nav />
+            </Container>
+          </Menu>
+        </Segment>
+      </Visibility>
 
-        {children}
-      </Responsive>
-    );
-  }
-}
+      {children}
+
+      <Footer />
+    </Responsive>
+  );
+};
 
 export default DesktopContainer;
