@@ -1,46 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CollegeCard from './CollegeCard';
 import Styled from 'styled-components';
-import collegeData from './collegeData';
-
-const StyledSection = Styled.div`
-    margin-top: 24px;
-`;
-
-const StyledContainer = Styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
-    grid-gap: 30px 30px;
-    cursor: pointer;
-`;
-
-const StyledItem = Styled.div`
-    text-align: left;
-`;
+import { schools } from '../../utils/agent.js';
+import { Grid } from 'semantic-ui-react';
 
 const StyledHeader = Styled.h3`
-    grid-column-end: -1;
-    grid-column-start: 1;
-    text-align: left;
+  grid-column-end: -1;
+  grid-column-start: 1;
+  text-align: left;
 `;
 
-//Need to switch this with API call that store affiliated colleges
-const cards = collegeData.map((college, index) => {
-  return (
-    <StyledItem key={index + college.name}>
-      <CollegeCard imgUrl={college.imgurl} name={college.name} />
-    </StyledItem>
-  );
-});
-
 const CollegeCardList = () => {
+  const [schoolsInfo, setSchoolsInfo] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const collegeInfo = async () => {
+      try {
+        const collegesData = await schools
+          .get_all()
+          .then(response => response.results);
+        setIsLoading(false);
+        setSchoolsInfo(collegesData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    collegeInfo();
+  }, []);
+
+  const cards =
+    !schoolsInfo.length > 0
+      ? null
+      : schoolsInfo.map(college => {
+          return (
+            <Grid.Column mobile={16} tablet={5} computer={5} key={college.id}>
+              <CollegeCard
+                imgUrl={college.profile_picture_url}
+                name={college.name}
+                description={college.page_description}
+              />
+            </Grid.Column>
+          );
+        });
   return (
-    <StyledSection>
-      <StyledContainer>
-        <StyledHeader>Affiliated Campuses</StyledHeader>
-        {cards}
-      </StyledContainer>
-    </StyledSection>
+    <React.Fragment>
+      {isLoading ? null : (
+        <Grid stackable>
+          <Grid.Row>
+            <StyledHeader>Our Campuses</StyledHeader>
+          </Grid.Row>
+          <Grid.Row>{cards}</Grid.Row>
+        </Grid>
+      )}
+    </React.Fragment>
   );
 };
 

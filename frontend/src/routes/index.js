@@ -8,6 +8,8 @@ import Program from '../pages/Program/Program';
 import About from '../pages/About/About';
 import Stories from '../pages/Stories/Stories';
 import Blogpost from '../pages/Blogs/Blogpost';
+import Terms from '../pages/Legal/Terms';
+import Privacy from '../pages/Legal/Privacy';
 
 export const HOME = Home;
 export const EDIT_BLOG = EditBlog;
@@ -23,3 +25,5 @@ export const EDITBLOG = EditBlog;
 export const BLOGTYPE = BlogType;
 export const APPLICATIONFORM = ApplicationForm;
 export const BLOGPOST = Blogpost;
+export const PRIVACY = Privacy;
+export const TERMS = Terms;

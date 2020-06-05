@@ -22,6 +22,8 @@ import {
   referralOptions
 } from './ApplicationOptions';
 
+//const DEBUG = true;
+
 const useApplicationForm = callback => {
   // Set defaults
   const [inputs, setInputs] = useState({
@@ -90,11 +92,9 @@ const ApplicationForm = props => {
   );
 
   // feedback
-  const {
-    feedbacks,
-    handleFeedbackChange,
-    checkValid
-  } = useApplicationFormFeedback(undefined);
+  const { feedbacks, handleFeedbackChange } = useApplicationFormFeedback(
+    undefined
+  );
 
   const validations = {
     validateNotBlank: (fieldName, value) => {

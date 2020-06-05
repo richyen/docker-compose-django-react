@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.db import models
 from django.core.validators import RegexValidator
+from mailchimp3 import MailChimp
 
 
 class ApplicationForm(models.Model):
@@ -48,3 +50,26 @@ Phone number must be entered in the format: '+999999999'. Up to 15 digits allowe
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
+
+    def save(self, *args, **kwargs):
+        pk = self.pk  # will be None if this  is a new item
+        super().save(*args, **kwargs)
+        if settings.USE_MAILCHIMP and not pk:
+            # form a json object of the info mailchimp needs
+            new_user_data = {
+                'email_address': self.email,
+                'status': 'subscribed',
+                'merge_fields': {
+                    'FNAME': self.first_name,
+                    'LNAME': self.last_name
+                },
+                'tags': ['applied']
+            }
+            mailchimp_client = MailChimp(
+                settings.MAILCHIMP_API_KEY,
+                settings.MAILCHIMP_USERNAME)
+
+            # add the new user to the mailchimp list
+            mailchimp_client.lists.members.create(
+                settings.MAILCHIMP_LIST_ID,
+                new_user_data)

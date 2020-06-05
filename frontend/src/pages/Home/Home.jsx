@@ -4,6 +4,9 @@ import CollegeCardList from 'components/CollegeCard';
 import React from 'react';
 import Styled from 'styled-components';
 import mixins from 'styles/mixins';
+import RenderBlog from 'components/RenderBlog';
+import Subscribe from 'components/Subscribe';
+import { useParams } from 'react-router-dom';
 
 import { Container } from 'semantic-ui-react';
 
@@ -16,6 +19,7 @@ const StyledLink = Styled.a`
 `;
 
 const Home = () => {
+  console.log(useParams);
   return (
     <>
       <WelcomeImage src={welcome} alt="Welcome" />
@@ -47,6 +51,7 @@ const Home = () => {
           guidance. From improving your English to developing smart study
           habits, we’re here to help. Come meet us!
         </Section>
+        <Subscribe />
       </Container>
     </>
   );

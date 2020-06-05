@@ -40,38 +40,38 @@ const SelectedText = Styled(BubbleText)`
 `;
 
 class CategoryToggle extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isSelected: false
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSelected: false
+    };
+  }
 
-    onPressCategory = () => {
-        this.setState({isSelected: !this.state.isSelected}, () => {
-            this.props.onClickCategory(this.props.item);
-        });
-    }
+  onPressCategory = () => {
+    this.setState({ isSelected: !this.state.isSelected }, () => {
+      this.props.onClickCategory(this.props.item);
+    });
+  };
 
-    resetCategory = () => {
-        this.setState({isSelected: false});
-    }
+  resetCategory = () => {
+    this.setState({ isSelected: false });
+  };
 
-    render() {
-        if(this.state.isSelected) {
-            return (
-                <SelectedBubble onClick={this.onPressCategory}>
-                    <SelectedText>{this.props.text}</SelectedText>
-                    <Icon name="checkmark" size="large" inverted fitted/>
-                </SelectedBubble>
-            );
-        }
-        return(
-            <Bubble onClick={this.onPressCategory}>
-                <BubbleText>{this.props.text}</BubbleText>
-            </Bubble>
-        );
+  render() {
+    if (this.state.isSelected) {
+      return (
+        <SelectedBubble onClick={this.onPressCategory}>
+          <SelectedText>{this.props.text}</SelectedText>
+          <Icon name="checkmark" size="large" inverted fitted />
+        </SelectedBubble>
+      );
     }
+    return (
+      <Bubble onClick={this.onPressCategory}>
+        <BubbleText>{this.props.text}</BubbleText>
+      </Bubble>
+    );
+  }
 }
 
 export default CategoryToggle;
