@@ -1,31 +1,40 @@
 import React, { useState } from 'react';
 import { Button, Input } from 'semantic-ui-react';
 import styled from 'styled-components';
+import theme from '../../styles/theme';
 import { SubscribeNewsletter } from 'utils/agent';
 
 const Container = styled.div`
+  /* grid-column: 1 / 15; */
   width: 100%;
   padding: 40px;
-  background-color: #c4c4c4;
+  background-color: ${theme.colors.darkGrey};
   text-align: center;
   display: grid;
   justify-items: center;
 `;
 
 const Title = styled.h3`
+  font-family: ${theme.fonts.Poppins};
+  font-style: normal;
   font-weight: bold;
+  font-size: ${theme.fontSizes.h3};
   margin-bottom: 24px;
 `;
 
 const SearchContainer = styled.div`
-  width: 70%;
-  min-width: 500px;
+  width: 40%;
+  min-width: 450px;
 `;
 
 const SearchButton = styled(Button)`
   &&& {
+    font-family: ${theme.fonts.Poppins};
+    font-style: normal;
+    font-weight: bold;
+    font-size: ${theme.fontSizes.sm};
     color: white;
-    background: black;
+    background: ${theme.colors.purple};
   }
 `;
 
@@ -60,7 +69,7 @@ const Subscribe = () => {
 
   return (
     <Container>
-      <Title>Subscribe to our weekly newsletter</Title>
+      <Title>Subscribe to our monthly newsletter</Title>
       <SearchContainer>
         <Input
           fluid
