@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Styled from 'styled-components';
-import { Button } from 'semantic-ui-react';
-import mixins from 'styles/mixins';
 import Subscribe from 'components/Subscribe';
 import { Link, useParams } from 'react-router-dom';
 import HeroImage from 'components/HeroImage';
 import theme from '../../styles/theme';
+import { Blogposts } from '../../utils/agent';
 
 // TODO: Just testing things out
 const MentorContainer = Styled.div`
@@ -53,6 +52,9 @@ const ItalizedParagraph = Styled(StyledParagraph)`
 `;
 
 const VideoPlaceholder = Styled.div`
+`;
+
+const WelcomeImage = Styled.img`
   width: 100%;
   height: 200px;
   background-color: black;
@@ -83,8 +85,34 @@ const diffBlurb =
 // `;
 
 const Home = () => {
+  console.log(useParams);
+  const [featuredBlogs, setFeaturedBlogs] = useState([
+    {
+      title: 'placeholder',
+      description: 'something'
+    },
+    {
+      title: 'placeholder 2',
+      description: 'something'
+    },
+    {
+      title: 'placeholder 3',
+      description: 'something'
+    }
+  ]);
+
+  Blogposts.getFeatured().then(data => {
+    // TODO: use setFeaturedBlogs to update featuredBlogs from the backend data
+    // make sure to only update if it is in the initial state, otherwise it will
+    // cause an inifinite loop
+    if (featuredBlogs[0].title !== data[0].title) {
+      setFeaturedBlogs(data);
+    }
+  });
+
   return (
-    <div>
+    <>
+      {/* <WelcomeImage src={welcome} alt="Welcome" /> */}
       <HeroImage />
       <DuoContainer>
         <div>
@@ -113,69 +141,8 @@ const Home = () => {
       </TitleContainer>
 
       <Subscribe />
-    </div>
+    </>
   );
 };
 
 export default Home;
-
-{
-  /* <StyledImage src={welcome} alt="Welcome" />
-      <Section>
-        <h3>
-          Get connected with a <StyledLink>mentor</StyledLink>
-        </h3>
-        International Student Mentorship Program (ISMP) is a program to connect
-        students with alumni and working professionals who have experienced the
-        positive impact of having mentors. ISMP is organized by international
-        student campus groups at colleges and universities across the United
-        States. The program’s goal is to provide the benefits of having a mentor
-        for international students. Get connected with our volunteer mentors and
-        gain many opportunities to make life-long friends along the way!
-        <CollegeCardList />
-      </Section>
-      <Section>
-        <h3>What Makes Us Different.</h3>
-        We’re not the typical mentorship program. We aim to offer international
-        students a whole-life perspective and guidance.
-      </Section>
-      <Section>
-        <h2>Our Mentors</h2>
-        Our Mentors. We are volunteers who range from college graduate
-        professionals to PhD and Master’s candidates at top-tier universities.
-        We’re a little older, a little wiser, who can give you some practical
-        guidance. From improving your English to developing smart study habits,
-        we’re here to help. Come meet us!
-      </Section>
-      <Subscribe />s */
-}
-
-// <div>
-//   <StyledImage src={welcome} alt="Welcome" />
-//   <Section>
-//     <h3>
-//       Get connected with a <StyledLink>mentor</StyledLink>
-//     </h3>
-//     International Student Mentorship Program (ISMP) is a program to connect
-//     students with alumni and working professionals who have experienced the
-//     positive impact of having mentors. ISMP is organized by international
-//     student campus groups at colleges and universities across the United
-//     States. The program’s goal is to provide the benefits of having a mentor
-//     for international students. Get connected with our volunteer mentors and
-//     gain many opportunities to make life-long friends along the way!
-//     <CollegeCardList />
-//   </Section>
-//   <Section>
-//     <h3>What Makes Us Different.</h3>
-//     We’re not the typical mentorship program. We aim to offer international
-//     students a whole-life perspective and guidance.
-//   </Section>
-//   <Section>
-//     <h2>Our Mentors</h2>
-//     Our Mentors. We are volunteers who range from college graduate
-//     professionals to PhD and Master’s candidates at top-tier universities.
-//     We’re a little older, a little wiser, who can give you some practical
-//     guidance. From improving your English to developing smart study habits,
-//     we’re here to help. Come meet us!
-//   </Section>
-// </div>

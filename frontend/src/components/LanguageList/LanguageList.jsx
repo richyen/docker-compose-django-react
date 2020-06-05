@@ -11,34 +11,28 @@ const languageOptions = [
 
 const LanguageList = () => {
   const [languageToDisplay, setLanguageToDisplay] = useState('English');
-  const [languageToSendBackend, setLanguageToSendBackend] = useState('English');
+  const [languageToSetGlobally, setLanguageToSetGlobally] = useState('English');
 
   const retrieveLanguage = (event, data) => {
     setLanguageToDisplay(event.currentTarget.value);
 
     // TODO: Should set language globally in some kind of context provider
-    setLanguageToSendBackend(data.value);
-    console.log(`fire async process to change content to ${data.value}`);
-  };
-
-  const style = {
-    languageDropdown: {
-      padding: '6px'
-    }
+    setLanguageToSetGlobally(data.value);
+    console.log(
+      `fire async process to change content to ${languageToSetGlobally} for blog post, but also react components`
+    );
   };
 
   return (
     <Dropdown
       button
-      className="icon mini"
+      className="icon small"
       floating
       labeled
       icon="world"
       options={languageOptions}
-      search
       text={languageToDisplay}
       onChange={retrieveLanguage}
-      style={style.languageDropdown}
     />
   );
 };

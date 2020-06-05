@@ -1,6 +1,6 @@
+from datetime import datetime
 from rest_framework.test import APITestCase
 from rest_framework.views import status
-from datetime import datetime
 from api.application_form.models import ApplicationForm
 from api.application_form.serializers import ApplicationFormSerializer
 

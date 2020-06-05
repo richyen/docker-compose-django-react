@@ -64,6 +64,7 @@ class GetAllBlogpostContentsTest(BaseViewTest):
         self.assertEqual(response.data['results'], serialized.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+
 class GetByQueryParamTest(BaseViewTest):
     def setUp(self):
         # add test data

@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import Section from '../../layout/Section';
-import { Button, Input, Form, Select, Step } from 'semantic-ui-react';
+import {
+  Button,
+  Input,
+  Form,
+  Select,
+  Step,
+  Container
+} from 'semantic-ui-react';
 
+// TODO: Remove date picker, use https://arfedulov.github.io/semantic-ui-calendar-react/
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 
 import { requests } from '../../utils/agent';
-import { withRouter } from 'react-router-dom';
 
 import {
   appFormStep,
   genderOptions,
   gradeLevelOptions,
-  referralOptions,
-  topicsOptions
+  referralOptions
 } from './ApplicationOptions';
-import { render } from 'react-dom';
 
-const DEBUG = true;
+//const DEBUG = true;
 
 const useApplicationForm = callback => {
   // Set defaults
@@ -87,11 +92,9 @@ const ApplicationForm = props => {
   );
 
   // feedback
-  const {
-    feedbacks,
-    handleFeedbackChange,
-    checkValid
-  } = useApplicationFormFeedback(undefined);
+  const { feedbacks, handleFeedbackChange } = useApplicationFormFeedback(
+    undefined
+  );
 
   const validations = {
     validateNotBlank: (fieldName, value) => {
@@ -268,12 +271,12 @@ const ApplicationForm = props => {
   });
 
   return (
-    <div>
+    <Container>
       <Section>
-        <Step.Group size="large">{appStepList}</Step.Group>
+        <Step.Group size="medium">{appStepList}</Step.Group>
 
-        <Form size="massive" onSubmit={handleSubmit}>
-          {currentStep == 1 && (
+        <Form size="large" onSubmit={handleSubmit}>
+          {currentStep === 1 && (
             <div id="personalInfo">
               <h2>Section 1: Personal and Contact Information</h2>
               <Form.Group widths="equal">
@@ -569,7 +572,7 @@ const ApplicationForm = props => {
               content="Previous"
               primary
               type="button"
-              size="massive"
+              size="large"
               onClick={() => stepClick('prev')}
               style={{ marginRight: '10px' }}
             />
@@ -579,13 +582,13 @@ const ApplicationForm = props => {
               content={nextButtonLabel}
               primary
               type="button"
-              size="massive"
+              size="large"
               onClick={() => stepClick('next')}
             />
           </Button.Group>
         </Form>
       </Section>
-    </div>
+    </Container>
   );
 };
 export default ApplicationForm;

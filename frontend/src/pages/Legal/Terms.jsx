@@ -1,8 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components';
 import theme from '../../styles/theme';
-import { Link } from 'react-router-dom';
-import { Grid, Image } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
 const Section = Styled.div`
     padding: 32px 10%;
@@ -30,31 +29,6 @@ const StyledH2 = Styled.h2`
     font-weight: bold;
     font-size: 32px;
     line-height: 48px;
-`;
-
-const StyledSecH3 = Styled.h3`
-    font-family: ${props => (props.font ? props.font : theme.fonts.Poppins)};
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 36px;
-
-`;
-
-const StyledImage = Styled(Image)`
-    border-radius: 5%;
-`;
-
-const StyledLink = Styled(Link)`
-    font-family: ${theme.fonts.Poppins};
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 30px;
-    text-decoration-line: underline;
-    &: active {
-        color: #2C01C5;
-    }
 `;
 
 const Terms = () => {
