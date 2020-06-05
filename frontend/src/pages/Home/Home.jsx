@@ -52,17 +52,14 @@ const ItalizedParagraph = Styled(StyledParagraph)`
 `;
 
 const VideoPlaceholder = Styled.div`
-`;
-
-const WelcomeImage = Styled.img`
-  width: 100%;
-  height: 200px;
   background-color: black;
+  height: 287px;
 `;
 
 const TitleContainer = Styled.div`
   display: flex;
   padding: 0 13.5%;
+  align-items: baseline;
 `;
 
 const StyledLink = Styled(Link)`
@@ -70,9 +67,8 @@ const StyledLink = Styled(Link)`
     font-style: normal;
     font-weight: normal;
     font-size: ${theme.fontSizes.sm};
-    &: active {
-        color: ${theme.colors.purple};
-    }
+    color: ${theme.colors.purple};
+    padding: 0 2rem; 
 `;
 
 const whoBlurb =
@@ -137,6 +133,11 @@ const Home = () => {
 
       <TitleContainer>
         <SubTitle>Webinar Highlights</SubTitle>
+        <StyledLink>view all</StyledLink>
+      </TitleContainer>
+
+      <TitleContainer>
+        <SubTitle>Featured Blog Articles</SubTitle>
         <StyledLink>view all</StyledLink>
       </TitleContainer>
 

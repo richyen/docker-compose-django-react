@@ -48,11 +48,11 @@ const StyledButton = Styled(Button)`
   &&&{
     font-family: ${theme.fonts.Poppins};
     font-style: normal;
-    font-weight: bold;
+    font-weight: normal;
     font-size: ${theme.fontSizes.sm};
-    border-radius: 3px;
-    height: 3.25em;
-    width: 10em;
+    border-radius: 8px;
+    height: 3.5rem;
+    width: 11rem;
   }
 `;
 
@@ -74,9 +74,9 @@ const ExploreButton = Styled(StyledButton)`
 
 const ButtonContainer = Styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 300px;
-  margin: 3em auto auto auto;
+  justify-content: space-evenly;
+  width: 60%;
+  margin: 3rem auto auto auto;
 `;
 
 const HeroImage = () => {
