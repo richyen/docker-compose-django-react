@@ -22,7 +22,10 @@ class SubscribeNewsletterView(views.APIView):
 
     def post(self, request, *args, **kwargs):
         if not settings.USE_MAILCHIMP:
-            return Response({"data": "Mailchimp is currently disabled."})
+            return Response({
+                "status": "error",
+                "error": "Mailchimp is currently disabled."
+            })
         new_user_data = {
             'email_address': request.data['email'],
             'status': 'subscribed',
