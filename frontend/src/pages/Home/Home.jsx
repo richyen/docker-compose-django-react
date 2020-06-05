@@ -1,12 +1,13 @@
 import welcome from '../../images/welcome.jpg';
 import Section from '../../layout/Section';
 import CollegeCardList from 'components/CollegeCard';
-import React from 'react';
+import React, { useState } from 'react';
 import Styled from 'styled-components';
 import mixins from 'styles/mixins';
 import RenderBlog from 'components/RenderBlog';
 import Subscribe from 'components/Subscribe';
 import { useParams } from 'react-router-dom';
+import { Blogposts } from '../../utils/agent';
 
 import { Container } from 'semantic-ui-react';
 
@@ -18,8 +19,36 @@ const StyledLink = Styled.a`
   ${mixins.inlineLink}
 `;
 
+
 const Home = () => {
+
   console.log(useParams);
+  const [featuredBlogs, setFeaturedBlogs] = useState(
+    [
+      {
+        title: 'placeholder',
+        description: 'something'
+      },
+      {
+        title: 'placeholder 2',
+        description: 'something'
+      },
+      {
+        title: 'placeholder 3',
+        description: 'something'
+      }
+    ]
+  );
+
+  Blogposts.getFeatured().then((data) => {
+    // TODO: use setFeaturedBlogs to update featuredBlogs from the backend data
+    // make sure to only update if it is in the initial state, otherwise it will
+    // cause an inifinite loop
+    if (featuredBlogs[0].title !== data[0].title) {
+      setFeaturedBlogs(data);
+    }
+  });
+
   return (
     <>
       <WelcomeImage src={welcome} alt="Welcome" />
