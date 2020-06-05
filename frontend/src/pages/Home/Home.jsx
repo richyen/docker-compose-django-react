@@ -3,18 +3,22 @@ import Styled from 'styled-components';
 import { Button } from 'semantic-ui-react';
 import mixins from 'styles/mixins';
 import Subscribe from 'components/Subscribe';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import HeroImage from 'components/HeroImage';
 import theme from '../../styles/theme';
 
 // TODO: Just testing things out
 const MentorContainer = Styled.div`
   padding: 1.5em 17.5%;
-  background-color: ${theme.colors.darkGrey}
+  background-color: ${theme.colors.darkYellow}
 `;
 
-const ItalizedParagraph = Styled.p`
-  font-style: italic;
+const MentorTitle = Styled.h3`
+  color: ${theme.colors.white};
+  font-family: ${theme.fonts.PTSerif};
+  font-style: normal;
+  font-weight: bold;
+  font-size: ${theme.fontSizes.h3};
 `;
 
 const mentorContent =
@@ -27,11 +31,25 @@ const DuoContainer = Styled.div`
   align-items: flex-start;
   margin: 2em 0;
   padding: 0 13.5%;
-  /* border: 1px red solid; */
 `;
 
-const BlurbContainer = Styled.div`
-  width: 100%;
+const SubTitle = Styled.h3`
+  font-family: ${theme.fonts.PTSerif};
+  font-style: normal;
+  font-weight: bold;
+  font-size: ${theme.fontSizes.h2};
+`;
+
+const StyledParagraph = Styled.p`
+  font-family: ${theme.fonts.Poppins};
+  font-style: normal;
+  font-weight: normal;
+  font-size: ${theme.fontSizes.sm};
+  line-height: 2rem;
+`;
+
+const ItalizedParagraph = Styled(StyledParagraph)`
+  font-style: italic;
 `;
 
 const VideoPlaceholder = Styled.div`
@@ -40,45 +58,59 @@ const VideoPlaceholder = Styled.div`
   background-color: black;
 `;
 
+const TitleContainer = Styled.div`
+  display: flex;
+  padding: 0 13.5%;
+`;
+
+const StyledLink = Styled(Link)`
+    font-family: ${theme.fonts.Poppins};
+    font-style: normal;
+    font-weight: normal;
+    font-size: ${theme.fontSizes.sm};
+    &: active {
+        color: ${theme.colors.purple};
+    }
+`;
+
 const whoBlurb =
   'International Student Mentorship Program is a nonprofit organization with a network of volunteer mentors across the United States. We are passionate about mentoring international students through their college and graduate school experience in America, from the admissions process all the way through graduation. Our goal is to provide international students with a mentor that can guide them through each step of college, grad school, and beyond.';
 const diffBlurb =
   'We provide training and resources not only for academic success, but also personal growth. We believe that life is more than a transcript or a job title, and we want to help international students make the most of their experience studying in America.';
 
-const StyledLink = Styled.a`
-  ${mixins.inlineLink}
-`;
-
-const SubHeader = Styled.div`
-  padding: 0 13.5%;
-`;
-
-const viewMoreLink = Styled.link``;
+// const StyledLink = Styled.a`
+//   ${mixins.inlineLink}
+// `;
 
 const Home = () => {
   return (
     <div>
       <HeroImage />
       <DuoContainer>
-        <BlurbContainer>
-          <h3>Who Are We?</h3>
-          <p>{whoBlurb}</p>
-        </BlurbContainer>
+        <div>
+          <SubTitle>Who Are We?</SubTitle>
+          <StyledParagraph>{whoBlurb}</StyledParagraph>
+        </div>
         <VideoPlaceholder />
       </DuoContainer>
 
       <MentorContainer>
-        <h4>OUR MENTORS</h4>
+        <MentorTitle>OUR MENTORS</MentorTitle>
         <ItalizedParagraph>{mentorContent}</ItalizedParagraph>
       </MentorContainer>
 
       <DuoContainer>
-        <BlurbContainer>
-          <h3>What Makes Us Different?</h3>
-          <p>{diffBlurb}</p>
-        </BlurbContainer>
+        <div>
+          <SubTitle>What Makes Us Different?</SubTitle>
+          <StyledParagraph>{diffBlurb}</StyledParagraph>
+        </div>
         <VideoPlaceholder />
       </DuoContainer>
+
+      <TitleContainer>
+        <SubTitle>Webinar Highlights</SubTitle>
+        <StyledLink>view all</StyledLink>
+      </TitleContainer>
 
       <Subscribe />
     </div>

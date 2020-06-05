@@ -15,17 +15,24 @@ const Container = styled.div`
 `;
 
 const Title = styled.h3`
+  font-family: ${theme.fonts.Poppins};
+  font-style: normal;
   font-weight: bold;
+  font-size: ${theme.fontSizes.h3};
   margin-bottom: 24px;
 `;
 
 const SearchContainer = styled.div`
-  width: 50%;
-  min-width: 500px;
+  width: 40%;
+  min-width: 450px;
 `;
 
 const SearchButton = styled(Button)`
   &&& {
+    font-family: ${theme.fonts.Poppins};
+    font-style: normal;
+    font-weight: bold;
+    font-size: ${theme.fontSizes.sm};
     color: white;
     background: ${theme.colors.purple};
   }

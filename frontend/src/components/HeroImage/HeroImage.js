@@ -30,12 +30,29 @@ const StyledImageText = Styled.div`
   padding: 0 13.5%;
 `;
 
+const StyledTitle = Styled.h1`
+  font-family: ${theme.fonts.PTSerif};
+  font-style: normal;
+  font-weight: bold;
+  font-size: ${theme.fontSizes.h1};
+`;
+
+const StyledSubTitle = Styled.h3`
+  font-family: ${theme.fonts.Poppins};
+  font-style: normal;
+  font-weight: bold;
+  font-size: ${theme.fontSizes.h3};
+`;
+
 const StyledButton = Styled(Button)`
   &&&{
-    /* width: 35%; */
-    min-width: 120px;
-    padding: 1em 0;
-    font-weight: normal;
+    font-family: ${theme.fonts.Poppins};
+    font-style: normal;
+    font-weight: bold;
+    font-size: ${theme.fontSizes.sm};
+    border-radius: 3px;
+    height: 3.25em;
+    width: 10em;
   }
 `;
 
@@ -58,7 +75,7 @@ const ExploreButton = Styled(StyledButton)`
 const ButtonContainer = Styled.div`
   display: flex;
   justify-content: space-between;
-  width: 280px;
+  width: 300px;
   margin: 3em auto auto auto;
 `;
 
@@ -67,10 +84,14 @@ const HeroImage = () => {
     <Container>
       <StyledImage src={welcome} alt="Welcome" />
       <StyledImageText>
-        <h1>International Student Mentorship</h1>
-        <h3>Connecting international student to America</h3>
+        <StyledTitle>International Student Mentorship</StyledTitle>
+        <StyledSubTitle>
+          Connecting international students to America
+        </StyledSubTitle>
         <ButtonContainer>
-          <ApplyButton>APPLY NOW</ApplyButton>
+          <Link as={Link} to="/application-form">
+            <ApplyButton>APPLY NOW</ApplyButton>
+          </Link>
           <ExploreButton>EXPLORE</ExploreButton>
         </ButtonContainer>
       </StyledImageText>
