@@ -4,6 +4,8 @@ import CollegeCardList from 'components/CollegeCard';
 import React from 'react';
 import Styled from 'styled-components';
 import mixins from 'styles/mixins';
+import RenderBlog from 'components/RenderBlog';
+import Subscribe from 'components/Subscribe';
 import { useParams } from 'react-router-dom';
 
 // TODO: Just testing things out
@@ -46,6 +48,7 @@ const Home = () => {
         guidance. From improving your English to developing smart study habits,
         we’re here to help. Come meet us!
       </Section>
+      <Subscribe />
     </div>
   );
 };
