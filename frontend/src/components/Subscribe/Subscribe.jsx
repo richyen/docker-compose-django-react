@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Input, Form } from 'semantic-ui-react';
+import { Button, Input } from 'semantic-ui-react';
 import styled from 'styled-components';
+import { SubscribeNewsletter } from 'utils/agent';
 
 const Container = styled.div`
   width: 100%;
@@ -31,19 +32,30 @@ const SearchButton = styled(Button)`
 const Subscribe = () => {
   const [email, setEmail] = useState('');
 
-  const handleSubmit = event => {
-    if (event.key == 'Enter') {
-      console.log('PRESSED');
-    } else {
-      console.log('CLICKED');
+  const submitOnEnter = event => {
+    if (event.key === 'Enter') {
+      handleSubmit(event);
     }
-    console.log(email);
+  }
+
+  const handleSubmit = event => {
+    let body = {
+      'email' : email
+    };
+    SubscribeNewsletter.post(body)
+    .then(response =>  {
+      if (response['error']) {
+        alert(response['error']);
+      } else {
+        alert('Successfully subscribed to mailing list');
+      }
+    });
   };
 
   const handleChange = (event, data) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log(data.value);
+//     console.log(data.value);
     setEmail(data.value);
   };
 
@@ -58,7 +70,7 @@ const Subscribe = () => {
           onChange={handleChange}
           action
         >
-          <input onKeyPress={handleSubmit} />
+          <input onKeyPress={submitOnEnter} />
           <SearchButton
             type="submit"
             onClick={handleSubmit}
