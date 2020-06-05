@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import theme from '../../styles/theme';
 
+// TODO: come from an API later
 const mentorsInfo = [
   {
     image: 'https://semantic-ui.com/images/avatar2/large/matthew.png',
@@ -104,11 +106,12 @@ const Divider = styled.div`
 
 const SubHeader = styled.div`
   color: grey;
-  font-size: 0.825rem;
+  font-size: ${theme.fontSizes.sub};
 `;
 
 const Description = styled.div`
   color: black;
+  font-size: ${theme.fontSizes.sm};
 `;
 
 const Image = styled.img`

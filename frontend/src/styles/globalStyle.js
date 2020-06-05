@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     box-sizing: border-box;
-    font-size: 62.5%; // Set 1em = 10px
+    font-size: 87.5%; // Set 1em = 14px
     width: 100%;
   }
 

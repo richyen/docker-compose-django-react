@@ -1,9 +1,10 @@
 import Section from '../../layout/Section';
 import React from 'react';
+import { Container } from 'semantic-ui-react';
 
 const Program = () => {
   return (
-    <div>
+    <Container>
       <Section>
         <h2>Our Program</h2>
         <h3>
@@ -53,7 +54,7 @@ const Program = () => {
         <h2>Hobbies & Sports</h2>
         Learn new sports, pick up a few new hobbies, and gain new interests!
       </Section>
-    </div>
+    </Container>
   );
 };
 

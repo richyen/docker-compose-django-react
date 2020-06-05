@@ -17,6 +17,10 @@ const StyledImage = Styled(Image)`
 
 const StyledTitle = Styled.div`
     position: relative;
+    z-index: 1;
+    font-size: ${theme.fontSizes.p};
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.5); 
     padding-top: 24px;
     bottom: 0%;
     font-family: ${theme.fonts.Poppins};

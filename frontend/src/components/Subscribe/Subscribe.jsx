@@ -36,14 +36,13 @@ const Subscribe = () => {
     if (event.key === 'Enter') {
       handleSubmit(event);
     }
-  }
+  };
 
   const handleSubmit = event => {
     let body = {
-      'email' : email
+      email: email
     };
-    SubscribeNewsletter.post(body)
-    .then(response =>  {
+    SubscribeNewsletter.post(body).then(response => {
       if (response['error']) {
         alert(response['error']);
       } else {
@@ -55,7 +54,7 @@ const Subscribe = () => {
   const handleChange = (event, data) => {
     event.preventDefault();
     event.stopPropagation();
-//     console.log(data.value);
+    //     console.log(data.value);
     setEmail(data.value);
   };
 

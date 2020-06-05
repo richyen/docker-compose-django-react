@@ -3,7 +3,7 @@ import CollegeCardList from '../../components/CollegeCard';
 import Styled from 'styled-components';
 import theme from '../../styles/theme';
 import { Link } from 'react-router-dom';
-import { Grid, Image } from 'semantic-ui-react';
+import { Grid, Image, Container } from 'semantic-ui-react';
 
 const Section = Styled.div`
     padding: 32px 10%;
@@ -60,7 +60,7 @@ const StyledLink = Styled(Link)`
 
 const About = () => {
   return (
-    <React.Fragment>
+    <Container>
       <Section>
         <Grid doubling stackable>
           <Grid.Row columns={1}>
@@ -158,7 +158,7 @@ const About = () => {
           </Grid.Row>
         </Grid>
       </Section>
-    </React.Fragment>
+    </Container>
   );
 };
 
