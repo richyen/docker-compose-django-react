@@ -14,6 +14,7 @@ django-extensions==2.2.9
 django-storages==1.9.1
 django-tinymce==3.0.2
 djangorestframework==3.11.0
+mailchimp3==3.0.14
 psycopg2-binary==2.8.5
 pycparser==2.20
 PyJWT==1.7.1

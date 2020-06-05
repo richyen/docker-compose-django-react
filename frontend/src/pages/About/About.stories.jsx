@@ -1,9 +1,9 @@
 import React from 'react';
-import Program from '.';
+import About from './About';
 
 export default {
-  component: Program,
-  title: 'Program'
+  component: About,
+  title: 'About'
 };
 
-export const Default = () => <Program />;
+export const Default = () => <About />;

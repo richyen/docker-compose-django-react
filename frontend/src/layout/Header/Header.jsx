@@ -15,10 +15,7 @@ import {
 } from './Header.styles';
 
 const navLinks = [
-  {
-    text: 'About',
-    link: '/about'
-  },
+  { text: 'About', link: '/about' },
   { text: 'Mentors', link: '/mentors' },
   { text: 'Program', link: '/program' },
   { text: 'Stories', link: '/stories' },
@@ -49,7 +46,9 @@ const EntireHeader = () => {
                 <NavLink>{nav.text}</NavLink>
               </Link>
             ))}
-            <Button primary size="big" content="Apply Now" />
+            <Link key="application-form" to="/application-form">
+              <Button primary size="big" content="Apply Now" />
+            </Link>
           </NavContainer>
         </div>
       </MainContainer>

@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.http import HttpResponse
 from .renderers import UserJSONRenderer
 from .serializers import (RegistrationSerializer, LoginSerializer, UserSerializer)
 
@@ -12,6 +13,9 @@ class RegistrationAPIView(APIView):
     permission_classes = (AllowAny)
     renderer_classes = (UserJSONRenderer)
     serializer_class = RegistrationSerializer
+
+    def index(self):
+        return HttpResponse("Hello, world. You're at the polls index.")
 
     def post(self, request):
         user = request.data.get('user', {})

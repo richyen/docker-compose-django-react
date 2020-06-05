@@ -3,6 +3,7 @@ import { Input } from 'semantic-ui-react';
 import Styled from 'styled-components';
 import { Editor } from '@tinymce/tinymce-react';
 import parse from 'html-react-parser';
+import { requests } from 'utils/agent';
 
 import EditBlogModal from '../../components/EditBlog/EditBlogModal';
 import { EDITOR_API_KEY, EDITOR_INIT } from '../../utils/editorConstants';
@@ -130,9 +131,9 @@ class EditBlog extends Component {
     this.setState({ editorContent: content });
   };
 
-  onTagsChange = (tags) => {
-    this.setState({tags: tags.target.value});
-  }
+  onTagsChange = tags => {
+    this.setState({ tags: tags.target.value });
+  };
 
   onPressUploadImage = () => {
     this.setState({
@@ -146,26 +147,38 @@ class EditBlog extends Component {
   };
 
   onPressPreview = () => {
-    this.setState({isEditing: false});
+    this.setState({ isEditing: false });
   };
 
   onPublishBlog = () => {
     this.setState({
       modalOpen: true,
       action: 'publish'
-    })
+    });
+  };
+
+  publishToApi = () => {
+    let requestBody = {
+      language: 'en',
+      title_content: this.state.blogTitle,
+      body_content: this.state.editorContent
+    };
+    requests.post('blogpostcontent/', requestBody).then(result => {
+      //           TODO: handle errors here
+      this.props.history.push(`/blogpost/` + result.id);
+    });
   };
 
   onPressKeepEditing = () => {
-    this.setState({isEditing: true});
-  }
+    this.setState({ isEditing: true });
+  };
 
   getActionFunction() {
     switch (this.state.action) {
       case 'save-image':
         return this.onPressSave;
       case 'publish':
-        return this.onPublishBlog;
+        return this.publishToApi;
       default:
         return this.onPublishBlog;
     }
@@ -199,28 +212,25 @@ class EditBlog extends Component {
   renderEditActionButtons() {
     return (
       <ActionButtonContainer>
-        <ActionButton
-          style={{ marginRight: '8px' }}
-        >
-          Save Draft
-        </ActionButton>
-        <ActionButton
-          onClick={this.onPressPreview}
-        >
-          Preview
-        </ActionButton>
+        <ActionButton style={{ marginRight: '8px' }}>Save Draft</ActionButton>
+        <ActionButton onClick={this.onPressPreview}>Preview</ActionButton>
       </ActionButtonContainer>
-    )
+    );
   }
 
   renderPreviewActionButtons() {
     return (
       <ActionButtonContainer>
-        <ActionButton style={{ marginRight: '8px' }} onClick={this.onPublishBlog}>Publish Now</ActionButton>
+        <ActionButton
+          style={{ marginRight: '8px' }}
+          onClick={this.onPublishBlog}
+        >
+          Publish Now
+        </ActionButton>
         <ActionButton style={{ marginRight: '8px' }}>Schedule</ActionButton>
         <ActionButton>Save Draft</ActionButton>
       </ActionButtonContainer>
-    )
+    );
   }
 
   renderEditFields() {
@@ -239,7 +249,12 @@ class EditBlog extends Component {
             <UploadButtonText>Upload a Header Image</UploadButtonText>
           </ActionButton>
           <InputContainer>
-            <TagsInput size="mini" placeholder="Tags" value={this.state.tags} onChange={this.onTagsChange}/>
+            <TagsInput
+              size="mini"
+              placeholder="Tags"
+              value={this.state.tags}
+              onChange={this.onTagsChange}
+            />
           </InputContainer>
         </InputContainer>
         <Editor
@@ -250,19 +265,23 @@ class EditBlog extends Component {
           initialValue={this.state.editorContent}
           onEditorChange={this.onEditorChange}
           value={this.state.editorContent}
-      />
+        />
       </BlogContainer>
-    )
+    );
   }
 
   renderPreview() {
     return (
       <BlogContainer>
-        <PreviewBlogTitle>{this.state.blogTitle ? this.state.blogTitle: 'No Title'}</PreviewBlogTitle>
-       { this.state.editorContent === '' ? 'No Blog Content' : parse(`${this.state.editorContent}`) }
-       <Tag>{this.state.tags}</Tag>
+        <PreviewBlogTitle>
+          {this.state.blogTitle ? this.state.blogTitle : 'No Title'}
+        </PreviewBlogTitle>
+        {this.state.editorContent === ''
+          ? 'No Blog Content'
+          : parse(`${this.state.editorContent}`)}
+        <Tag>{this.state.tags}</Tag>
       </BlogContainer>
-    )
+    );
   }
 
   render() {
@@ -277,17 +296,22 @@ class EditBlog extends Component {
         />
         <HeaderContainer>
           <Heading>Edit Blog Post</Heading>
-          { this.props.location.state && <Category>{this.props.location.state.category}</Category> }
-          { this.state.isEditing ? this.renderEditActionButtons() : this.renderPreviewActionButtons() }
+          {this.props.location.state && (
+            <Category>{this.props.location.state.category}</Category>
+          )}
+          {this.state.isEditing
+            ? this.renderEditActionButtons()
+            : this.renderPreviewActionButtons()}
         </HeaderContainer>
-        { !this.state.isEditing && <hr/>}
-        { this.state.isEditing ? this.renderEditFields() : this.renderPreview() }
-        { 
-          !this.state.isEditing && 
+        {!this.state.isEditing && <hr />}
+        {this.state.isEditing ? this.renderEditFields() : this.renderPreview()}
+        {!this.state.isEditing && (
           <PublishButtonContainer>
-            <ActionButton onClick={this.onPressKeepEditing}>Keep Editing</ActionButton>
+            <ActionButton onClick={this.onPressKeepEditing}>
+              Keep Editing
+            </ActionButton>
           </PublishButtonContainer>
-        }
+        )}
       </Container>
     );
   }

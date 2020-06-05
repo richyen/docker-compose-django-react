@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     'storages',
     'api.profiles',
     'api.school',
-    'api.upload'
+    'api.upload',
+    'api.mentor',
+    'mailchimp3'
 ]
 
 MIDDLEWARE = [
@@ -148,7 +150,12 @@ REST_FRAMEWORK = {
     'NON_FIELD_ERRORS_KEY': 'error',
     'DEFAULT_AUTHENTICATION_CLASSES': ('api.authentication.backends.JWTAuthentication',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': DEFAULT_PAGE_SIZE
+    'PAGE_SIZE': DEFAULT_PAGE_SIZE,
+    'TEST_REQUEST_RENDERER_CLASSES': [
+        'rest_framework.renderers.MultiPartRenderer',
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.TemplateHTMLRenderer'
+    ]
 }
 
 USE_S3 = os.getenv('USE_S3') == 'TRUE'
@@ -177,6 +184,14 @@ else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     MEDIA_URL = '/mediafiles/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# do this for now to silence the error. May need to change it later.
+AWS_DEFAULT_ACL = "public-read"
+
+USE_MAILCHIMP = os.getenv('USE_MAILCHIMP') == 'TRUE'
+if USE_MAILCHIMP:
+    MAILCHIMP_USERNAME = os.getenv('MAILCHIMP_USERNAME')
+    MAILCHIMP_API_KEY = os.getenv('MAILCHIMP_API_KEY')
+    MAILCHIMP_LIST_ID = os.getenv('MAILCHIMP_LIST_ID')
 
 # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 

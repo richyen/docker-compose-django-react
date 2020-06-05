@@ -18,10 +18,16 @@ services:
     ports:
       - "8000:8000"
     environment:
+      # AWS settings
       USE_S3: "FALSE" # change this to true and populate the following fields to upload to s3.
       AWS_ACCESS_KEY_ID: "INSERT YOUR AWS ACCESS KEY ID HERE"
       AWS_SECRET_ACCESS_KEY: "INSERT YOUR AWS SECRET ACCESS KEY HERE"
       AWS_STORAGE_BUCKET_NAME: "INSERT THE NAME OF THE S3 BUCKET YOU CREATED HERE"
+      # MailChimp Settings
+      USE_MAILCHIMP: 'FALSE'
+      MAILCHIMP_USERNAME: 'PUT YOUR USERNAME HERE'
+      MAILCHIMP_API_KEY: 'INSERT YOUR MAILCHIMP API KEY HERE'
+      MAILCHIMP_LIST_ID: 'INSERT YOUR MAILCHIMP LIST ID HERE'
     depends_on:
       - db
     entrypoint:

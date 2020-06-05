@@ -25,145 +25,145 @@ import { css } from 'styled-components';
 const FontFaces = css`
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsThin}) format('truetype'),
+    src: url(${PoppinsThin}) format('truetype');
     font-weight: 100;
     font-style: normal;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsThinItalic}) format('truetype'),
+    src: url(${PoppinsThinItalic}) format('truetype');
     font-weight: 100;
     font-style: italic;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsExtraLight}) format('truetype'),
+    src: url(${PoppinsExtraLight}) format('truetype');
     font-weight: 200;
     font-style: normal;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsExtraLightItalic}) format('truetype'),
+    src: url(${PoppinsExtraLightItalic}) format('truetype');
     font-weight: 200;
     font-style: italic;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsLight}) format('truetype'),
+    src: url(${PoppinsLight}) format('truetype');
     font-weight: 300;
     font-style: normal;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsLightItalic}) format('truetype'),
+    src: url(${PoppinsLightItalic}) format('truetype');
     font-weight: 300;
     font-style: italic;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsRegular}) format('truetype'),
+    src: url(${PoppinsRegular}) format('truetype');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsRegularItalic}) format('truetype'),
+    src: url(${PoppinsRegularItalic}) format('truetype');
     font-weight: normal;
     font-style: italic;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsRegular}) format('truetype'),
+    src: url(${PoppinsRegular}) format('truetype');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsRegularItalic}) format('truetype'),
+    src: url(${PoppinsRegularItalic}) format('truetype');
     font-weight: normal;
     font-style: italic;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsMedium}) format('truetype'),
+    src: url(${PoppinsMedium}) format('truetype');
     font-weight: 500;
     font-style: normal;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsMediumItalic}) format('truetype'),
+    src: url(${PoppinsMediumItalic}) format('truetype');
     font-weight: 500;
     font-style: italic;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsSemiBold}) format('truetype'),
+    src: url(${PoppinsSemiBold}) format('truetype');
     font-weight: 600;
     font-style: normal;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsSemiBoldItalic}) format('truetype'),
+    src: url(${PoppinsSemiBoldItalic}) format('truetype');
     font-weight: 600;
     font-style: italic;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsBold}) format('truetype'),
+    src: url(${PoppinsBold}) format('truetype');
     font-weight: 700;
     font-style: normal;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsBoldItalic}) format('truetype'),
+    src: url(${PoppinsBoldItalic}) format('truetype');
     font-weight: 700;
     font-style: italic;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsExtraBold}) format('truetype'),
+    src: url(${PoppinsExtraBold}) format('truetype');
     font-weight: 800;
     font-style: normal;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsExtraBoldItalic}) format('truetype'),
+    src: url(${PoppinsExtraBoldItalic}) format('truetype');
     font-weight: 800;
     font-style: italic;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsBlack}) format('truetype'),
+    src: url(${PoppinsBlack}) format('truetype');
     font-weight: 900;
     font-style: normal;
   }
   @font-face {
     font-family: 'Poppins';
-    src: url(${PoppinsBlackItalic}) format('truetype'),
+    src: url(${PoppinsBlackItalic}) format('truetype');
     font-weight: 900;
     font-style: italic;
   }
   @font-face {
     font-family: 'PT Serif';
-    src: url(${PTSerifRegular}) format('truetype'),
+    src: url(${PTSerifRegular}) format('truetype');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'PT Serif';
-    src: url(${PTSerifItalic}) format('truetype'),
+    src: url(${PTSerifItalic}) format('truetype');
     font-weight: normal;
     font-style: italic;
   }
   @font-face {
     font-family: 'PT Serif';
-    src: url(${PTSerifBold}) format('truetype'),
+    src: url(${PTSerifBold}) format('truetype');
     font-weight: 700;
     font-style: normal;
   }
   @font-face {
     font-family: 'PT Serif';
-    src: url(${PTSerifBoldItalic}) format('truetype'),
+    src: url(${PTSerifBoldItalic}) format('truetype');
     font-weight: 700;
     font-style: italic;
   }
