@@ -18,7 +18,6 @@ const StyledLink = Styled.a`
 `;
 
 const Home = () => {
-  let { urlParams } = useParams();
   console.log(useParams);
   return (
     <div>

@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
 class Mentor(models.Model):
     class Meta:
         ordering = ['-id']
