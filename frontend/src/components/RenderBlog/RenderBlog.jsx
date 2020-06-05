@@ -12,14 +12,11 @@ const test2 = `
 `;
 
 const BlogContainer = styled.div`
-  width: 500px;
   height: 100%;
-  border: 1px red solid;
-  color: green;
 `;
 
-const RenderBlog = ({ blogpostcontent_id, initial_content }) => {
-  return <BlogContainer>{ReactHtmlParser(initial_content)}</BlogContainer>;
+const RenderBlog = () => {
+  return <BlogContainer>{ReactHtmlParser(test2)}</BlogContainer>;
 };
 
 export default RenderBlog;

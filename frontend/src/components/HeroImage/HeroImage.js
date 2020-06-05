@@ -3,6 +3,7 @@ import welcome from '../../images/welcome.jpg';
 import Styled from 'styled-components';
 import { Button } from 'semantic-ui-react';
 import theme from '../../styles/theme';
+import { Link } from 'react-router-dom';
 
 const Container = Styled.div`
   position: relative;

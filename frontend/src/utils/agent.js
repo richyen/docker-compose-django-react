@@ -4,8 +4,9 @@ import superagentPromise from 'superagent-promise';
 const superagent = superagentPromise(_superagent, global.Promise);
 
 const API_ROOT = process.env.REACT_APP_API_HOST + '/api/v1/';
+const API_ROOT_WITHOUT_APIV1 = process.env.REACT_APP_API_HOST;
 
-const encode = encodeURIComponent;
+//const encode = encodeURIComponent;
 const responseBody = res => res.body;
 
 let token = null;
@@ -51,6 +52,14 @@ export const requests = {
 export const schools = {
   get: params => requests.get('school/' + params),
   get_all: () => requests.get('school')
+};
+
+export const SubscribeNewsletter = {
+  post: body =>
+    superagent
+      .post(`${API_ROOT_WITHOUT_APIV1}/subscribe-newsletter/`, body)
+      .use(tokenPlugin)
+      .then(responseBody)
 };
 
 export default {
