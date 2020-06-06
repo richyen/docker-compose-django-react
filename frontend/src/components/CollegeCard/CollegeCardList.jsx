@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import CollegeCard from './CollegeCard';
-import Styled from 'styled-components';
-import { schools } from '../../utils/agent.js';
+import React, { useEffect, useState } from 'react';
 import { Grid } from 'semantic-ui-react';
+import Styled from 'styled-components';
+
+import { Schools } from '../../utils/agent.js';
+import CollegeCard from './CollegeCard';
 
 const StyledHeader = Styled.h3`
   grid-column-end: -1;
@@ -17,9 +18,9 @@ const CollegeCardList = () => {
   useEffect(() => {
     const collegeInfo = async () => {
       try {
-        const collegesData = await schools
-          .get_all()
-          .then(response => response.results);
+        const collegesData = await Schools.get_all().then(
+          response => response.results
+        );
         setIsLoading(false);
         setSchoolsInfo(collegesData);
       } catch (error) {
@@ -43,17 +44,14 @@ const CollegeCardList = () => {
             </Grid.Column>
           );
         });
-  return (
-    <React.Fragment>
-      {isLoading ? null : (
-        <Grid stackable>
-          <Grid.Row>
-            <StyledHeader>Our Campuses</StyledHeader>
-          </Grid.Row>
-          <Grid.Row>{cards}</Grid.Row>
-        </Grid>
-      )}
-    </React.Fragment>
+
+  return isLoading ? null : (
+    <Grid stackable>
+      <Grid.Row>
+        <StyledHeader>Our Campuses</StyledHeader>
+      </Grid.Row>
+      <Grid.Row>{cards}</Grid.Row>
+    </Grid>
   );
 };
 

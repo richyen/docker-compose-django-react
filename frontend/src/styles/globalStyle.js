@@ -32,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${colors.white};
     color: ${colors.black};
     line-height: 1.5;
-    font-family: ${fonts.PTSerif};
+    font-family: ${fonts.Poppins};
     font-size: ${fontSizes.md};
     ${media.tablet`font-size: ${fontSizes.sm};`}
 
