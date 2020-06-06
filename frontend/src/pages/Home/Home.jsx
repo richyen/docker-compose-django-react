@@ -70,21 +70,21 @@ const StyledLink = Styled(Link)`
 `;
 
 const Home = () => {
-  // console.log(useParams);
+  console.log(useParams);
   const { t } = useTranslation('home');
 
   const [featuredBlogs, setFeaturedBlogs] = useState([
     {
-      title: 'placeholder',
-      description: 'something'
+      title_content: 'placeholder',
+      body_content: 'something'
     },
     {
-      title: 'placeholder 2',
-      description: 'something'
+      title_content: 'placeholder 2',
+      body_content: 'something'
     },
     {
-      title: 'placeholder 3',
-      description: 'something'
+      title_content: 'placeholder 3',
+      body_content: 'something'
     }
   ]);
 
