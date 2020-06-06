@@ -22,6 +22,20 @@ This is a set up so that we can easily create apps that use Django on the backen
    * [http://127.0.0.1:8000](http://127.0.0.1:8000) is the Django backend app
    * [http://127.0.0.1:3000](http://127.0.0.1:3000) is the React frontend app
 
+## Using a dev site
+For some people (namely frontend team and people with older laptops), you may wish to use an external dev site for the backend.  To do this, follow these steps:
+1. `cd` into `ismp/frontend`
+1. `echo 'REACT_APP_API_HOST="http://###.###.###.###:####/'" > .env`, where `###.###.###.###:####` are the host and port to the backend dev site
+1. `docker-compose up frontend`
+1. Open your browser to `localhost:3000` to view your checkout of the frontend
+
+## Troubleshooting
+If you run into any issues with missing packages while the `frontend` container is running, you may need to clear the `node_modules` volume and re-pull or re-deploy the environment:
+1. docker-compose down
+1. docker volume prune -f
+1. docker-compose pull richyen/ismp-frontend
+1. docker-compose up frontend
+
 ## Using `docker-compose run` to issue one-off commands
 
 If you want to run a one-off command, like installing dependencies, you can use the `docker-compose run <service_name> <cmd>`.
