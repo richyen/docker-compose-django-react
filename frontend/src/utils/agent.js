@@ -35,24 +35,9 @@ export const requests = {
 
 export const Blogposts = {
   getFeatured: () => {
-    // TODO: get this working return requests.get(`blogpost/?featured=true`)
-    return Promise.resolve([
-      {
-        title: 'Blogpost Mock',
-        description:
-          'Here is a mock blogpost description, really hoping to get this actually working soon!'
-      },
-      {
-        title: 'Blogpost Mock 2',
-        description:
-          'Here is a mock blogpost description, really hoping to get this actually working soon!'
-      },
-      {
-        title: 'Blogpost Mock 3',
-        description:
-          'Here is a mock blogpost description, really hoping to get this actually working soon!'
-      }
-    ]);
+    return requests.get(`blogpostcontent/?featured='true'`).then((data) => {
+      return data.results
+    });
   }
 };
 
