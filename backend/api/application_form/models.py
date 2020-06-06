@@ -27,7 +27,7 @@ Phone number must be entered in the format: '+999999999'. Up to 15 digits allowe
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     preferred_name = models.CharField(max_length=100, blank=True)
-    birth_date = models.DateTimeField(max_length=100)
+    birth_date = models.DateField(max_length=100)
     gender = models.CharField(max_length=1, choices=gender_choices)
     country_of_origin = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)

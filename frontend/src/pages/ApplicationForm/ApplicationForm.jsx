@@ -9,9 +9,7 @@ import {
   Container
 } from 'semantic-ui-react';
 
-// TODO: Remove date picker, use https://arfedulov.github.io/semantic-ui-calendar-react/
-import SemanticDatepicker from 'react-semantic-ui-datepickers';
-import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
+import { DateInput } from 'semantic-ui-calendar-react';
 
 import { requests } from '../../utils/agent';
 
@@ -22,20 +20,43 @@ import {
   referralOptions
 } from './ApplicationOptions';
 
-//const DEBUG = true;
+const DEBUG = true;
 
-const useApplicationForm = callback => {
-  // Set defaults
-  const [inputs, setInputs] = useState({
+const DEBUG_FORM_STATE = {
+  first_name: 'Debug',
+  last_name: 'User',
+  preferred_name: 'Deb',
+  gender: 'M',
+  birth_date: '1990-01-12',
+  country_of_origin: 'USA',
+  email: 'test@gmail.com',
+  phone: '1002524445',
+  grade_level: 'undergraduate',
+  school_name: 'UCSD',
+  school_city: 'La Jolla',
+  school_state: 'California',
+  school_country: 'USA',
+  destination_school: 'UCSD',
+  major: 'Computer Science',
+  referral: 'friend',
+  goals: 'to be mentored by a mentor',
+  additional_input: 'when can I get mentored?'
+}
+
+const useApplicationForm = () => {
+  let defaultState = {
     gender: undefined,
     birth_date: undefined
-  });
-  const handleSubmit = event => {
-    if (event) {
-      event.preventDefault();
-    }
-    callback();
-  };
+  }
+
+  // This will fill out the form with some valid values for debugging
+  if (DEBUG) defaultState = DEBUG_FORM_STATE
+
+  // Set defaults
+  const [inputs, setInputs] = useState(
+    defaultState
+  );
+
   const handleInputChange = (event, data) => {
     setInputs(inputs => ({
       ...inputs,
@@ -43,7 +64,6 @@ const useApplicationForm = callback => {
     }));
   };
   return {
-    handleSubmit,
     handleInputChange,
     inputs
   };
@@ -75,21 +95,21 @@ const useApplicationFormFeedback = callback => {
 
 const ApplicationForm = props => {
   const signup = () => {
-    requests.post('applicationForms/', inputs).then(
+    return requests.post('applicationForms/', inputs).then(
       response => {
         alert('Successfully Posted');
         // TODO: Need to replace this alert with a toast or better notification, redirect, etc.
         console.log(response);
+        return true;
       },
       error => {
         // TODO: need to display feedbacks, not sure the best way to do this
         console.log(error.response.body);
+        return false;
       }
     );
   };
-  const { inputs, handleInputChange, handleSubmit } = useApplicationForm(
-    signup
-  );
+  const { inputs, handleInputChange } = useApplicationForm();
 
   // feedback
   const { feedbacks, handleFeedbackChange } = useApplicationFormFeedback(
@@ -251,8 +271,11 @@ const ApplicationForm = props => {
     // Submit Form
     if (action === 'next' && currentStep === 3) {
       if (validateStep(currentStep)) {
-        props.history.push('/application-form-success');
-        handleSubmit();
+        signup().then((result) => {
+          if (result) {
+            props.history.push('/application-form-success');
+          }
+        });
       }
     }
   };
@@ -273,9 +296,9 @@ const ApplicationForm = props => {
   return (
     <Container>
       <Section>
-        <Step.Group size="medium">{appStepList}</Step.Group>
+        <Step.Group size="small">{appStepList}</Step.Group>
 
-        <Form size="large" onSubmit={handleSubmit}>
+        <Form size="large">
           {currentStep === 1 && (
             <div id="personalInfo">
               <h2>Section 1: Personal and Contact Information</h2>
@@ -342,13 +365,14 @@ const ApplicationForm = props => {
                 {/* Potentially we can try a different datepicker library? */}
                 <Form.Field
                   required
-                  control={SemanticDatepicker}
+                  control={DateInput}
                   label={{
                     children: 'Birthday'
                     // htmlFor: 'something'
                   }}
                   name="birth_date"
                   onBlur={() => validateField('birth_date', inputs.birth_date)}
+                  dateFormat="YYYY-MM-DD"
                   id="form-input-control-birthday"
                   onChange={handleInputChange}
                   value={inputs.birth_date}
@@ -493,6 +517,7 @@ const ApplicationForm = props => {
                   value={inputs.destination_school}
                 />
                 <Form.Field
+                  required
                   id="form-input-control-school-major"
                   control={Input}
                   label="Current or Future Major"
@@ -567,7 +592,6 @@ const ApplicationForm = props => {
           <Button.Group id="actionButtons" horizontal="true">
             <Button
               id="form-button-control-previous"
-              control={Button}
               disabled={currentStep === 1}
               content="Previous"
               primary
@@ -578,7 +602,6 @@ const ApplicationForm = props => {
             />
             <Button
               id="form-button-control-next"
-              control={Button}
               content={nextButtonLabel}
               primary
               type="button"
