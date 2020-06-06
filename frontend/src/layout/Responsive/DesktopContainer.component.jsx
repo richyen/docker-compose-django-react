@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import {
   Container,
   Menu,
@@ -9,6 +9,7 @@ import {
 
 import Nav from '../Nav/Nav.component';
 import Footer from '../Footer/Footer';
+import Spinner from '../../components/Spinner/Spinner.component';
 
 import { getWidth } from './responsiveUtils';
 
@@ -40,7 +41,9 @@ const DesktopContainer = ({ children }) => {
             size="large"
           >
             <Container>
-              <Nav />
+              <Suspense fallback={<Spinner />}>
+                <Nav />
+              </Suspense>
             </Container>
           </Menu>
         </Segment>

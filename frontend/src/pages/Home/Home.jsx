@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import Styled from 'styled-components';
 import Subscribe from 'components/Subscribe';
 import { Link, useParams } from 'react-router-dom';
-import HeroImage from 'components/HeroImage';
+import HeroImage from 'components/HeroImage/HeroImage';
 import theme from '../../styles/theme';
 import { Blogposts } from '../../utils/agent';
+import { useTranslation } from 'react-i18next';
 
 // TODO: Just testing things out
 const MentorContainer = Styled.div`
@@ -19,9 +20,6 @@ const MentorTitle = Styled.h3`
   font-weight: bold;
   font-size: ${theme.fontSizes.h3};
 `;
-
-const mentorContent =
-  ' Our group of over 100 volunteer mentors includes graduates from top-tier college and graduate programs such as Harvard University, Stanford University, UC Berkeley, and other schools, who are now working professionals at well-respected companies. Each mentor has several years of experience supporting and advising students in their academic, professional, and personal lives, and is passionate about helping students overcome obstacles and seek new opportunities';
 
 const DuoContainer = Styled.div`
   display: grid;
@@ -71,17 +69,10 @@ const StyledLink = Styled(Link)`
     padding: 0 2rem; 
 `;
 
-const whoBlurb =
-  'International Student Mentorship Program is a nonprofit organization with a network of volunteer mentors across the United States. We are passionate about mentoring international students through their college and graduate school experience in America, from the admissions process all the way through graduation. Our goal is to provide international students with a mentor that can guide them through each step of college, grad school, and beyond.';
-const diffBlurb =
-  'We provide training and resources not only for academic success, but also personal growth. We believe that life is more than a transcript or a job title, and we want to help international students make the most of their experience studying in America.';
-
-// const StyledLink = Styled.a`
-//   ${mixins.inlineLink}
-// `;
-
 const Home = () => {
-  console.log(useParams);
+  // console.log(useParams);
+  const { t } = useTranslation('home');
+
   const [featuredBlogs, setFeaturedBlogs] = useState([
     {
       title: 'placeholder',
@@ -108,37 +99,36 @@ const Home = () => {
 
   return (
     <>
-      {/* <WelcomeImage src={welcome} alt="Welcome" /> */}
       <HeroImage />
       <DuoContainer>
         <div>
-          <SubTitle>Who Are We?</SubTitle>
-          <StyledParagraph>{whoBlurb}</StyledParagraph>
+          <SubTitle>{t('who_section.title')}</SubTitle>
+          <StyledParagraph>{t('who_section.blurb')}</StyledParagraph>
         </div>
         <VideoPlaceholder />
       </DuoContainer>
 
       <MentorContainer>
-        <MentorTitle>OUR MENTORS</MentorTitle>
-        <ItalizedParagraph>{mentorContent}</ItalizedParagraph>
+        <MentorTitle>{t('mentor_section.title')}</MentorTitle>
+        <ItalizedParagraph>{t('mentor_section.blurb')}</ItalizedParagraph>
       </MentorContainer>
 
       <DuoContainer>
         <div>
-          <SubTitle>What Makes Us Different?</SubTitle>
-          <StyledParagraph>{diffBlurb}</StyledParagraph>
+          <SubTitle>{t('diff_section.title')}</SubTitle>
+          <StyledParagraph>{t('diff_section.blurb')}</StyledParagraph>
         </div>
         <VideoPlaceholder />
       </DuoContainer>
 
       <TitleContainer>
         <SubTitle>Webinar Highlights</SubTitle>
-        <StyledLink>view all</StyledLink>
+        <StyledLink to="/">view all</StyledLink>
       </TitleContainer>
 
       <TitleContainer>
         <SubTitle>Featured Blog Articles</SubTitle>
-        <StyledLink>view all</StyledLink>
+        <StyledLink to="/">view all</StyledLink>
       </TitleContainer>
 
       <Subscribe />

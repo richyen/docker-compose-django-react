@@ -11,19 +11,20 @@ import GlobalStyle from './styles/globalStyle';
 import theme from './styles/theme';
 import * as serviceWorker from './utils/serviceWorker';
 
+// i18n translation
+import './i18n';
+
 ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <BrowserRouter>
-        {/* Responsive Container has navigation and footer */}
-        {/* Routes contain body content that will pass as children into responsive container */}
-        <ResponsiveContainer>
-          <Routes />
-        </ResponsiveContainer>
-      </BrowserRouter>
-    </ThemeProvider>
-  </React.StrictMode>,
+  <ThemeProvider theme={theme}>
+    <GlobalStyle />
+    <BrowserRouter>
+      {/* Responsive Container has navigation and footer */}
+      {/* Routes contain body content that will pass as children into responsive container */}
+      <ResponsiveContainer>
+        <Routes />
+      </ResponsiveContainer>
+    </BrowserRouter>
+  </ThemeProvider>,
   document.getElementById('root')
 );
 

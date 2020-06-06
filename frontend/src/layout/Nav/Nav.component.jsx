@@ -1,25 +1,28 @@
 import React from 'react';
 import { Menu, Button, Dropdown } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-import logo from '../../images/ISMP_logo_white.png';
+import logo from '../../images/ISMP_logo.png';
 
 import LanguageList from '../../components/LanguageList/LanguageList';
 
 const navLinks = [
   {
     text: 'About Us',
+    i18n_key: 'about_us',
     link: '/about'
   },
-  { text: 'Program', link: '/program' },
-  { text: 'Mentors', link: '/mentors' },
-  { text: 'Stories', link: '/stories' },
-  { text: 'Blog', link: '/blog' }
+  { text: 'Program', i18n_key: 'program', link: '/program' },
+  { text: 'Mentors', i18n_key: 'mentors', link: '/mentors' },
+  { text: 'Stories', i18n_key: 'stories', link: '/stories' },
+  { text: 'Blog', i18n_key: 'blog', link: '/blog' }
   // { text: 'Mentors', link: '/mentors', mobileOnly: true },
   // { text: 'Contact Us', link: '/contact' }
 ];
 
 const Nav = ({ mobile, history }) => {
+  const { t } = useTranslation('general');
   const currentPath = history.location.pathname;
 
   return (
@@ -38,7 +41,7 @@ const Nav = ({ mobile, history }) => {
               style={{ alignSelf: 'center' }}
               active={currentPath === nav.link}
             >
-              {nav.text}
+              {t(nav.i18n_key)}
             </Menu.Item>
           );
         })}
@@ -59,7 +62,9 @@ const Nav = ({ mobile, history }) => {
             to="/application-form"
             style={{ alignSelf: 'center' }}
           >
-            <Button primary size="medium" content="Apply Now" />
+            <Button primary size="medium">
+              {t('apply_now')}
+            </Button>
           </Menu.Item>
         )}
       </Menu.Menu>

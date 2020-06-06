@@ -4,6 +4,7 @@ import Styled from 'styled-components';
 import { Button } from 'semantic-ui-react';
 import theme from '../../styles/theme';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Container = Styled.div`
   position: relative;
@@ -61,6 +62,7 @@ const ApplyButton = Styled(StyledButton)`
     background-color: ${theme.colors.purple};
     border: 1px solid ${theme.colors.purple};
     color: white;
+    text-transform: uppercase;
   }
 `;
 
@@ -69,6 +71,7 @@ const ExploreButton = Styled(StyledButton)`
     background-color: transparent;
     border: 1px solid ${theme.colors.purple};
     color: ${theme.colors.purple};
+    text-transform: uppercase;
   }
 `;
 
@@ -80,19 +83,23 @@ const ButtonContainer = Styled.div`
 `;
 
 const HeroImage = () => {
+  const { t } = useTranslation('general');
+
   return (
     <Container>
       <StyledImage src={welcome} alt="Welcome" />
       <StyledImageText>
-        <StyledTitle>International Student Mentorship</StyledTitle>
+        <StyledTitle>{t('international_student_mentorship')}</StyledTitle>
         <StyledSubTitle>
-          Connecting international students to America
+          {t('connecting_international_students')}
         </StyledSubTitle>
         <ButtonContainer>
           <Link as={Link} to="/application-form">
-            <ApplyButton>APPLY NOW</ApplyButton>
+            <ApplyButton>{t('apply_now')}</ApplyButton>
           </Link>
-          <ExploreButton>EXPLORE</ExploreButton>
+          <Link as={Link} to="/about">
+            <ExploreButton>{t('explore')}</ExploreButton>
+          </Link>
         </ButtonContainer>
       </StyledImageText>
     </Container>
