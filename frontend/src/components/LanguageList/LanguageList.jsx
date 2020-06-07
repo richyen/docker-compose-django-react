@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
 import { Dropdown } from 'semantic-ui-react';
+import { useTranslation } from 'react-i18next';
 
 const languageOptions = [
-  { key: 'English', text: 'English', value: 'English' },
-  { key: 'Chinese', text: '中文', value: 'Chinese' },
-  { key: 'Japanese', text: '日本語', value: 'Japanese' },
-  { key: 'Korean', text: '한국어', value: 'Korean' },
-  { key: 'Vietnamese', text: 'Tiếng Việt', value: 'Vietnamese' }
+  { key: 'English', text: 'English', value: 'en' },
+  { key: 'Chinese', text: '中文', value: 'zh' },
+  { key: 'Japanese', text: '日本語', value: 'ja' },
+  { key: 'Korean', text: '한국어', value: 'ko' },
+  { key: 'Vietnamese', text: 'Tiếng Việt', value: 'vi' }
 ];
 
 const LanguageList = () => {
-  const [languageToDisplay, setLanguageToDisplay] = useState('English');
-  const [languageToSetGlobally, setLanguageToSetGlobally] = useState('English');
+  const { i18n } = useTranslation();
 
-  const retrieveLanguage = (event, data) => {
-    setLanguageToDisplay(event.currentTarget.value);
+  const defaultSetLang = i18n.language;
+  const [langValue, setLangValue] = useState(defaultSetLang);
 
-    // TODO: Should set language globally in some kind of context provider
-    setLanguageToSetGlobally(data.value);
-    console.log(
-      `fire async process to change content to ${languageToSetGlobally} for blog post, but also react components`
-    );
+  const selectLanguage = (e, data) => {
+    setLangValue(data.value);
+    i18n.changeLanguage(data.value);
   };
 
   return (
@@ -31,8 +29,8 @@ const LanguageList = () => {
       labeled
       icon="world"
       options={languageOptions}
-      text={languageToDisplay}
-      onChange={retrieveLanguage}
+      value={langValue}
+      onChange={selectLanguage}
     />
   );
 };

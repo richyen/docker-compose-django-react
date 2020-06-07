@@ -7,6 +7,7 @@ import {
   List,
   Segment
 } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 import SocialMediaIconList from '../../components/SocialIconsList';
 
@@ -59,8 +60,8 @@ const footerContent = [
 ];
 
 const privacyLinks = [
-  { text: 'Privacy', link: '/' },
-  { text: 'Terms', link: '/' },
+  { text: 'Privacy', link: '/privacy' },
+  { text: 'Terms', link: '/terms' },
   { text: 'Sitemap', link: '/' },
   { text: 'Cookies Policy', link: '/' }
 ];
@@ -68,7 +69,7 @@ const privacyLinks = [
 const footerLinks = linkArr => {
   return linkArr.map((linkObj, index) => {
     return (
-      <List.Item as="a" key={index} to={linkObj.link}>
+      <List.Item as={Link} key={`${linkObj.text}_${index}`} to={linkObj.link}>
         {linkObj.text}
       </List.Item>
     );

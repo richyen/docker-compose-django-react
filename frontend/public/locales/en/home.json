@@ -1,0 +1,15 @@
+{
+  "get_connected": "Get connected with a mentor",
+  "who_section": {
+    "title": "Who Are We?",
+    "blurb": "International Student Mentorship Program is a nonprofit organization with a network of volunteer mentors across the United States. We are passionate about mentoring international students through their college and graduate school experience in America, from the admissions process all the way through graduation. Our goal is to provide international students with a mentor that can guide them through each step of college, grad school, and beyond."
+  },
+  "diff_section": {
+    "title": "What Makes Us Different?",
+    "blurb": "We provide training and resources not only for academic success, but also personal growth. We believe that life is more than a transcript or a job title, and we want to help international students make the most of their experience studying in America."
+  },
+  "mentor_section": {
+    "title": "Our Mentors",
+    "blurb": "Our group of over 100 volunteer mentors includes graduates from top-tier college and graduate programs such as Harvard University, Stanford University, UC Berkeley, and other schools, who are now working professionals at well-respected companies. Each mentor has several years of experience supporting and advising students in their academic, professional, and personal lives, and is passionate about helping students overcome obstacles and seek new opportunities."
+  }
+}

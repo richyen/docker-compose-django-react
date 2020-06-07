@@ -1,0 +1,15 @@
+{
+  "get_connected": "Kết nối với một người cố vấn",
+  "who_section": {
+    "title": "Chúng ta là ai?",
+    "blurb": "Chương trình cố vấn sinh viên quốc tế là một tổ chức phi lợi nhuận với mạng lưới các cố vấn tình nguyện trên khắp Hoa Kỳ. Chúng tôi say mê tư vấn cho sinh viên quốc tế thông qua kinh nghiệm học đại học và sau đại học ở Mỹ, từ quá trình tuyển sinh cho đến khi tốt nghiệp. Mục tiêu của chúng tôi là cung cấp cho sinh viên quốc tế một người cố vấn có thể hướng dẫn họ qua từng bước của trường đại học, trường đại học và hơn thế nữa."
+  },
+  "diff_section": {
+    "title": "Điều gì làm cho chúng tôi khác nhau?",
+    "blurb": "Chúng tôi cung cấp đào tạo và nguồn lực không chỉ cho thành công học tập, mà còn phát triển cá nhân. Chúng tôi tin rằng cuộc sống không chỉ là bảng điểm hay chức danh công việc và chúng tôi muốn giúp sinh viên quốc tế tận dụng tối đa kinh nghiệm học tập tại Mỹ."
+  },
+  "mentor_section": {
+    "title": "Người cố vấn của chúng tôi",
+    "blurb": "Nhóm hơn 100 cố vấn tình nguyện của chúng tôi bao gồm các sinh viên tốt nghiệp từ các chương trình đại học và sau đại học hàng đầu như Đại học Harvard, Đại học Stanford, UC Berkeley và các trường khác, hiện đang làm việc chuyên nghiệp tại các công ty được kính trọng. Mỗi người cố vấn có nhiều năm kinh nghiệm hỗ trợ và tư vấn cho sinh viên trong cuộc sống học tập, chuyên nghiệp và cá nhân của họ, và đam mê giúp sinh viên vượt qua những trở ngại và tìm kiếm cơ hội mới."
+  }
+}
