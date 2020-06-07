@@ -70,9 +70,9 @@ const StyledLink = Styled(Link)`
 `;
 
 const Home = () => {
-  console.log(useParams);
   const { t } = useTranslation('home');
 
+  console.log(useParams);
   const [featuredBlogs, setFeaturedBlogs] = useState([
     {
       title_content: 'placeholder',
