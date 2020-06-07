@@ -92,7 +92,7 @@ const Home = () => {
     // TODO: use setFeaturedBlogs to update featuredBlogs from the backend data
     // make sure to only update if it is in the initial state, otherwise it will
     // cause an inifinite loop
-    if (featuredBlogs[0].title !== data[0].title) {
+    if (featuredBlogs[0].title_content !== data[0].title_content) {
       setFeaturedBlogs(data);
     }
   });
@@ -131,6 +131,10 @@ const Home = () => {
         <StyledLink to="/">view all</StyledLink>
       </TitleContainer>
 
+      <ul>{featuredBlogs.map((blog) => (
+        <li>Title: {blog.title_content}, Description {blog.body_content}</li>
+      ))}
+      </ul>
       <Subscribe />
     </>
   );
